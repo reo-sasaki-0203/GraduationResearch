@@ -1,0 +1,277 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>受領日不明：先輩方からの助言 | 研究資料</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'none'; media-src 'none'; connect-src 'none'; object-src 'none'; frame-src 'none'"><link rel="stylesheet" href="../../../../../assets/guide.css"><link rel="stylesheet" href="../../../../../assets/vendor/katex/katex.min.css"><link rel="stylesheet" href="../../../../../assets/public.css"><script defer src="../../../../../assets/vendor/katex/katex.min.js"></script><script defer src="../../../../../assets/math.js"></script><script defer src="../../../../../assets/navigation.js"></script></head><body><header class="public-header"><a href="../../../../../index.html">研究資料</a><small>テキスト版</small></header><div class="public-layout"><aside class="public-side"><details class="mobile-nav" open><summary>目次・ページを選ぶ</summary><nav><details open><summary>研究を進める</summary><a href="../status.html">現在地・結果</a><a href="../plan.html">研究計画</a><a href="../advice.html">助言集</a><a href="../advice-response.html">助言への対応</a></details><details open><summary>学ぶ</summary><a href="../../../guide/index.html">手引き・全18章</a><a href="../denoising-history.html">ノイズ除去の歴史</a><a href="../score.html">Fとセル寄与</a></details><details open><summary>過去の研究</summary><a href="../../../../asr_prosody_probe/index.html">初期の解析基盤</a><a href="../../../../whisper_pause_attention/index.html">pause・attention</a><a href="../../../../whisper_pause_attention/reports/internal_pause_experiment_report.html">pause実験レポート</a><a href="../../../../../SR/index.html">旧音声認識実験</a></details><details><summary>手引きの章一覧</summary><a href="../../../guide/index.html">音から、モデルの判断と研究結果まで</a><a href="../../../guide/audio.html">波形からメル特徴へ：音声の基礎</a><a href="../../../guide/transformer.html">Transformer：Q・K・Vから内部計算を読む</a><a href="../../../guide/whisper.html">Whisper：音から文字までの道筋</a><a href="../../../guide/pipeline.html">今回の処理：SNRからIG95マスクまで</a><a href="../../../guide/xai/index.html">XAI：問いから手法を選ぶ</a><a href="../../../guide/xai/ig.html">Integrated Gradients（IG）を理解する</a><a href="../../../guide/reconstruction.html">メルの表から音声へ：近似逆変換と位相</a><a href="../../../guide/evaluation.html">3つの評価：音の近さ、文字の誤り、固定文のスコア</a><a href="../../../guide/xai/shap.html">SHAP：特徴の組合せを公平に比較する</a><a href="../../../guide/xai/lime.html">LIME：入力の近くで簡単な説明モデルを作る</a><a href="../../../guide/xai/grad-cam.html">Grad-CAM：内部の特徴から粗い場所の地図を作る</a><a href="../../../guide/xai/occlusion.html">Occlusion：領域を置き換えて差を見る</a><a href="../../../guide/xai/saliency.html">Saliency：入力への小さな変化に対する感度</a><a href="../../../guide/xai/other.html">その他のXAIとattentionの読み方</a><a href="../../../guide/analysis.html">XAI以外から研究を確かめる</a><a href="../../../guide/glossary.html">用語集：式を読むための基礎</a><a href="../../../guide/sources.html">出典・実装との対応</a></details></nav></details></aside><main class="public-main" id="main"><h1 id="_1">受領日不明：先輩方からの助言</h1>
+<p>11件。2026-10-13のチャット報告も確認できるが、助言を受けた日は不明。今回の転記と10/13時点の表現を両方残す。</p>
+<h2 id="a-undated-01">A-UNDATED-01 | 目的と優位性</h2>
+<ul>
+<li>受領日：不明（2026-10-13には報告済み）</li>
+<li>発言者：先輩方（個人の対応は不明）</li>
+<li>出典：今回のユーザー依頼 H11、10/13の報告 H09</li>
+<li>分類：目的 / 独自性</li>
+<li>対応状況：目的記載あり・優位性の軸は要検討</li>
+<li>優先度：P0</li>
+<li>優先理由：研究の問い・主張・スコアの理解を左右するため。</li>
+<li>関連ID：A-20261014-02, A-20261014-11</li>
+</ul>
+<h3 id="_2">原文</h3>
+<blockquote>
+<p>自分の意見・何がしたいかを明確にする。既存モデルより良いモデルを作りたいのか、既存の音声デノイジングモデルより優れているところは何か、新しいノイズ除去のルートを開拓したいのかを考える。</p>
+</blockquote>
+<h3 id="2026-10-13">2026-10-13のチャット転記</h3>
+<blockquote>
+<p>自分の意見/何がしたいかを明確にする。既存のモデルより良いモデルを作りたい。既存の音声デノイジングモデルより優れているところを考える。新しいノイズ除去のルートを開拓したい？</p>
+</blockquote>
+<h3 id="codex">Codexの解釈</h3>
+<p>本人の目標と研究上の問いを明確にする助言。</p>
+<h3 id="_3">現状と根拠</h3>
+<p>10/14資料5頁に目的記載。Codexの10/13案と本人資料を区別する。</p>
+<h3 id="_4">対応候補・検証する問い</h3>
+<p>目的・貢献・今回の到達点を分けて説明する。</p>
+<h2 id="a-undated-02">A-UNDATED-02 | 目標音声を仮説より先に示す</h2>
+<ul>
+<li>受領日：不明（2026-10-13には報告済み）</li>
+<li>発言者：先輩方（個人の対応は不明）</li>
+<li>出典：今回のユーザー依頼 H11、10/13の報告 H09</li>
+<li>分類：発表 / 音声比較</li>
+<li>対応状況：資料と音声埋込みあり・伝わり方は未評価</li>
+<li>優先度：P1</li>
+<li>優先理由：現在の主軸を支える説明・比較を整えるため。</li>
+<li>関連ID：A-UNDATED-05</li>
+</ul>
+<h3 id="_5">原文</h3>
+<blockquote>
+<p>仮説検証に入る前に、何がしたいのかを示す。ノイズあり音声から、どのようなノイズなし音声を取り出したいのか、音声を流して説明する。</p>
+</blockquote>
+<h3 id="2026-10-13_1">2026-10-13のチャット転記</h3>
+<blockquote>
+<p>仮説検証に貼る前に、何がしたいのか、ノイズありからノイズなしの音声をこう取り出したい的な（音声流す）</p>
+</blockquote>
+<h3 id="codex_1">Codexの解釈</h3>
+<p>入力と取り出したい声のイメージを先に示す助言。</p>
+<h3 id="_6">現状と根拠</h3>
+<p>10/14単独HTMLと変換依頼を確認。音声の聞こえの評価は今回未実施。</p>
+<h3 id="_7">対応候補・検証する問い</h3>
+<p>理想のcleanと、実際のdenoising出力を区別して紹介する。</p>
+<h2 id="a-undated-03">A-UNDATED-03 | 興味の出発点</h2>
+<ul>
+<li>受領日：不明（2026-10-13には報告済み）</li>
+<li>発言者：先輩方（個人の対応は不明）</li>
+<li>出典：今回のユーザー依頼 H11、10/13の報告 H09</li>
+<li>分類：目的 / 動機</li>
+<li>対応状況：本人の具体的動機は未確認</li>
+<li>優先度：P0</li>
+<li>優先理由：研究の問い・主張・スコアの理解を左右するため。</li>
+<li>関連ID：A-20261014-02</li>
+</ul>
+<h3 id="_8">原文</h3>
+<blockquote>
+<p>どこから興味が出てきたのか、なぜその方法でやりたいのかを説明する。</p>
+</blockquote>
+<h3 id="2026-10-13_2">2026-10-13のチャット転記</h3>
+<blockquote>
+<p>どこからその興味が出てきたのか、なぜその方法でやりたいのか</p>
+</blockquote>
+<h3 id="codex_2">Codexの解釈</h3>
+<p>研究履歴から本人の感情や動機を推測しない。</p>
+<h3 id="_9">現状と根拠</h3>
+<p>pause/attention→IGの研究経過は記録にあるが、動機を説明する直接発言は見つかっていない。</p>
+<h3 id="_10">対応候補・検証する問い</h3>
+<p>どの観察・経験が着想に結び付いたか本人の言葉で整理する。</p>
+<h2 id="a-undated-04">A-UNDATED-04 | ASRとXAIの選定理由</h2>
+<ul>
+<li>受領日：不明（2026-10-13には報告済み）</li>
+<li>発言者：先輩方（個人の対応は不明）</li>
+<li>出典：今回のユーザー依頼 H11、10/13の報告 H09</li>
+<li>分類：ASR選定 / XAI選定</li>
+<li>対応状況：手法説明あり・目的との整合は要検討</li>
+<li>優先度：P1</li>
+<li>優先理由：現在の主軸を支える説明・比較を整えるため。</li>
+<li>関連ID：A-20261014-05, A-20261014-09</li>
+</ul>
+<h3 id="_11">原文</h3>
+<blockquote>
+<p>ASRモデルとXAIを、それぞれ選んだ理由を説明する。</p>
+</blockquote>
+<h3 id="2026-10-13_3">2026-10-13のチャット転記</h3>
+<blockquote>
+<p>ASRモデル、XAIぞれぞれの選んだ理由</p>
+</blockquote>
+<h3 id="codex_3">Codexの解釈</h3>
+<p>実装可能性だけでなく問いとの整合を説明する助言。</p>
+<h3 id="_12">現状と根拠</h3>
+<p>Whisper large-v3とCaptum IGの実装・手引きが存在。</p>
+<h3 id="_13">対応候補・検証する問い</h3>
+<p>Whisper/IGで検証できる問いと、選定の限界を説明する。</p>
+<h2 id="a-undated-05">A-UNDATED-05 | 既存デノイジングとの音声・画像比較</h2>
+<ul>
+<li>受領日：不明（2026-10-13には報告済み）</li>
+<li>発言者：先輩方（個人の対応は不明）</li>
+<li>出典：今回のユーザー依頼 H11、10/13の報告 H09</li>
+<li>分類：音声比較 / 実験設計</li>
+<li>対応状況：実施確認・10/14資料にも掲載</li>
+<li>優先度：P1</li>
+<li>優先理由：現在の主軸を支える説明・比較を整えるため。</li>
+<li>関連ID：A-20261014-11</li>
+</ul>
+<h3 id="_14">原文</h3>
+<blockquote>
+<p>ノイズを入れた音声、再構築した音声、既存の音声デノイジングモデルの出力を、音声と画像で比較する。</p>
+</blockquote>
+<h3 id="2026-10-13_4">2026-10-13のチャット転記</h3>
+<blockquote>
+<p>ノイズ入れた音声と、再構築したやつと、既存の音声デノイジングモデルの音声と画像の比較</p>
+</blockquote>
+<h3 id="codex_4">Codexの解釈</h3>
+<p>同じ発話で比較条件をそろえる助言。</p>
+<h3 id="_15">現状と根拠</h3>
+<p>DFN3比較1000件の進捗complete、数値・リンク検査passed。10/14資料10・11頁にも比較がある。</p>
+<h3 id="_16">対応候補・検証する問い</h3>
+<p>比較自体を未実施として再計画しない。発表の主張と指標・例の対応を確認する。</p>
+<h2 id="a-undated-06">A-UNDATED-06 | 先輩のIG説明スライドを参考にする</h2>
+<ul>
+<li>受領日：不明（2026-10-13には報告済み）</li>
+<li>発言者：先輩方（個人の対応は不明）</li>
+<li>出典：今回のユーザー依頼 H11、10/13の報告 H09</li>
+<li>分類：発表 / IG</li>
+<li>対応状況：資料未特定</li>
+<li>優先度：P2</li>
+<li>優先理由：資料入手または主軸の決定後に判断できるため。</li>
+<li>関連ID：A-20261014-01</li>
+</ul>
+<h3 id="_17">原文</h3>
+<blockquote>
+<p>IGの説明は、貫井さんとエイトさんが説明しているスライドを参考にする。</p>
+</blockquote>
+<h3 id="2026-10-13_5">2026-10-13のチャット転記</h3>
+<blockquote>
+<p>IGの説明は貫井さんとエイトさんの説明してるスライドを参考にする、</p>
+</blockquote>
+<h3 id="codex_5">Codexの解釈</h3>
+<p>貫井さん・エイトさんの資料を参考にする助言。</p>
+<h3 id="_18">現状と根拠</h3>
+<p>以前のノートでは未特定。今回追加のDrive探索は行っていない。</p>
+<h3 id="_19">対応候補・検証する問い</h3>
+<p>資料を取得できたら出典を付けて構成を参考にし、今回のF・入力・基準へ対応させる。</p>
+<h2 id="a-undated-07">A-UNDATED-07 | ASR比較を入れるか検討する</h2>
+<ul>
+<li>受領日：不明（2026-10-13には報告済み）</li>
+<li>発言者：先輩方（個人の対応は不明）</li>
+<li>出典：今回のユーザー依頼 H11、10/13の報告 H09</li>
+<li>分類：ASR選定 / 研究計画</li>
+<li>対応状況：保留候補</li>
+<li>優先度：P2</li>
+<li>優先理由：資料入手または主軸の決定後に判断できるため。</li>
+<li>関連ID：A-20261014-05, A-20261014-12</li>
+</ul>
+<h3 id="_20">原文</h3>
+<blockquote>
+<p>ASRモデルの違いは、もう少し練ってから、発表に入れるか考える。</p>
+</blockquote>
+<h3 id="2026-10-13_6">2026-10-13のチャット転記</h3>
+<blockquote>
+<p>ASRモデルの違いは、もう少し練ってから、入れるか考えて</p>
+</blockquote>
+<h3 id="codex_6">Codexの解釈</h3>
+<p>比較を必須化する助言ではない。</p>
+<h3 id="_21">現状と根拠</h3>
+<p>旧pause実験は同じ条件でのASRデノイジング比較ではない。</p>
+<h3 id="_22">対応候補・検証する問い</h3>
+<p>主仮説に必要かを先に判断する。</p>
+<h2 id="a-undated-08">A-UNDATED-08 | 理解したXAIだけを発表に載せる</h2>
+<ul>
+<li>受領日：不明（2026-10-13には報告済み）</li>
+<li>発言者：先輩方（個人の対応は不明）</li>
+<li>出典：今回のユーザー依頼 H11、10/13の報告 H09</li>
+<li>分類：XAI選定 / 発表</li>
+<li>対応状況：説明資料あり・本人の理解は未確認</li>
+<li>優先度：P1</li>
+<li>優先理由：現在の主軸を支える説明・比較を整えるため。</li>
+<li>関連ID：A-20261014-09</li>
+</ul>
+<h3 id="_23">原文</h3>
+<blockquote>
+<p>XAIの手法は、載せるなら理解してから載せる。</p>
+</blockquote>
+<h3 id="2026-10-13_7">2026-10-13のチャット転記</h3>
+<blockquote>
+<p>XAIの手法は載せるならちゃんと手法理解してから載せて。</p>
+</blockquote>
+<h3 id="codex_7">Codexの解釈</h3>
+<p>説明ページの存在と本人が説明できることを区別する。</p>
+<h3 id="_24">現状と根拠</h3>
+<p><a href="../../../guide/xai/index.html">XAI手引き</a>に各手法の説明がある。</p>
+<h3 id="_25">対応候補・検証する問い</h3>
+<p>使用手法の対象スコア・基準・解釈・限界を本人の言葉で説明する。</p>
+<h2 id="a-undated-09">A-UNDATED-09 | 研究に適したXAIをAIにも検討させる</h2>
+<ul>
+<li>受領日：不明（2026-10-13には報告済み）</li>
+<li>発言者：先輩方（個人の対応は不明）</li>
+<li>出典：今回のユーザー依頼 H11、10/13の報告 H09</li>
+<li>分類：XAI選定 / 研究計画</li>
+<li>対応状況：Codex案あり・最適性未検証</li>
+<li>優先度：P2</li>
+<li>優先理由：資料入手または主軸の決定後に判断できるため。</li>
+<li>関連ID：A-20261014-09</li>
+</ul>
+<h3 id="_26">原文</h3>
+<blockquote>
+<p>今回の研究に適したXAI手法をAIにも検討させる。</p>
+</blockquote>
+<h3 id="2026-10-13_8">2026-10-13のチャット転記</h3>
+<blockquote>
+<p>AIにXAIの手法として今回の研究で最も適しているものを選んでみる。</p>
+</blockquote>
+<h3 id="codex_8">Codexの解釈</h3>
+<p>AIの推奨は選択肢の整理であり、実験的な最適性の証明ではない。</p>
+<h3 id="_27">現状と根拠</h3>
+<p>10/13準備計画にIG主手法・Occlusion補助の案がある。</p>
+<h3 id="_28">対応候補・検証する問い</h3>
+<p>研究目的・比較可能性・計算予算に照らして再評価し、未採用案として保持する。</p>
+<h2 id="a-undated-10">A-UNDATED-10 | 音声再構成の数式を追う</h2>
+<ul>
+<li>受領日：不明（2026-10-13には報告済み）</li>
+<li>発言者：先輩方（個人の対応は不明）</li>
+<li>出典：今回のユーザー依頼 H11、10/13の報告 H09</li>
+<li>分類：再構成 / 学習計画</li>
+<li>対応状況：数式説明あり・学習完了は未確認</li>
+<li>優先度：P1</li>
+<li>優先理由：現在の主軸を支える説明・比較を整えるため。</li>
+<li>関連ID：A-20261014-08</li>
+</ul>
+<h3 id="_29">原文</h3>
+<blockquote>
+<p>音声再構築の数式を追っておく。</p>
+</blockquote>
+<h3 id="2026-10-13_9">2026-10-13のチャット転記</h3>
+<blockquote>
+<p>音声再構築の数式を追っておく</p>
+</blockquote>
+<h3 id="codex_9">Codexの解釈</h3>
+<p>実装と式を対応させて理解する助言。</p>
+<h3 id="_30">現状と根拠</h3>
+<p><a href="../../../guide/reconstruction.html">再構成の手引き</a>とaudio.pyがある。</p>
+<h3 id="_31">対応候補・検証する問い</h3>
+<p>線形メル、非負逆問題、混合位相、WAV再計算評価を説明する。</p>
+<h2 id="a-undated-11">A-UNDATED-11 | 近い先行研究を読む</h2>
+<ul>
+<li>受領日：不明（2026-10-13には報告済み）</li>
+<li>発言者：先輩方（個人の対応は不明）</li>
+<li>出典：今回のユーザー依頼 H11、10/13の報告 H09</li>
+<li>分類：先行研究 / 学習計画</li>
+<li>対応状況：候補あり・読了未確認</li>
+<li>優先度：P1</li>
+<li>優先理由：現在の主軸を支える説明・比較を整えるため。</li>
+<li>関連ID：A-20261014-07</li>
+</ul>
+<h3 id="_32">原文</h3>
+<blockquote>
+<p>自分の研究に近い先行研究を見ておく。</p>
+</blockquote>
+<h3 id="2026-10-13_10">2026-10-13のチャット転記</h3>
+<blockquote>
+<p>先行研究で自分の研究に近いのを見ておく</p>
+</blockquote>
+<h3 id="codex_10">Codexの解釈</h3>
+<p>先行研究との近さと差を調べる助言。</p>
+<h3 id="_33">現状と根拠</h3>
+<p>準備計画と文献一覧にPlantingaら等の候補が記録されている。</p>
+<h3 id="_34">対応候補・検証する問い</h3>
+<p>論文ごとに目的・モデル・学習・寄与の用途・評価を比較する。</p><footer class="public-footer"><a href="../../../../../index.html">研究資料の入口</a> · 画像・音声を省いた公開用テキスト版</footer></main></div></body></html>

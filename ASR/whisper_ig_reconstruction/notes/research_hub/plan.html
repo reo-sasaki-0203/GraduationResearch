@@ -1,0 +1,58 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>研究計画の見直しと次のステップ | 研究資料</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'none'; media-src 'none'; connect-src 'none'; object-src 'none'; frame-src 'none'"><link rel="stylesheet" href="../../../../assets/guide.css"><link rel="stylesheet" href="../../../../assets/vendor/katex/katex.min.css"><link rel="stylesheet" href="../../../../assets/public.css"><script defer src="../../../../assets/vendor/katex/katex.min.js"></script><script defer src="../../../../assets/math.js"></script><script defer src="../../../../assets/navigation.js"></script></head><body><header class="public-header"><a href="../../../../index.html">研究資料</a><small>テキスト版</small></header><div class="public-layout"><aside class="public-side"><details class="mobile-nav" open><summary>目次・ページを選ぶ</summary><nav><details open><summary>研究を進める</summary><a href="status.html">現在地・結果</a><a href="plan.html" aria-current="page">研究計画</a><a href="advice.html">助言集</a><a href="advice-response.html">助言への対応</a></details><details open><summary>学ぶ</summary><a href="../../guide/index.html">手引き・全18章</a><a href="denoising-history.html">ノイズ除去の歴史</a><a href="score.html">Fとセル寄与</a></details><details open><summary>過去の研究</summary><a href="../../../asr_prosody_probe/index.html">初期の解析基盤</a><a href="../../../whisper_pause_attention/index.html">pause・attention</a><a href="../../../whisper_pause_attention/reports/internal_pause_experiment_report.html">pause実験レポート</a><a href="../../../../SR/index.html">旧音声認識実験</a></details><details><summary>手引きの章一覧</summary><a href="../../guide/index.html">音から、モデルの判断と研究結果まで</a><a href="../../guide/audio.html">波形からメル特徴へ：音声の基礎</a><a href="../../guide/transformer.html">Transformer：Q・K・Vから内部計算を読む</a><a href="../../guide/whisper.html">Whisper：音から文字までの道筋</a><a href="../../guide/pipeline.html">今回の処理：SNRからIG95マスクまで</a><a href="../../guide/xai/index.html">XAI：問いから手法を選ぶ</a><a href="../../guide/xai/ig.html">Integrated Gradients（IG）を理解する</a><a href="../../guide/reconstruction.html">メルの表から音声へ：近似逆変換と位相</a><a href="../../guide/evaluation.html">3つの評価：音の近さ、文字の誤り、固定文のスコア</a><a href="../../guide/xai/shap.html">SHAP：特徴の組合せを公平に比較する</a><a href="../../guide/xai/lime.html">LIME：入力の近くで簡単な説明モデルを作る</a><a href="../../guide/xai/grad-cam.html">Grad-CAM：内部の特徴から粗い場所の地図を作る</a><a href="../../guide/xai/occlusion.html">Occlusion：領域を置き換えて差を見る</a><a href="../../guide/xai/saliency.html">Saliency：入力への小さな変化に対する感度</a><a href="../../guide/xai/other.html">その他のXAIとattentionの読み方</a><a href="../../guide/analysis.html">XAI以外から研究を確かめる</a><a href="../../guide/glossary.html">用語集：式を読むための基礎</a><a href="../../guide/sources.html">出典・実装との対応</a></details></nav></details></aside><main class="public-main" id="main"><h1 id="_1">研究計画の見直しと次のステップ</h1>
+<p>2026-10-17、記録整備後の追加依頼に応じて作成した<strong>Codexの具体的な計画案</strong>。本人の研究目的に沿うが、本人の動機や最終的な研究方針を新たに確定したものではない。新しいASR/IG計算や仮説検証実験は今回実行していない。</p>
+<h2 id="_2">まず何を変えるか</h2>
+<p><strong>主軸の提案：ASRの入力寄与度が発話を残す手掛かりになる条件を検証し、認識を損なう原因を一つずつ分ける。</strong></p>
+<p>「既存ノイズ除去モデルより全面的に良いモデルを作る」だけでは、何を選び何を検証するかが定まらない。今回の結果ではDFN3が音響指標で大きく改善してもCERは悪化している。目的の候補を「発話情報を残し、認識を損ないにくい雑音除去」とし、既存法に対する狙いは<strong>声・内容を保持しながら認識の損傷を抑えること</strong>へ絞る案をすすめる。音質、計算量、未知雑音への優位性まで同時に目標化しない。</p>
+<p>IGはmixtureよりCERが悪いため、現段階でこの狙いを達成したとは言わない。IGの理屈が支持されない場合には、手法へ固執せず、仮説の適用条件や否定的結果を研究の成果としてまとめる分岐を置く。</p>
+<p>関連：<a href="status.html">目的の出典と実測</a>、<a href="advice-response.html">助言12件への具体対応</a>、<a href="denoising-history.html">デノイジングの歴史</a>。</p>
+<h2 id="_3">既に終わっていること</h2>
+<p>主1000件のIG実験、同面積random/energy、再構成だけの対照、DeepFilterNet3の同じ1000件比較は完了。これらを未実施として再実行する計画には戻さない。Fの同一環境再採点と元CERの環境差は区別する。</p>
+<p>今回完了したのは資料整備、実装定義の確認、歴史の学習ページ、対応計画の作成。以下の実験結果はまだない。</p>
+<h2 id="0">第0段階：定義と目的を揃える</h2>
+<ul>
+<li>Fを固定文の平均対数確率と定義し、各トークン→平均→入力セル寄与の関係を説明する。</li>
+<li>IGはFではなくFの入力勾配を積分する。10/14資料9頁の「Fの曲線の面積＝IG」は修正候補にする。実基準は無音frontend特徴であり単純な0ではない。</li>
+<li>研究の対象（誰の音声・どの雑音・何の利用場面）と主要評価を決める。本人の動機は未確認のまま捏造しない。</li>
+<li>歴史ページを読み、少なくとも古典的ゲイン、学習マスク、複素/波形、DeepFilterNet、生成系を同じ比較軸で説明する。</li>
+</ul>
+<p>完了の目安：目的1文、H1/H2、FとIGの正しい図、代表法の機構比較表が揃う。資料の存在と本人が説明できることは別に確認する。</p>
+<h2 id="1igh1">第1段階：IGの数値品質とH1を先に調べる</h2>
+<h3 id="h1">問いH1</h3>
+<p>「abs IGが高い領域は、同じ面積のrandom/energy選択に比べて、雑音より声を優先して保持するか」。認識スコアの説明ができることと、音声分離用のマスクとして良いことを分ける。</p>
+<p>保存済みのcleanとnoise_componentを同じ変換へ通した線形メルパワーをそれぞれ<span data-tex="P_s,P_v"></span>とし、既存マスク<span data-tex="M"></span>が各成分をどれだけ保持するかを測る案：</p>
+<div class="math-display" data-tex="r_s=\frac{\sum M\odot P_s}{\sum P_s},\qquad
+ r_v=\frac{\sum M\odot P_v}{\sum P_v},\qquad
+ J=r_s-r_v."></div>
+<p>和は有効セル内。分母が0なら無効として記録し、0の結果に置き換えない。<span data-tex="J"></span>は選択の偏りを示す診断であり、人の聞き取りや実際の分離音のSNRを直接保証しない。各成分のパワーの和が混合パワーと厳密に等しいとは仮定しない。</p>
+<p>対照：現行IG、同面積random、同面積energy、必要に応じて面積を合わせた発話優勢のoracle選択。oracleは正解成分がある評価専用の参考で、本番入力・IG生成に使わない。各マスクの面積を揃えない単純比較は避ける。</p>
+<h3 id="_4">数値品質を別に診断する</h3>
+<p>まず保存済み64/128点比較を再読。次の小規模診断の具体案は、5雑音から品質合格/未達を各2件ずつ、最大20件を固定seedで選ぶこと。結果や見栄えを見て選ばず、候補が不足する場合の選び方も先に記録する。追加256点などはこの診断に限定し、全1000件の計算し直しを最初に行わない。</p>
+<p>調べる量はdelta、abs IG cosine、マスクJaccard、<span data-tex="J"></span>。合格化や性能改善を保証しない。基準入力・精度・点数を同時に変えず、変更したものは別条件として保存する。少数例は原因探索であり、一般的な有効性の検証結果として扱わない。</p>
+<h3 id="_5">次へ進む判断</h3>
+<ul>
+<li>数値が不安定：マスク改良の前に数値近似や基準の影響を切り分ける。</li>
+<li>数値が安定し、声を優先する傾向がある：固定した対照でH1をさらに検証し、第2段階へ。</li>
+<li>数値が安定してもrandom/energyに比べ声を優先しない：XAIを加工マスクへ使う根拠が弱い。無条件にsoft化や別ASRへ進まず、用途や仮説を見直す。</li>
+</ul>
+<p>全件と品質群を分け、発話単位の差と不確かさを示す。合格例だけの選択に伴う偏りも記す。</p>
+<h2 id="2h1">第2段階：H1が支持されるなら、マスク変更を一つだけ試す</h2>
+<p><strong>最初の改善候補はsoft化</strong>。現在の0/1マスクで除くセルを完全な0にせず、小さな重みで残す。これは学習マスク/連続ゲインの知識を参考にするが、係数の最適性は未検証。</p>
+<p>この段階ではWhisper、IG対象文、基準、主要な復元法を固定する。比べる条件は、加工なし、再構成だけ、現行hard、候補soft、同じ保持量のrandom/energy。softの保持量を揃える定義を事前に決め、hardの面積とsoftの重み合計を同じ量と誤認しない。</p>
+<p>H2は「雑音を抑えながら、声と認識を損なわないか」。主要評価をCER、併記をSI-SDR・メル誤差・声/雑音保持診断とする案。音質が主目標なら別途試聴設計が必要で、CERだけでは足りない。</p>
+<p>成功の目安は、現行hardよりCERを改善し、mixtureからのCER悪化を増やさず、音響上の改善も確認できること。正式な合格判定には比較対象、許容する悪化幅、信頼区間の扱いを評価前に固定する。都合の良いp値や一例の聞こえだけで採用しない。</p>
+<p>既存1000件は結果を既に見ている探索用データ。係数選び後の最終評価は未使用発話で条件を固定して行う。将来の検証では同じ発話×同じSNRで雑音差を比較し、必要に応じて別話者へ拡張する。ASRの事前学習データとの非重複は、確認していなければ保証しない。</p>
+<h2 id="3">第3段階：復元の情報損失が支配的なら経路を変える</h2>
+<p>第1・2段階と同時には変更しない。候補は、ASRの判断には既存のメルIGを使い、出力側は元の混合複素STFTへ重みを写して掛ける方式。メルから波形を近似逆変換する部分を避ける設計を検討できる。</p>
+<p>ただし、メルマスクを線形周波数へ写す方法は一意でない。重なりのあるフィルタへの分配方法、未被覆周波数、パワー/振幅のどちらへ掛けるかを定義する。同じ変換をrandom/energyにも使い、全保持の恒等対照を置く。元の混合位相の制約も残る。</p>
+<p>この候補は今回の歴史学習と既存の復元経路から考えたCodex提案。改善や新規性を実証したものではない。</p>
+<h2 id="asrxai">ASR・XAI・生成系をどう扱うか</h2>
+<ul>
+<li>最初はWhisperを固定し、既存の比較と原因をつなぐ。ノイズに弱いASRが自動的に良いとは仮定しない。</li>
+<li>マスクの有用性が見えてから、別ASRで再評価して効果がWhisper固有かを確認する候補。マスク生成ASRと評価ASRの役割を分ける。</li>
+<li>Occlusionは正/負寄与と同面積の領域置換のスコア変化を調べる補助候補。入力分布を外れる置換の影響にも注意する。</li>
+<li>Diffusionは否定しない。<a href="denoising-history.html">少数段の生成も含む歴史</a>を参照し、目的と資源に合うなら将来の比較候補へ。今は新規Diffusion学習・ASR×XAI総当たりを同時に始めない。</li>
+</ul>
+<h2 id="_6">実験を始める前に作る記録</h2>
+<p>対象発話・選択規則、仮説、主要/補助指標、対照、変更する一軸、成功/停止条件、モデル・コード・設定版、推定資源、結果の保存先を1枚にまとめる。今回そのための実験を起動していない。</p>
+<p>次に着手する順は、<strong>F/IGの図と目的の整理→代表法の機構の理解→H1と数値品質の診断設計</strong>。マスクを改良するか、仮説を見直すかはその後の証拠で選ぶ。</p>
+<p>旧計画は10/13の準備計画にそのまま保持。今回の計画の根拠と未実施項目は<a href="advice-response.html">助言対応</a>で追跡できる。</p><footer class="public-footer"><a href="../../../../index.html">研究資料の入口</a> · 画像・音声を省いた公開用テキスト版</footer></main></div></body></html>

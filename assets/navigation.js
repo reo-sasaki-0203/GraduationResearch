@@ -1,0 +1,1 @@
+'use strict';const nav=document.querySelector('.mobile-nav');if(matchMedia('(max-width:800px)').matches)nav.open=false;

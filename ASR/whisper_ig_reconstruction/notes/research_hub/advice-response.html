@@ -1,0 +1,114 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>10月14日の助言にどう対応するか | 研究資料</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'none'; media-src 'none'; connect-src 'none'; object-src 'none'; frame-src 'none'"><link rel="stylesheet" href="../../../../assets/guide.css"><link rel="stylesheet" href="../../../../assets/vendor/katex/katex.min.css"><link rel="stylesheet" href="../../../../assets/public.css"><script defer src="../../../../assets/vendor/katex/katex.min.js"></script><script defer src="../../../../assets/math.js"></script><script defer src="../../../../assets/navigation.js"></script></head><body><header class="public-header"><a href="../../../../index.html">研究資料</a><small>テキスト版</small></header><div class="public-layout"><aside class="public-side"><details class="mobile-nav" open><summary>目次・ページを選ぶ</summary><nav><details open><summary>研究を進める</summary><a href="status.html">現在地・結果</a><a href="plan.html">研究計画</a><a href="advice.html">助言集</a><a href="advice-response.html" aria-current="page">助言への対応</a></details><details open><summary>学ぶ</summary><a href="../../guide/index.html">手引き・全18章</a><a href="denoising-history.html">ノイズ除去の歴史</a><a href="score.html">Fとセル寄与</a></details><details open><summary>過去の研究</summary><a href="../../../asr_prosody_probe/index.html">初期の解析基盤</a><a href="../../../whisper_pause_attention/index.html">pause・attention</a><a href="../../../whisper_pause_attention/reports/internal_pause_experiment_report.html">pause実験レポート</a><a href="../../../../SR/index.html">旧音声認識実験</a></details><details><summary>手引きの章一覧</summary><a href="../../guide/index.html">音から、モデルの判断と研究結果まで</a><a href="../../guide/audio.html">波形からメル特徴へ：音声の基礎</a><a href="../../guide/transformer.html">Transformer：Q・K・Vから内部計算を読む</a><a href="../../guide/whisper.html">Whisper：音から文字までの道筋</a><a href="../../guide/pipeline.html">今回の処理：SNRからIG95マスクまで</a><a href="../../guide/xai/index.html">XAI：問いから手法を選ぶ</a><a href="../../guide/xai/ig.html">Integrated Gradients（IG）を理解する</a><a href="../../guide/reconstruction.html">メルの表から音声へ：近似逆変換と位相</a><a href="../../guide/evaluation.html">3つの評価：音の近さ、文字の誤り、固定文のスコア</a><a href="../../guide/xai/shap.html">SHAP：特徴の組合せを公平に比較する</a><a href="../../guide/xai/lime.html">LIME：入力の近くで簡単な説明モデルを作る</a><a href="../../guide/xai/grad-cam.html">Grad-CAM：内部の特徴から粗い場所の地図を作る</a><a href="../../guide/xai/occlusion.html">Occlusion：領域を置き換えて差を見る</a><a href="../../guide/xai/saliency.html">Saliency：入力への小さな変化に対する感度</a><a href="../../guide/xai/other.html">その他のXAIとattentionの読み方</a><a href="../../guide/analysis.html">XAI以外から研究を確かめる</a><a href="../../guide/glossary.html">用語集：式を読むための基礎</a><a href="../../guide/sources.html">出典・実装との対応</a></details></nav></details></aside><main class="public-main" id="main"><h1 id="1014">10月14日の助言にどう対応するか</h1>
+<p>2026-10-17の追加依頼に基づき、記録整備と文献確認の後で研究計画を見直した。以下は「今回整理した対応」と「今後必要な検証」を分けた一覧。<strong>対応計画を作成したことは、助言の懸念を実験的に解消したことではない。</strong></p>
+<p>関連：<a href="plan.html">研究計画</a> / <a href="advice/20261014.html">原文12件</a> / <a href="denoising-history.html">歴史と機構</a>。</p>
+<h2 id="_1">対応の一覧</h2>
+<p>| 助言 | 今回の対応 | 次にすること | 現状 |</p>
+<p>| --- | --- | --- | --- |</p>
+<p>| <a href="#response-01">A-20261014-01：各セルの寄与を追加</a> | F→トークン平均→時間・周波数セルへのIGという関係をscore.mdで実装と照合。集約IGと各トークン別IGを区別した。 | 第0段階で正しい図を発表へ、第1段階で成分保持診断を設計する。 | 説明整理は完了。個別トークンの全件IG追加計算やスライド改稿は未実施。 |</p>
+<p>| <a href="#response-02">A-20261014-02：なぜ取り組むか・価値</a> | 本人資料5頁の目的と、動機・価値の未確認部分を分離。音響改善と認識悪化という未解決点を主軸に置く案にした。 | 利用場面と主要評価を本人の言葉で絞り、発話・認識の損傷を抑える軸を検討する。 | 計画案あり。本人の動機や最終方針の確定ではない。 |</p>
+<p>| <a href="#response-03">A-20261014-03：生成系ではダメなのか</a> | 歴史8・9節で条件付き生成と少数段生成を説明し、生成法を排除する理由は未確認と明記。 | 主張をASR寄与の加工有用性の検証に限定。性能比較が必要な段階で生成法も候補にする。 | 文献に基づく説明あり。生成法との新しい実験比較は未実施。 |</p>
+<p>| <a href="#response-04">A-20261014-04：Fの定義が分からない</a> | Fは平均対数確率、exp(F)は幾何平均と整理。9頁の面積=IG図も確認し、Fではなく勾配の積分と指摘。 | 定義と正しい積分図を発表に示す。実基準も説明する。 | 実装照合と修正箇所の整理は完了。発表本体は保持。 |</p>
+<p>| <a href="#response-05">A-20261014-05：Whisperより弱いASRでは</a> | 頑健性を理由に自動的にモデルを交換せず、原因の切り分け中はWhisperを固定する案にした。 | 有効な選択が得られた後、生成ASRと別評価ASRを分けて検証する。 | 選定方針の案あり。弱いASRの方が良いという仮説は未検証。 |</p>
+<p>| <a href="#response-06">A-20261014-06：黒塗り以外のマスク</a> | 線形パワーの0/1操作と表示色を区別。soft/周辺情報の候補を記録。 | H1が支持されれば第2段階でsoft化を一軸だけ試す。保持量と対照を先に定義する。 | 設計候補あり。新しいsoft比較は未実施。 |</p>
+<p>| <a href="#response-07">A-20261014-07：歴史と除去機構を学ぶ</a> | 歴史ページで古典的推定、学習マスク、複素/波形、GAN、Diffusion、DFN、低データ適応を一次資料と式で整理。 | 各方式の入力・出力・目的・データ・位相・資源を自分の言葉で説明する。 | 学習HTML作成済み。本人の読了や理解確認は未実施。 |</p>
+<p>| <a href="#response-08">A-20261014-08：メル圧縮が不利では</a> | 情報削減、近似逆変換、混合位相、再構成だけの対照を区別して説明。 | まず保存対照の差を読む。復元が支配的なら第3段階で元STFTへ重みを掛ける案を検討する。 | 仮説と分岐計画あり。情報損失が悪化原因と確定してはいない。 |</p>
+<p>| <a href="#response-09">A-20261014-09：XAIは用途に不適切では</a> | 説明としての妥当性と加工マスクの有用性を別問題とし、H1を直接測る案を作成。 | clean/noise既知成分で同面積対照と比較し、支持されなければ用途を見直す。 | 検証設計あり。適否の結論は未確定。 |</p>
+<p>| <a href="#response-10">A-20261014-10：実験の立て方</a> | 原発言は具体性不足として保存。仮説・観測・対照・判定を対応させる改善案を別記。 | 品質診断→H1→一軸の改善という順にする。未知発話の評価と同発話/SNRの比較設計を置く。 | Codexによる改善案あり。先輩の意図を確認したという意味ではない。 |</p>
+<p>| <a href="#response-11">A-20261014-11：どこで既存法を上回るか</a> | DFN3との既存1000件比較を反映。IGはDFN3よりCERが低いが、mixtureより悪い現状を明記。 | 狙いを発話保持と認識損傷の抑制に絞る案。音響指標も併記し、一つの指標で全面優位を言わない。 | 目標候補と評価案あり。優位性を達成したとは扱わない。 |</p>
+<p>| <a href="#response-12">A-20261014-12：範囲が広すぎる</a> | モデル・XAI・マスク・復元の総当たりを外し、段階ごとの実施条件を付けた。 | まず固定Whisper・既存IGでH1と数値品質を確認。次の変更軸は証拠に応じ一つ選ぶ。 | 計画を絞った。新実験の採用・実行は未実施。 |</p>
+<p><span id="response-01"></span></p>
+<h2 id="1">1. 各セルの寄与を追加</h2>
+<ul>
+<li>原文：<a href="advice/20261014.html#a-20261014-01">A-20261014-01</a></li>
+<li>今回整理した対応：F→トークン平均→時間・周波数セルへのIGという関係をscore.mdで実装と照合。集約IGと各トークン別IGを区別した。</li>
+<li>次の対応・検証：第0段階で正しい図を発表へ、第1段階で成分保持診断を設計する。</li>
+<li>完了範囲と未実施：説明整理は完了。個別トークンの全件IG追加計算やスライド改稿は未実施。</li>
+</ul>
+<p><span id="response-02"></span></p>
+<h2 id="2">2. なぜ取り組むか・価値</h2>
+<ul>
+<li>原文：<a href="advice/20261014.html#a-20261014-02">A-20261014-02</a></li>
+<li>今回整理した対応：本人資料5頁の目的と、動機・価値の未確認部分を分離。音響改善と認識悪化という未解決点を主軸に置く案にした。</li>
+<li>次の対応・検証：利用場面と主要評価を本人の言葉で絞り、発話・認識の損傷を抑える軸を検討する。</li>
+<li>完了範囲と未実施：計画案あり。本人の動機や最終方針の確定ではない。</li>
+</ul>
+<p><span id="response-03"></span></p>
+<h2 id="3">3. 生成系ではダメなのか</h2>
+<ul>
+<li>原文：<a href="advice/20261014.html#a-20261014-03">A-20261014-03</a></li>
+<li>今回整理した対応：歴史8・9節で条件付き生成と少数段生成を説明し、生成法を排除する理由は未確認と明記。</li>
+<li>次の対応・検証：主張をASR寄与の加工有用性の検証に限定。性能比較が必要な段階で生成法も候補にする。</li>
+<li>完了範囲と未実施：文献に基づく説明あり。生成法との新しい実験比較は未実施。</li>
+</ul>
+<p><span id="response-04"></span></p>
+<h2 id="4-f">4. Fの定義が分からない</h2>
+<ul>
+<li>原文：<a href="advice/20261014.html#a-20261014-04">A-20261014-04</a></li>
+<li>今回整理した対応：Fは平均対数確率、exp(F)は幾何平均と整理。9頁の面積=IG図も確認し、Fではなく勾配の積分と指摘。</li>
+<li>次の対応・検証：定義と正しい積分図を発表に示す。実基準も説明する。</li>
+<li>完了範囲と未実施：実装照合と修正箇所の整理は完了。発表本体は保持。</li>
+</ul>
+<p><span id="response-05"></span></p>
+<h2 id="5-whisperasr">5. Whisperより弱いASRでは</h2>
+<ul>
+<li>原文：<a href="advice/20261014.html#a-20261014-05">A-20261014-05</a></li>
+<li>今回整理した対応：頑健性を理由に自動的にモデルを交換せず、原因の切り分け中はWhisperを固定する案にした。</li>
+<li>次の対応・検証：有効な選択が得られた後、生成ASRと別評価ASRを分けて検証する。</li>
+<li>完了範囲と未実施：選定方針の案あり。弱いASRの方が良いという仮説は未検証。</li>
+</ul>
+<p><span id="response-06"></span></p>
+<h2 id="6">6. 黒塗り以外のマスク</h2>
+<ul>
+<li>原文：<a href="advice/20261014.html#a-20261014-06">A-20261014-06</a></li>
+<li>今回整理した対応：線形パワーの0/1操作と表示色を区別。soft/周辺情報の候補を記録。</li>
+<li>次の対応・検証：H1が支持されれば第2段階でsoft化を一軸だけ試す。保持量と対照を先に定義する。</li>
+<li>完了範囲と未実施：設計候補あり。新しいsoft比較は未実施。</li>
+</ul>
+<p><span id="response-07"></span></p>
+<h2 id="7">7. 歴史と除去機構を学ぶ</h2>
+<ul>
+<li>原文：<a href="advice/20261014.html#a-20261014-07">A-20261014-07</a></li>
+<li>今回整理した対応：歴史ページで古典的推定、学習マスク、複素/波形、GAN、Diffusion、DFN、低データ適応を一次資料と式で整理。</li>
+<li>次の対応・検証：各方式の入力・出力・目的・データ・位相・資源を自分の言葉で説明する。</li>
+<li>完了範囲と未実施：学習HTML作成済み。本人の読了や理解確認は未実施。</li>
+</ul>
+<p><span id="response-08"></span></p>
+<h2 id="8">8. メル圧縮が不利では</h2>
+<ul>
+<li>原文：<a href="advice/20261014.html#a-20261014-08">A-20261014-08</a></li>
+<li>今回整理した対応：情報削減、近似逆変換、混合位相、再構成だけの対照を区別して説明。</li>
+<li>次の対応・検証：まず保存対照の差を読む。復元が支配的なら第3段階で元STFTへ重みを掛ける案を検討する。</li>
+<li>完了範囲と未実施：仮説と分岐計画あり。情報損失が悪化原因と確定してはいない。</li>
+</ul>
+<p><span id="response-09"></span></p>
+<h2 id="9-xai">9. XAIは用途に不適切では</h2>
+<ul>
+<li>原文：<a href="advice/20261014.html#a-20261014-09">A-20261014-09</a></li>
+<li>今回整理した対応：説明としての妥当性と加工マスクの有用性を別問題とし、H1を直接測る案を作成。</li>
+<li>次の対応・検証：clean/noise既知成分で同面積対照と比較し、支持されなければ用途を見直す。</li>
+<li>完了範囲と未実施：検証設計あり。適否の結論は未確定。</li>
+</ul>
+<p><span id="response-10"></span></p>
+<h2 id="10">10. 実験の立て方</h2>
+<ul>
+<li>原文：<a href="advice/20261014.html#a-20261014-10">A-20261014-10</a></li>
+<li>今回整理した対応：原発言は具体性不足として保存。仮説・観測・対照・判定を対応させる改善案を別記。</li>
+<li>次の対応・検証：品質診断→H1→一軸の改善という順にする。未知発話の評価と同発話/SNRの比較設計を置く。</li>
+<li>完了範囲と未実施：Codexによる改善案あり。先輩の意図を確認したという意味ではない。</li>
+</ul>
+<p><span id="response-11"></span></p>
+<h2 id="11">11. どこで既存法を上回るか</h2>
+<ul>
+<li>原文：<a href="advice/20261014.html#a-20261014-11">A-20261014-11</a></li>
+<li>今回整理した対応：DFN3との既存1000件比較を反映。IGはDFN3よりCERが低いが、mixtureより悪い現状を明記。</li>
+<li>次の対応・検証：狙いを発話保持と認識損傷の抑制に絞る案。音響指標も併記し、一つの指標で全面優位を言わない。</li>
+<li>完了範囲と未実施：目標候補と評価案あり。優位性を達成したとは扱わない。</li>
+</ul>
+<p><span id="response-12"></span></p>
+<h2 id="12">12. 範囲が広すぎる</h2>
+<ul>
+<li>原文：<a href="advice/20261014.html#a-20261014-12">A-20261014-12</a></li>
+<li>今回整理した対応：モデル・XAI・マスク・復元の総当たりを外し、段階ごとの実施条件を付けた。</li>
+<li>次の対応・検証：まず固定Whisper・既存IGでH1と数値品質を確認。次の変更軸は証拠に応じ一つ選ぶ。</li>
+<li>完了範囲と未実施：計画を絞った。新実験の採用・実行は未実施。</li>
+</ul><footer class="public-footer"><a href="../../../../index.html">研究資料の入口</a> · 画像・音声を省いた公開用テキスト版</footer></main></div></body></html>

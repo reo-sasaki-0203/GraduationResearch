@@ -1,0 +1,3 @@
+'use strict';
+document.querySelectorAll('[data-tex]').forEach(el=>{try{katex.render(el.dataset.tex,el,{displayMode:el.classList.contains('math-display'),throwOnError:true,strict:'ignore',trust:false,output:'htmlAndMathml'});el.dataset.rendered='true'}catch(error){el.classList.add('math-error');console.error('Math render error',el.dataset.tex,error.message)}});
+document.fonts.ready.then(()=>{document.querySelectorAll('.math-line').forEach(row=>{if(row.scrollWidth>row.clientWidth+2){row.tabIndex=0;row.setAttribute('aria-label','長い数式。左右にスクロールして全体を読めます。');row.closest('.equation').classList.add('math-scrollable')}})});

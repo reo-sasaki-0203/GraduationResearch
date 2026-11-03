@@ -1,0 +1,30 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ASR Research | 研究資料</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'none'; media-src 'none'; connect-src 'none'; object-src 'none'; frame-src 'none'"><link rel="stylesheet" href="../assets/guide.css"><link rel="stylesheet" href="../assets/vendor/katex/katex.min.css"><link rel="stylesheet" href="../assets/public.css"><script defer src="../assets/vendor/katex/katex.min.js"></script><script defer src="../assets/math.js"></script><script defer src="../assets/navigation.js"></script></head><body><header class="public-header"><a href="../index.html">研究資料</a><small>テキスト版</small></header><div class="public-layout"><aside class="public-side"><details class="mobile-nav" open><summary>目次・ページを選ぶ</summary><nav><details open><summary>研究を進める</summary><a href="whisper_ig_reconstruction/notes/research_hub/status.html">現在地・結果</a><a href="whisper_ig_reconstruction/notes/research_hub/plan.html">研究計画</a><a href="whisper_ig_reconstruction/notes/research_hub/advice.html">助言集</a><a href="whisper_ig_reconstruction/notes/research_hub/advice-response.html">助言への対応</a></details><details open><summary>学ぶ</summary><a href="whisper_ig_reconstruction/guide/index.html">手引き・全18章</a><a href="whisper_ig_reconstruction/notes/research_hub/denoising-history.html">ノイズ除去の歴史</a><a href="whisper_ig_reconstruction/notes/research_hub/score.html">Fとセル寄与</a></details><details open><summary>過去の研究</summary><a href="asr_prosody_probe/index.html">初期の解析基盤</a><a href="whisper_pause_attention/index.html">pause・attention</a><a href="whisper_pause_attention/reports/internal_pause_experiment_report.html">pause実験レポート</a><a href="../SR/index.html">旧音声認識実験</a></details><details><summary>手引きの章一覧</summary><a href="whisper_ig_reconstruction/guide/index.html">音から、モデルの判断と研究結果まで</a><a href="whisper_ig_reconstruction/guide/audio.html">波形からメル特徴へ：音声の基礎</a><a href="whisper_ig_reconstruction/guide/transformer.html">Transformer：Q・K・Vから内部計算を読む</a><a href="whisper_ig_reconstruction/guide/whisper.html">Whisper：音から文字までの道筋</a><a href="whisper_ig_reconstruction/guide/pipeline.html">今回の処理：SNRからIG95マスクまで</a><a href="whisper_ig_reconstruction/guide/xai/index.html">XAI：問いから手法を選ぶ</a><a href="whisper_ig_reconstruction/guide/xai/ig.html">Integrated Gradients（IG）を理解する</a><a href="whisper_ig_reconstruction/guide/reconstruction.html">メルの表から音声へ：近似逆変換と位相</a><a href="whisper_ig_reconstruction/guide/evaluation.html">3つの評価：音の近さ、文字の誤り、固定文のスコア</a><a href="whisper_ig_reconstruction/guide/xai/shap.html">SHAP：特徴の組合せを公平に比較する</a><a href="whisper_ig_reconstruction/guide/xai/lime.html">LIME：入力の近くで簡単な説明モデルを作る</a><a href="whisper_ig_reconstruction/guide/xai/grad-cam.html">Grad-CAM：内部の特徴から粗い場所の地図を作る</a><a href="whisper_ig_reconstruction/guide/xai/occlusion.html">Occlusion：領域を置き換えて差を見る</a><a href="whisper_ig_reconstruction/guide/xai/saliency.html">Saliency：入力への小さな変化に対する感度</a><a href="whisper_ig_reconstruction/guide/xai/other.html">その他のXAIとattentionの読み方</a><a href="whisper_ig_reconstruction/guide/analysis.html">XAI以外から研究を確かめる</a><a href="whisper_ig_reconstruction/guide/glossary.html">用語集：式を読むための基礎</a><a href="whisper_ig_reconstruction/guide/sources.html">出典・実装との対応</a></details></nav></details></aside><main class="public-main" id="main"><blockquote>
+<p>2026-10-12：1000件の整合性検査・旧100件の整理は完了しました。補助認識1件はユーザー指定で失敗結果として保存し、主結果とIG品質判定は維持しています。完了記録。以下の途中状態は過去の記録です。</p>
+</blockquote>
+<h1 id="asr-research">ASR Research</h1>
+<p>日本語Whisper系モデルの内部表現と認識挙動を解析する現行研究です。</p>
+<h2 id="asr_prosody_probe">asr_prosody_probe</h2>
+<p>初期の共通基盤です。</p>
+<ul>
+<li>音声の文字起こし</li>
+<li>log-Mel spectrogramの可視化</li>
+<li>Encoder hidden statesの抽出</li>
+<li>層別Linear Probe</li>
+<li>PCA/UMAP可視化</li>
+</ul>
+<p>専用の<code>.venv</code>は、現在のデータ処理スクリプトからも利用しています。</p>
+<h2 id="whisper_pause_attention">whisper_pause_attention</h2>
+<p>JSUT basic5000へ人工的なpauseを挿入した中心実験です。</p>
+<ul>
+<li>100音声、900条件</li>
+<li>認識結果とCER</li>
+<li>Encoder hidden statesのLinear Probe</li>
+<li>Encoder self-attentionのMAD</li>
+<li>Decoder cross-attention peak shift</li>
+<li>Occlusion</li>
+</ul>
+<p>現在有効な結果は<code>results_internal_pause/</code>と<code>figures_internal_pause/</code>、詳細レポートは<code>reports/</code>にあります。<code>archived_experiments/</code>は旧条件やsmoke testを隔離したものです。</p>
+<h2 id="whisper_ig_reconstruction">whisper_ig_reconstruction</h2>
+<p><a href="whisper_ig_reconstruction/index.html">研究の入口HTML</a>から、100件のトークン予測確率・差分音声・本番結果・発表資料へ移動できます。</p>
+<p>Whisperが文字起こしに使う音の部分を推定し、重要度の低い部分を弱めて音声を作り直す実験です。初回の音声100件の準備・1件の動作確認に加え、ユーザー指示により64回で100件の本番を開始しました。最新の本番結果に保存します。</p>
+<p>初めて見る場合は、フォルダ案内（ブラウザー用） または 文章版 を開いてください。</p><footer class="public-footer"><a href="../index.html">研究資料の入口</a> · 画像・音声を省いた公開用テキスト版</footer></main></div></body></html>

@@ -1,0 +1,386 @@
+{
+  "format": "research-text-publication-v1",
+  "html_pages": 36,
+  "file_count": 83,
+  "bytes": 1331876,
+  "max_file_bytes": 276701,
+  "removed_media_and_controls": 74,
+  "inputs": {
+    "ASR/whisper_ig_reconstruction/guide/index.html": "3589655779827c73ae79703ec91b02518cde42f71af71e9b232c65c39f3f2dfc",
+    "ASR/whisper_ig_reconstruction/guide/audio.html": "9c6e087e21ac02ecc622c257ff994308d756aa678e1041ce1e488c4666dcef86",
+    "ASR/whisper_ig_reconstruction/guide/transformer.html": "79bb33c958ad63d7cc59bec15f8a53cfaddba453d2fe7c46bd6d05ac36c3b431",
+    "ASR/whisper_ig_reconstruction/guide/whisper.html": "0438fff36495dd4c0b7f8ca011be1c629a7734cbed601f7038b54b7d925ce47b",
+    "ASR/whisper_ig_reconstruction/guide/pipeline.html": "34b29895bd26551f05b7411bcb96c1ee6269ca651857cd2a8ddb3f55fdd9eedd",
+    "ASR/whisper_ig_reconstruction/guide/xai/index.html": "43cba349c4f8b1f29daf7b576afdfad5304d2765668ecc92542393a77cc50736",
+    "ASR/whisper_ig_reconstruction/guide/xai/ig.html": "c68b36c54cf60cdb5590d73e43a749b64f48a2a6894a8553c1a5e94a5d74c8af",
+    "ASR/whisper_ig_reconstruction/guide/reconstruction.html": "c83b8acce35044c8e5fd0dc1fbf7766bd111d8d7151063b91e5c50ead9cbc31a",
+    "ASR/whisper_ig_reconstruction/guide/evaluation.html": "3f6907c0349c407955fd38be49a074bb9066b262e4158f611b67eb62b63b8439",
+    "ASR/whisper_ig_reconstruction/guide/xai/shap.html": "d749e7742a30a814849f2894556d9f5a64696ea11ac4a7200ac1d391fe6f4d9c",
+    "ASR/whisper_ig_reconstruction/guide/xai/lime.html": "3f6806ddd857d95a6ebb657ec73d49e4a6196141bf6331907f52a157ebc838b0",
+    "ASR/whisper_ig_reconstruction/guide/xai/grad-cam.html": "595a35e228dd633dc5a5339c68d663e9b9cc3e5ece630cba8a2ab97d7673bfda",
+    "ASR/whisper_ig_reconstruction/guide/xai/occlusion.html": "8a46eefb5580451d96a234063e097592df1eee5f6248e2a68c94b0c2926c9139",
+    "ASR/whisper_ig_reconstruction/guide/xai/saliency.html": "b8f8c678909eaa507581a151e79426ca498f6cdaab20897a8b896efcdc1f6ddd",
+    "ASR/whisper_ig_reconstruction/guide/xai/other.html": "944455a4b8a423f4a24c990ecf850b613a443d9810bb0629c5b4a4b2868c2c01",
+    "ASR/whisper_ig_reconstruction/guide/analysis.html": "598ee5be1734c8e87b6f2cf037f87b40bc0b34d57d50c070f8157ecc098303b9",
+    "ASR/whisper_ig_reconstruction/guide/glossary.html": "d8aed64d56fc785f01ace3ea7a4f10e4e2f1677e99ea93b02a48f65e27c64d23",
+    "ASR/whisper_ig_reconstruction/guide/sources.html": "6da78fd4672372c7cf142c775ae6331d88082fca870c5477bc6c7782dc6180dc",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/status.html": "8e7ff2be93df2b0af1424fa3dd4a62f800c7eec79942ffa61b41f7761671b46b",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/plan.html": "0a2ab2c7d26cfedc0ff62cce2434c8986ac066f3e7e6cdabd5381cd6c79ff18a",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice-response.html": "93d78624e16991f4c5ca478b09a19cef98a84b402bde9e8f18cff372885c108f",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/score.html": "d87393d13ab38bbd04a6775fc5d08166ebeebf0e140af64e8c3b423de0b5535c",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/denoising-history.html": "5471b9343028c4e6b69754758e3799a49ab6210b84c6947f9d3cc3e015a7c98e",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice.html": "2100ad59ba231f72d8c6c2baaa8ac3012e48c1c6c2d95e415a0b85eb321ec2af",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/20261014.html": "c2dc22b7e781e91249de16048d46af50c21f9374e10e02c532cd5f713eeaf5ca",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/undated.html": "4423e4baae06c5dbedc8d3295e91ee941dbd35bf6fa87e0a5009ad2966d8e6c8",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/questions.html": "46d25a15bcff65846da5acaa368c7e4ac92ea0cb1c684133acbf94b7503621ef",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/index.html": "b08a90eb182ce933a685044b014f62bf8e4338e69ff00c2feeabdebbf6b5b196",
+    "README.md": "f35d09be61c22ac5ffaf8429585951d55a14468fce28456a8d1ba076e29c34f4",
+    "ASR/README.md": "f5027726f8fd80f9c70af2bbeefc2220701b0532c2399827662bc689768843e8",
+    "ASR/asr_prosody_probe/README.md": "6b65b01ed5669a2beb59569a1b882812d7a5e83391af9c0ba1c500d651ea256c",
+    "ASR/whisper_pause_attention/README.md": "f5b846bf77efbd26072c50b968bacfb34cf4930542a5dfaf1a9c80481c7de0f2",
+    "ASR/whisper_pause_attention/reports/internal_pause_experiment_report.md": "02ae5a1af6d4061e830550a7a5866822125fe801c22f3f88199120c89e907361",
+    "SR/README.md": "936cac4671bcec664ab1f634656d125141dd643cac4f190979599f85431c68c2"
+  },
+  "files": {
+    ".gitignore": {
+      "bytes": 412,
+      "sha256": "2e6d073d6213e055aa240d71c70a2ca117dafbf7b3cce3d31919ac1e63070788"
+    },
+    ".nojekyll": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    ".publication/build.py": {
+      "bytes": 19089,
+      "sha256": "e8bd4af8d97751021a5d0e9c55167b32fee6d623a01afd854a8515b670f25e3f"
+    },
+    ".publication/check.py": {
+      "bytes": 2541,
+      "sha256": "4736fdb2940b37262e39cadd5095d325ef4ef91e1656f514a29327099b90961b"
+    },
+    ".publication/requirements.txt": {
+      "bytes": 41,
+      "sha256": "1afce1394fb71a05bc1825f8ff7dd3ed79e7ab5e1b35b291ef4d610c67a7cdeb"
+    },
+    "ASR/asr_prosody_probe/index.html": {
+      "bytes": 11987,
+      "sha256": "331605c255e7265802ed8945aabd33c293af9f1aac2f9fc286997ba37b2a357e"
+    },
+    "ASR/index.html": {
+      "bytes": 6446,
+      "sha256": "c15689a52981d05000d15d35b1e41bc6b88370ad5fad3619de8df7c0ccf7c494"
+    },
+    "ASR/whisper_ig_reconstruction/guide/analysis.html": {
+      "bytes": 21499,
+      "sha256": "ecc46016d0a4af1ed3642b96e0aa1ab6b007bffa3c130e5bd40384e2222a04f7"
+    },
+    "ASR/whisper_ig_reconstruction/guide/audio.html": {
+      "bytes": 18750,
+      "sha256": "750ef37676e7b267409b684e442947da64e1983c9a7c5cdcd231645794bd5535"
+    },
+    "ASR/whisper_ig_reconstruction/guide/evaluation.html": {
+      "bytes": 21483,
+      "sha256": "863693d48c61d720fbbe93fecd914babc3288c2a5f40b3a46aa08af83afb517e"
+    },
+    "ASR/whisper_ig_reconstruction/guide/glossary.html": {
+      "bytes": 13108,
+      "sha256": "28e2c2e878b4513e1ea4233c818859797d57ed2e53baa7775ed2c8be9133dc80"
+    },
+    "ASR/whisper_ig_reconstruction/guide/index.html": {
+      "bytes": 9984,
+      "sha256": "d672bb584e2b7d883e755425ac9f885e0651012f6d326675879b90f7a6c0378e"
+    },
+    "ASR/whisper_ig_reconstruction/guide/pipeline.html": {
+      "bytes": 23080,
+      "sha256": "05c3fb75185495df6a298840b6f9ab11741e46f4d2dc7381f6202525d5266736"
+    },
+    "ASR/whisper_ig_reconstruction/guide/reconstruction.html": {
+      "bytes": 17925,
+      "sha256": "0a14f10b9c0d1cb22bf5be8ab6110250063f940987dfb29355a15739345e0660"
+    },
+    "ASR/whisper_ig_reconstruction/guide/sources.html": {
+      "bytes": 9239,
+      "sha256": "da238256c84273b4663b528da8df450b55a9cff6c6755324ac51e8f163efb1a3"
+    },
+    "ASR/whisper_ig_reconstruction/guide/transformer.html": {
+      "bytes": 27343,
+      "sha256": "57e04d7f78725c98768525244f789d719ba79eb9ee47dad334c091c7df34a18c"
+    },
+    "ASR/whisper_ig_reconstruction/guide/whisper.html": {
+      "bytes": 26046,
+      "sha256": "85768485d360bc8f40b4d97b6f0acc6838f608f28365ac60ed3e37fee3d88ea9"
+    },
+    "ASR/whisper_ig_reconstruction/guide/xai/grad-cam.html": {
+      "bytes": 16686,
+      "sha256": "81bba40805bb99d3f5a6ec63e0dab8e853104e4fdfdd3012e5a5f95e563ec190"
+    },
+    "ASR/whisper_ig_reconstruction/guide/xai/ig.html": {
+      "bytes": 41966,
+      "sha256": "cfba030b5dfc0f8edf44c6b7221664de285ee62ebedd998b2ef25c4a93742e8e"
+    },
+    "ASR/whisper_ig_reconstruction/guide/xai/index.html": {
+      "bytes": 7901,
+      "sha256": "6cbd7f0ec1861dfe5edeb4c9ef5417b03f9e338031e67068b47a25a8190bc337"
+    },
+    "ASR/whisper_ig_reconstruction/guide/xai/lime.html": {
+      "bytes": 16406,
+      "sha256": "76031d2ef6e64f80a1432d330019ecb69575c92fe017e14f2d3892ab8caab48e"
+    },
+    "ASR/whisper_ig_reconstruction/guide/xai/occlusion.html": {
+      "bytes": 16455,
+      "sha256": "c1e7d98ce7fb1ff2bbb1746809e4fa950d7da17e3b0abf011272bbb789fdda1a"
+    },
+    "ASR/whisper_ig_reconstruction/guide/xai/other.html": {
+      "bytes": 21120,
+      "sha256": "26ed7a2755ed93811e29e4f824cde0ffe60131ea337cefb7e9d017339f11423f"
+    },
+    "ASR/whisper_ig_reconstruction/guide/xai/saliency.html": {
+      "bytes": 16806,
+      "sha256": "3f75569be24e0d86abb8a7ef412c95cd4250a6687bc191fc973e896816c1b81d"
+    },
+    "ASR/whisper_ig_reconstruction/guide/xai/shap.html": {
+      "bytes": 18320,
+      "sha256": "c522a99e64575b50a2897eebe8e3d6d58320046d08b659fa8a4df7a47090ac59"
+    },
+    "ASR/whisper_ig_reconstruction/index.html": {
+      "bytes": 4028,
+      "sha256": "1293713c212b12aefcc401ead64f8db5c6502e5ec7e87daf583be693cc0e45fc"
+    },
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice-response.html": {
+      "bytes": 16338,
+      "sha256": "c658d7b4290641343445e7fd5cd48d933e834149955942200bebe0e1a6c9ddd6"
+    },
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice.html": {
+      "bytes": 49301,
+      "sha256": "d8fa97618045e3cc6ab2942047bd877057c2cb493c0b53baeea29e0f805f45aa"
+    },
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/20261014.html": {
+      "bytes": 21801,
+      "sha256": "c4dee25e1fc62b9ad98f1ba9e21804c7823b570bfa18bee493343ff68f6bfdb2"
+    },
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/questions.html": {
+      "bytes": 10512,
+      "sha256": "44c7e759ae90759629bd02f0239b3beee40ff7deda43da1fbd86de94aeb93ec2"
+    },
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/undated.html": {
+      "bytes": 18236,
+      "sha256": "e0e4c2c419f6cdfaa5eef5fc41e0d7cd4ad700345ef66fa27b8e72148e1ca9bc"
+    },
+    "ASR/whisper_ig_reconstruction/notes/research_hub/denoising-history.html": {
+      "bytes": 23556,
+      "sha256": "bcee0c11d6a24ceb623a093bfd84fa53c7266db15b44a67f6813a4ae9c1e07be"
+    },
+    "ASR/whisper_ig_reconstruction/notes/research_hub/index.html": {
+      "bytes": 4111,
+      "sha256": "8981b8b3b71dc7671c49916f19691ead31ca6b2c32e67b18bab717fd239d6623"
+    },
+    "ASR/whisper_ig_reconstruction/notes/research_hub/plan.html": {
+      "bytes": 13680,
+      "sha256": "5616a1359bc5bd658bb5b932e721ad8da484f84005a998af46c6970eeca4d29b"
+    },
+    "ASR/whisper_ig_reconstruction/notes/research_hub/score.html": {
+      "bytes": 9941,
+      "sha256": "c2c280a53031c054b4f8655ea68cd82b517bb1928bafc3837a18ce87a3fb3c9c"
+    },
+    "ASR/whisper_ig_reconstruction/notes/research_hub/status.html": {
+      "bytes": 9637,
+      "sha256": "285cc54bb84c143fca148e40e898f074222ce115d5352233aadcc897790e839c"
+    },
+    "ASR/whisper_pause_attention/index.html": {
+      "bytes": 10699,
+      "sha256": "1cc248ad0ee6cffd1545825c47e0a70c72ec50d70524994bceffa076594b2ff2"
+    },
+    "ASR/whisper_pause_attention/reports/internal_pause_experiment_report.html": {
+      "bytes": 43725,
+      "sha256": "82fa74c5824ab8ba0ebdf60fe0a667dcc0bc92df7b959a1707a0ad881827cbd5"
+    },
+    "README.md": {
+      "bytes": 1691,
+      "sha256": "8edde1875361a79055fc9ff14c4c22b15eea62f164c843c7577b40190064467d"
+    },
+    "SR/index.html": {
+      "bytes": 5696,
+      "sha256": "01e9b88dad0e71ab220d60e4b7f2927908f281ee99bc4a1387b34101bfc244f6"
+    },
+    "assets/guide.css": {
+      "bytes": 6951,
+      "sha256": "71e8a0ecc5461cc34c877b7a2cc2ce180a7118c0d387fcdb53f7257c1e49fea7"
+    },
+    "assets/math.js": {
+      "bytes": 668,
+      "sha256": "68c86e763c5a67e8724bbe2d5b94534bec83b1b9eeef6afcdd7780893412d977"
+    },
+    "assets/navigation.js": {
+      "bytes": 119,
+      "sha256": "8d1f7e83950b08b3a6d34541f768e53bf962532d351a51ba52117650788ddbc5"
+    },
+    "assets/public.css": {
+      "bytes": 3275,
+      "sha256": "3a33986e83b945945a06e8d35913718f07c32c621a19bff0189bdd544d22d877"
+    },
+    "assets/vendor/katex/LICENSE": {
+      "bytes": 1107,
+      "sha256": "766ccc1f306c885aa45542a9846bbd0a505b27a0374f146778171c2254ce18e3"
+    },
+    "assets/vendor/katex/fonts/KaTeX_AMS-Regular.woff2": {
+      "bytes": 28076,
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Caligraphic-Bold.woff2": {
+      "bytes": 6912,
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Caligraphic-Regular.woff2": {
+      "bytes": 6908,
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Fraktur-Bold.woff2": {
+      "bytes": 11348,
+      "sha256": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Fraktur-Regular.woff2": {
+      "bytes": 11316,
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Main-Bold.woff2": {
+      "bytes": 25324,
+      "sha256": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Main-BoldItalic.woff2": {
+      "bytes": 16780,
+      "sha256": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Main-Italic.woff2": {
+      "bytes": 16988,
+      "sha256": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Main-Regular.woff2": {
+      "bytes": 26272,
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Math-BoldItalic.woff2": {
+      "bytes": 16400,
+      "sha256": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Math-Italic.woff2": {
+      "bytes": 16440,
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264"
+    },
+    "assets/vendor/katex/fonts/KaTeX_SansSerif-Bold.woff2": {
+      "bytes": 12216,
+      "sha256": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62"
+    },
+    "assets/vendor/katex/fonts/KaTeX_SansSerif-Italic.woff2": {
+      "bytes": 12028,
+      "sha256": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a"
+    },
+    "assets/vendor/katex/fonts/KaTeX_SansSerif-Regular.woff2": {
+      "bytes": 10344,
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Script-Regular.woff2": {
+      "bytes": 9644,
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Size1-Regular.woff2": {
+      "bytes": 5468,
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Size2-Regular.woff2": {
+      "bytes": 5208,
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Size3-Regular.woff2": {
+      "bytes": 3624,
+      "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Size4-Regular.woff2": {
+      "bytes": 4928,
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0"
+    },
+    "assets/vendor/katex/fonts/KaTeX_Typewriter-Regular.woff2": {
+      "bytes": 13568,
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b"
+    },
+    "assets/vendor/katex/katex.min.css": {
+      "bytes": 20460,
+      "sha256": "7ff37df30049853f971e77bafdd8d429f19b983c1207d47144931b756c31932f"
+    },
+    "assets/vendor/katex/katex.min.js": {
+      "bytes": 276701,
+      "sha256": "e8d885505949f3a5f4abdd5dd0d53696bd1371ad26ffbf4f310dcd77c8cdae89"
+    },
+    "index.html": {
+      "bytes": 6047,
+      "sha256": "c4b9da8d1fbe475922ec6f2a2cd211f473e0bc84134846478eaf9cc6b776d339"
+    },
+    "overview.html": {
+      "bytes": 5144,
+      "sha256": "838b414a9781a19ad9a6585cb4ddb149b07398cdc83f43db6cb8956eb5a52174"
+    },
+    "text-sources/ASR/README.md": {
+      "bytes": 1793,
+      "sha256": "48c0b7ee64877cd3762a3d760eb8e7fee617bae3acfd69125dbdfc9225d641db"
+    },
+    "text-sources/ASR/asr_prosody_probe/README.md": {
+      "bytes": 6337,
+      "sha256": "6b65b01ed5669a2beb59569a1b882812d7a5e83391af9c0ba1c500d651ea256c"
+    },
+    "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/advice-response.md": {
+      "bytes": 12375,
+      "sha256": "bf076447e3f36b510eb684217193870b9748079d73b60974586983d89a0240eb"
+    },
+    "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/advice/20261014.md": {
+      "bytes": 15945,
+      "sha256": "1f24033af2acace0d098dfc3c1bca374ef1d5adb0b6887c7f7c3673b3503c2aa"
+    },
+    "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/advice/questions.md": {
+      "bytes": 5640,
+      "sha256": "74833f2b6e9e724a0be426c2787ce9ed0387eb169c12624034149b4c15d2074f"
+    },
+    "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/advice/undated.md": {
+      "bytes": 11667,
+      "sha256": "0f3e44b4ce6e2908e47d3c21fda97afd4ed587abda5eba0811b38541a4ea1318"
+    },
+    "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/denoising-history.md": {
+      "bytes": 17629,
+      "sha256": "369b61ec9c70af317ef884d3f90992888145fd547126905a765196647afbe493"
+    },
+    "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/plan.md": {
+      "bytes": 9519,
+      "sha256": "e3399d80fc52dfbc3db39fa58d79f9855f35a7b114af0802df8f014e0d0d39d7"
+    },
+    "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/score.md": {
+      "bytes": 5443,
+      "sha256": "ab549d288232d4443adcbdf84c7a49281dc031a703a1412bcf4fdf2c4d170a9d"
+    },
+    "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/status.md": {
+      "bytes": 4491,
+      "sha256": "26a27561c3334a3ec0c98c02394ba8dd7ca13402933e345399827cc2d8dfe8f6"
+    },
+    "text-sources/ASR/whisper_pause_attention/README.md": {
+      "bytes": 5198,
+      "sha256": "cf31015dc36f56a066f5e70a4443e1fa0ad0322304510867a1ac1139c235cecc"
+    },
+    "text-sources/ASR/whisper_pause_attention/reports/internal_pause_experiment_report.md": {
+      "bytes": 26401,
+      "sha256": "c02facb330612ae8bdec1c65c2eccd6b0796b9a9e85397ee78d3a415223e40f8"
+    },
+    "text-sources/README.md": {
+      "bytes": 641,
+      "sha256": "8f3f9ea939d1a5c32dbb48c6f433205556c82dfb3a0df2c966b8218b915cf2a8"
+    },
+    "text-sources/SR/README.md": {
+      "bytes": 948,
+      "sha256": "76bd31d1f80da117c09b8443d495204b216278977a9f21cdb89d871496e076f1"
+    }
+  },
+  "excluded": [
+    "personal notes and check state",
+    "conversation history and operation logs",
+    "media and embedded media",
+    "datasets, model weights, caches and virtual environments",
+    "per-utterance result files",
+    "third-party ESPnet checkout"
+  ]
+}
