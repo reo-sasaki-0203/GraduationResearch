@@ -8,6 +8,14 @@ GitHub Pagesの入口は [`index.html`](index.html)。手引き18章、研究計
 
 GitHubの Settings → Pages → Deploy from a branch → `main` / `/(root)` を指定します。
 
+## HTML更新の継続方針
+
+ユーザーの継続指示（2026-11-03）：この研究資料のHTMLを編集・更新するときは、1文字の修正や見た目・リンクだけの変更も含め、毎回このREADMEの最新版を確認し、公開用軽量版の再生成・検査・commit・push・GitHub Pagesの公開確認まで行います。元のMarkdown/JSON、CSS/JavaScriptを通じた変更も対象です。ローカル更新だけで完了にせず、通常の反映について再承認を求めません。
+
+公開版に差分が出ないHTML変更でも、余計な公開内容を足さず、空コミット等で更新を記録してpushします。個人メモ・会話ログ・認証情報・大容量ファイル等の除外は維持します。pushや公開ができなかった場合は未反映の範囲と理由を報告し、完了と扱いません。
+
+公開サイト：<https://reo-sasaki-0203.github.io/GraduationResearch/>
+
 ## 更新
 
 元資料があるPCで、公開リポジトリ内から実行します。
@@ -17,7 +25,7 @@ python -m pip install -r .publication/requirements.txt
 python .publication/build.py --source ../GraduationResearch --output .
 python .publication/check.py .
 git add -A
-git commit -m "Update public research documents"
+git commit --allow-empty -m "Update public research documents"
 git push origin main
 ```
 

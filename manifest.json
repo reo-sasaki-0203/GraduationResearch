@@ -1,8 +1,8 @@
 {
   "format": "research-text-publication-v1",
   "html_pages": 36,
-  "file_count": 83,
-  "bytes": 1331876,
+  "file_count": 84,
+  "bytes": 1335929,
   "max_file_bytes": 276701,
   "removed_media_and_controls": 74,
   "inputs": {
@@ -33,7 +33,7 @@
     "ASR/whisper_ig_reconstruction/notes/research_hub/advice/20261014.html": "c2dc22b7e781e91249de16048d46af50c21f9374e10e02c532cd5f713eeaf5ca",
     "ASR/whisper_ig_reconstruction/notes/research_hub/advice/undated.html": "4423e4baae06c5dbedc8d3295e91ee941dbd35bf6fa87e0a5009ad2966d8e6c8",
     "ASR/whisper_ig_reconstruction/notes/research_hub/advice/questions.html": "46d25a15bcff65846da5acaa368c7e4ac92ea0cb1c684133acbf94b7503621ef",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/index.html": "b08a90eb182ce933a685044b014f62bf8e4338e69ff00c2feeabdebbf6b5b196",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/index.html": "526c868271c4e6ca432e625bde6732901356cffd35744af16873bc0588807d0c",
     "README.md": "f35d09be61c22ac5ffaf8429585951d55a14468fce28456a8d1ba076e29c34f4",
     "ASR/README.md": "f5027726f8fd80f9c70af2bbeefc2220701b0532c2399827662bc689768843e8",
     "ASR/asr_prosody_probe/README.md": "6b65b01ed5669a2beb59569a1b882812d7a5e83391af9c0ba1c500d651ea256c",
@@ -51,8 +51,8 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     ".publication/build.py": {
-      "bytes": 19089,
-      "sha256": "e8bd4af8d97751021a5d0e9c55167b32fee6d623a01afd854a8515b670f25e3f"
+      "bytes": 21140,
+      "sha256": "316c3bb63e2d1d17a6d4b4867e2732252be3c3e4fb19888b4d66961a4ceb1acd"
     },
     ".publication/check.py": {
       "bytes": 2541,
@@ -61,6 +61,10 @@
     ".publication/requirements.txt": {
       "bytes": 41,
       "sha256": "1afce1394fb71a05bc1825f8ff7dd3ed79e7ab5e1b35b291ef4d610c67a7cdeb"
+    },
+    "AGENTS.md": {
+      "bytes": 1026,
+      "sha256": "0085415c6fac1ebd692b287098b393f213f64b98af7fc26ad8700e4e53470d82"
     },
     "ASR/asr_prosody_probe/index.html": {
       "bytes": 11987,
@@ -195,8 +199,8 @@
       "sha256": "82fa74c5824ab8ba0ebdf60fe0a667dcc0bc92df7b959a1707a0ad881827cbd5"
     },
     "README.md": {
-      "bytes": 1691,
-      "sha256": "8edde1875361a79055fc9ff14c4c22b15eea62f164c843c7577b40190064467d"
+      "bytes": 2667,
+      "sha256": "7f3c3997df87f4c63b5f96dbc1387f076c14b91e4be1aedf79303a2ce7c4b250"
     },
     "SR/index.html": {
       "bytes": 5696,
