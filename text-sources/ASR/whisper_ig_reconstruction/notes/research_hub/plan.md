@@ -3,7 +3,7 @@
 <!-- positive-ig95-20261109:start -->
 ## 2026-11-09の追加実測と計画の範囲
 
-本人の実行依頼に基づき、保存済みsigned IGを使う正のIG累積95%の1000件比較を別IDで完了した。[結果と検査](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/status.html)では、保持面積が従来IG95の62.516%から29.492%へ減り、平均CERは8.755%から12.063%へ悪化し、両固定文Fも低下した。
+本人の実行依頼に基づき、保存済みsigned IGを使う正のIG累積95%の1000件比較を別IDで完了した。[結果と検査](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/positive-ig95.html)では、保持面積が従来IG95の62.516%から29.492%へ減り、平均CERは8.755%から12.063%へ悪化し、両固定文Fも低下した。
 
 この結果から正のIGだけを使う加工の認識改善は確認できず、面積差があるため負の寄与を除くことだけの効果とも断定しない。面積をそろえた符号の対照は次の検証候補であり、今回実行していない。以下は2026-10-17時点のCodex計画案として保持する。H1の成分保持診断、soft化、別ASR等の段階を今回すべて検証したという意味ではない。
 <!-- positive-ig95-20261109:end -->
@@ -18,7 +18,7 @@
 
 IGはmixtureよりCERが悪いため、現段階でこの狙いを達成したとは言わない。IGの理屈が支持されない場合には、手法へ固執せず、仮説の適用条件や否定的結果を研究の成果としてまとめる分岐を置く。
 
-関連：[目的の出典と実測](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/status.html)、[助言12件への具体対応](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/advice-response.html)、[デノイジングの歴史](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/denoising-history.html)。
+関連：[1000件比較と目的の出典](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/main1000-results.html)、[助言12件への具体対応](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/advice-response.html)、[デノイジングの歴史](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/denoising-history.html)。
 
 ## 既に終わっていること
 

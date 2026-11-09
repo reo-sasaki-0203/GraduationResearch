@@ -1,0 +1,55 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>実験結果一覧 | 研究資料</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'none'; media-src 'none'; connect-src 'none'; object-src 'none'; frame-src 'none'"><link rel="stylesheet" href="../../../../assets/guide.css"><link rel="stylesheet" href="../../../../assets/vendor/katex/katex.min.css"><link rel="stylesheet" href="../../../../assets/public.css"><script defer src="../../../../assets/vendor/katex/katex.min.js"></script><script defer src="../../../../assets/math.js"></script><script defer src="../../../../assets/navigation.js"></script></head><body><header class="public-header"><a href="../../../../index.html">研究資料</a><small>テキスト版</small></header><div class="public-layout"><aside class="public-side"><details class="mobile-nav" open><summary>目次・ページを選ぶ</summary><nav><details open><summary>結果を見る</summary><a href="results.html" aria-current="page">実験結果一覧</a><a href="positive-ig95.html">正のIG95・1000件比較</a><a href="main1000-results.html">1000件・IG＋DeepFilterNet3</a></details><details open><summary>研究を進める</summary><a href="plan.html">研究計画</a><a href="advice.html">助言集</a><a href="advice-response.html">助言への対応</a></details><details open><summary>学ぶ</summary><a href="../../guide/index.html">手引き・全18章</a><a href="denoising-history.html">ノイズ除去の歴史</a><a href="score.html">Fとセル寄与</a></details><details open><summary>過去の研究</summary><a href="../../../asr_prosody_probe/index.html">初期の解析基盤</a><a href="../../../whisper_pause_attention/index.html">pause・attention</a><a href="../../../whisper_pause_attention/reports/internal_pause_experiment_report.html">pause実験レポート</a><a href="../../../../SR/index.html">旧音声認識実験</a></details><details><summary>手引きの章一覧</summary><a href="../../guide/index.html">音から、モデルの判断と研究結果まで</a><a href="../../guide/audio.html">波形からメル特徴へ：音声の基礎</a><a href="../../guide/transformer.html">Transformer：Q・K・Vから内部計算を読む</a><a href="../../guide/whisper.html">Whisper：音から文字までの道筋</a><a href="../../guide/pipeline.html">今回の処理：SNRからIG95マスクまで</a><a href="../../guide/xai/index.html">XAI：問いから手法を選ぶ</a><a href="../../guide/xai/ig.html">Integrated Gradients（IG）を理解する</a><a href="../../guide/reconstruction.html">メルの表から音声へ：近似逆変換と位相</a><a href="../../guide/evaluation.html">3つの評価：音の近さ、文字の誤り、固定文のスコア</a><a href="../../guide/xai/shap.html">SHAP：特徴の組合せを公平に比較する</a><a href="../../guide/xai/lime.html">LIME：入力の近くで簡単な説明モデルを作る</a><a href="../../guide/xai/grad-cam.html">Grad-CAM：内部の特徴から粗い場所の地図を作る</a><a href="../../guide/xai/occlusion.html">Occlusion：領域を置き換えて差を見る</a><a href="../../guide/xai/saliency.html">Saliency：入力への小さな変化に対する感度</a><a href="../../guide/xai/other.html">その他のXAIとattentionの読み方</a><a href="../../guide/analysis.html">XAI以外から研究を確かめる</a><a href="../../guide/glossary.html">用語集：式を読むための基礎</a><a href="../../guide/sources.html">出典・実装との対応</a></details></nav></details></aside><main class="public-main" id="main"><h1 id="_1">実験結果一覧</h1>
+<p>新しい結果から、実験・検証ごとに並べています。完了した比較、品質基準未達、事前確認、保管済み記録を、それぞれの状態を添えて掲載します。</p>
+<h2 id="1000">1000件の比較</h2>
+<p><span id="ig9510002026-11-09"></span></p>
+<ol>
+<li><strong><a href="positive-ig95.html">正のIG累積95%・1000件の追加比較</a></strong>（2026-11-09、完了）<br/>
+   mixture・従来IG95・正のIG95を比較。CER、2種類の固定文F、メルMAE、SI-SDR、保持数・面積率の全体・雑音別結果と検査記録。平均CERは7.716 / 8.755 / 12.063%、保持面積は100 / 62.516 / 29.492%。IGは再計算していません。面積差があるため、負の寄与除去だけの効果とは断定しません。</li>
+<li><strong><a href="main1000-results.html">1000件・IG再構成とDeepFilterNet3の統合比較</a></strong>（2026-10-10〜14、完了・補助失敗1件を保存）<br/>
+   clear・mixture・IG再構成・DeepFilterNet3の4条件。全1000件の音声・図・各発話の比較へ進めます。従来のIGのみのA/B/C分析は同じ実験の追加分析・原記録として、このページにまとめています。</li>
+</ol>
+<!-- covers: results/comparisons/positive_ig95/main1000_20261109_pos95_v1 -->
+<!-- covers: results/comparisons/deepfilternet3/main1000_20261010_dfn3_v1 -->
+<!-- covers: results/experiments/whisper-large-v3/ig64_cum95_hard/main1000_20261010 -->
+<!-- covers: results/analyses/whisper-large-v3/ig64_cum95_hard/main1000_20261010/abc_v1 -->
+<h2 id="100">旧100件・事前の実験と検証</h2>
+<ol>
+<li><strong>旧100件・IG64累積95%の結果</strong>（保管済み）<br/>
+   設定・集計・品質診断・失敗記録を保持。旧音声・配列・図は、新1000件の検査後に整理済みです。トークン確率・差分音声分析の保管記録も同じ旧100件の追加分析です。</li>
+<li><strong>IG64・3件の事前試行</strong>（指定3件を完了）<br/>
+   準備済み100件のうち3件を評価した記録。残り97件まで完了した実験ではありません。</li>
+<li><strong>IG64・品質ゲートの事前試験</strong>（品質基準未達で停止）<br/>
+   混合入力100件の準備後、IG品質判定で停止。保存済みの評価失敗1件・未処理99件をそのまま示します。</li>
+<li><strong>IG64・1音声の処理手順検証</strong>（診断完了）<br/>
+   実音声1件で認識・IG・マスク・再構成・評価の接続を確認した記録。本実験100件の完了とは区別します。</li>
+<li><strong>Whisper large-v3・float32積分診断</strong>（品質基準未達）<br/>
+   1音声のIG32/64/128/256等の診断と参考出力。診断結果・実行状態・設定。3条件pilotや本番100件の成功として数えません。</li>
+<li><strong>Whisper large-v3・32/64点の積分診断</strong>（品質基準未達）<br/>
+   1音声のcompleteness・マスク安定性が不足した記録。診断結果・実行状態。参考出力を保持しています。</li>
+<li><strong>Whisper large-v3・初期モデル診断</strong>（失敗・保留）<br/>
+   decoderの開始トークン配置で停止。実行状態・モデル情報。完成した再構成実験として扱いません。</li>
+</ol>
+<!-- covers: results/main64_ig95 -->
+<!-- covers: results/analyses/whisper-large-v3/ig64_cum95_hard/main64_ig95/token_scores_v1 -->
+<!-- covers: results/pilot64_run -->
+<!-- covers: results/pilot64_ig95 -->
+<!-- covers: results/pipeline64_diagnostic -->
+<!-- covers: results/largev3_fp32_diagnostic -->
+<!-- covers: results/largev3_diagnostic_v2 -->
+<!-- covers: results/largev3_diagnostic -->
+<h2 id="_2">データ準備・基盤の確認記録</h2>
+<ol>
+<li><strong>本番前のデータ確認</strong>（音声100件を準備、混合は未作成）<br/>
+   雑音区間の試聴記録待ちで停止した当時の状態です。後続の実験結果と区別します。</li>
+<li><strong>入力準備の確認</strong>（選定のみ）<br/>
+   100件の選定記録。混合・モデル評価の完了件数は0です。</li>
+<li><strong>最初のデータ選定</strong>（選定のみ）<br/>
+   100件の選定と、元音声・雑音候補の確認記録です。</li>
+<li><strong>合成音声・環境の基盤検査</strong><br/>
+合成音声による検査結果・検査ログ・環境診断。研究データでの性能比較とは区別します。</li>
+</ol>
+<!-- covers: results/final_data_review -->
+<!-- covers: results/prepared_review -->
+<!-- covers: results/data_review -->
+<!-- covers: results/validation -->
+<p>数値の良し悪し、処理完了、IGの数値品質を分けて記録しています。失敗・未処理を0の性能値や成功へ置き換えていません。今回の一覧整備では保存済み記録を参照し、過去の実験を再実行していません。</p><footer class="public-footer"><a href="../../../../index.html">研究資料の入口</a> · 画像・音声を省いた公開用テキスト版</footer></main></div></body></html>
