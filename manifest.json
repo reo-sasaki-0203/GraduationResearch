@@ -1,10 +1,10 @@
 {
   "format": "research-text-publication-v1",
-  "html_pages": 41,
-  "file_count": 95,
-  "bytes": 1446692,
+  "html_pages": 44,
+  "file_count": 101,
+  "bytes": 1554581,
   "max_file_bytes": 276701,
-  "removed_media_and_controls": 79,
+  "removed_media_and_controls": 86,
   "inputs": {
     "ASR/whisper_ig_reconstruction/guide/index.html": "02aff10f7196a1a0683b64511f48b1de58ec48c2dab984d58feef3f4fa6a230f",
     "ASR/whisper_ig_reconstruction/guide/audio.html": "9287ee054e4c5b7ee27c3cb0004f2f23794b53e9d7f4d00227d4448b22fbcb7a",
@@ -24,21 +24,24 @@
     "ASR/whisper_ig_reconstruction/guide/analysis.html": "82f4c7a2cee07170e079e370f5ffb9795ecf548b065f8d093f2f851319d813ac",
     "ASR/whisper_ig_reconstruction/guide/glossary.html": "98caad4ed1110f2d07550f217774bc95ff051620c36e80039919da6e0332bc5b",
     "ASR/whisper_ig_reconstruction/guide/sources.html": "5b7385849c2afe7a724fe95d40fed03f561009ae019338575c8d9995a9116a6f",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/positive-fractions-pilot.md": "6a51403c8ae58588f707ca32f3ee720712996f0825ec7179dbfe40194c89d051",
+    "ASR/whisper_ig_reconstruction/results/comparisons/positive_ig_fractions/main1000_20261110_pos908580_pilot10_v1/token_ig/index.html": "72d108b749a628be9def303d598f2cfe82146f6aca386a47d27c630a73bb05b3",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/token-extraction-hypothesis.html": "dc14600cf7f99c1eb718c85899a56f3f4095d46ed3683ab30d4b81afdc9ec933",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/old100-cleanup.html": "809adb6e4ac658368c75a23eb6830e948811428f2a499e213bcc79827a968034",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/positive-fractions-pilot.md": "4c1ebf6ffbeef1200fff6520e01ffaadd0dbd6b28669f117b31512b68368084c",
     "ASR/whisper_ig_reconstruction/notes/research_hub/utterances.md": "b360f055639fa65c7dbbe602e108ade0a601daac27481a9807db67a87e39d4f1",
-    "ASR/whisper_ig_reconstruction/results/experiments/index.html": "953161d84570dc8467e3d54a5526984d4ae523d1d8ee2b28efb38b855ea4498b",
-    "ASR/whisper_ig_reconstruction/results/comparisons/positive_ig95/main1000_20261109_pos95_v1/index.html": "5d4182f9e762a81a716ffe9c4508b636868828b47d958210db40684365a7352d",
-    "ASR/whisper_ig_reconstruction/results/experiments/main1000_20261010/index.html": "a838e2563cf87046ab57dc9fe135ea2cf6e1a451d09f2a408703c6b9c2793d98",
+    "ASR/whisper_ig_reconstruction/results/experiments/index.html": "ba12a90b2f683bebb4d215c0630617259941898ec6cc6ca3e2af90e95430fc25",
+    "ASR/whisper_ig_reconstruction/results/comparisons/positive_ig95/main1000_20261109_pos95_v1/index.html": "3dc31f1fea4b8047e9be047a41c376a431ea046feb729d00fb40734716609a51",
+    "ASR/whisper_ig_reconstruction/results/experiments/main1000_20261010/index.html": "b28f26a30109cb1eac92292f183320b928c3038f7fa7b42bb21e284155855943",
     "ASR/whisper_ig_reconstruction/notes/research_hub/status.html": "7b601185f9a8542b9a86207baf41864586ddbd3bef0104b6ad0474b149dbc365",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/plan.html": "daece02f4d45910ad96a7d870f1c1b62af9f86e9cd3fbc40c47d54cefcdadf84",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/advice-response.html": "5ab0dad0a802033c5310a9725e6d50218af500537cfd7fb7b5db518706daa8cd",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/score.html": "d85d2ccb1d09b312028292f23010aef98f6d605c9e8b541b21a50fb481b2fa49",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/denoising-history.html": "16e22a0179c2ce1010530829263cd308f3feb8421ad82d87da28cb9cdc80a455",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/advice.html": "69c190a0479e4e055375b581280b1274a97be0db33ed763b75e0dbc74fda6c6b",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/20261014.html": "34257d96a9b81086e93dba879008131f1c0a7a52c73605dfbaad3858bd46fef0",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/undated.html": "3f147a61216cde2a38458c98e9421fcca8297daaea2110619d727a3f64fdd167",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/questions.html": "1066d975b1445ce41439b0ae7411b36f9e82ad079d994c8ef368867f59c51d1f",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/index.html": "9fafab94264ee0f8e1644a1e28c449e485c0710b37a174888d03d81a8efd2acb",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/plan.html": "cb4de060c14b4e5d156060fef2e12991ded22520eed25db2e7da567926f06f12",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice-response.html": "7e1fab6adb851594cf5a64bb84de1bbc73b4d3428addbbb7379e765998f9cbc4",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/score.html": "a79329b8b28d20c313c9a823cfc3a295320393e9307ad30453d35ddbae936254",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/denoising-history.html": "8d89fdd31846e7609ca229da0db4dfacf0075ecc388ad3e4aebc2663f8b813cf",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice.html": "7527c9c735d42844b445ef51c3670446486e126935095f94b04be1efc955228d",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/20261014.html": "e8105b4101eb726a7fb13216c23edff26b36eaff504e0aa33c5bc727bef115ff",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/undated.html": "5dd0523d5bf0fd24363171356b5098c087db166c6f78ef41e5704fb91e28c985",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/questions.html": "86d26a49be1a0c611fecf5b91ed77534b9dd82330fba91a002895a773c7f3e5c",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/index.html": "c602508bff35cd62e574d9e017c486c41b8aa6c5b0f06a3e3518b86f9224d919",
     "README.md": "f35d09be61c22ac5ffaf8429585951d55a14468fce28456a8d1ba076e29c34f4",
     "ASR/README.md": "f5027726f8fd80f9c70af2bbeefc2220701b0532c2399827662bc689768843e8",
     "ASR/asr_prosody_probe/README.md": "6b65b01ed5669a2beb59569a1b882812d7a5e83391af9c0ba1c500d651ea256c",
@@ -56,8 +59,8 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     ".publication/build.py": {
-      "bytes": 23854,
-      "sha256": "b56cf4e5c0327594f47285c77350e5a5e5685337edbf8a9851749776d4f795c9"
+      "bytes": 24458,
+      "sha256": "56c160f2cd7184b2b9081d766f66346698f42bb92f97d95bf2612aeb28df63c8"
     },
     ".publication/check.py": {
       "bytes": 2541,
@@ -72,164 +75,176 @@
       "sha256": "0085415c6fac1ebd692b287098b393f213f64b98af7fc26ad8700e4e53470d82"
     },
     "ASR/asr_prosody_probe/index.html": {
-      "bytes": 12503,
-      "sha256": "dda166c77c1e081c7b023cf69b33dc1b31a385c6154b21081e1063b2650d94fa"
+      "bytes": 12769,
+      "sha256": "5fd8466e75455cd6738af40af44fba273fc62f0ae36e75236006882482eb1268"
     },
     "ASR/index.html": {
-      "bytes": 6950,
-      "sha256": "9c4e74968b40249521a785396970c6def8b9bd59eb1deeae5e8f2f01e56b5203"
+      "bytes": 7210,
+      "sha256": "7c6b1a5d01036c415cbbf6eed2368655cfd66223acb2e3738c16b6ea4600b6a7"
     },
     "ASR/whisper_ig_reconstruction/guide/analysis.html": {
-      "bytes": 21911,
-      "sha256": "8cc013790ab7ac44242cae5cab5e305a80f004c29a53e1121ab439e71b1729b0"
+      "bytes": 22125,
+      "sha256": "6a17c8a4cf68ad1bafb90a7785f3f967ec7077ede64d9d03dbc5d6e8215b2402"
     },
     "ASR/whisper_ig_reconstruction/guide/audio.html": {
-      "bytes": 19162,
-      "sha256": "a6636552f643aa45520f031a1596b7c0f03ece6afd4d5586bd41f7933824fe6b"
+      "bytes": 19376,
+      "sha256": "6c745f78d5076e0f7c8b7bdfc701d1d2a072bff126dfeecf3a44aa1e5c0615fe"
     },
     "ASR/whisper_ig_reconstruction/guide/evaluation.html": {
-      "bytes": 21895,
-      "sha256": "2324758738c7254104362300e8cc53aa64dc48b5ac2f9c3adaeefc856fccbc68"
+      "bytes": 22109,
+      "sha256": "a383fc351cc3993aea69768218c36c52fe526f54ecb553462fdb18cb3a07f03b"
     },
     "ASR/whisper_ig_reconstruction/guide/glossary.html": {
-      "bytes": 13520,
-      "sha256": "4e061248be5fee86b5560079af26589c18edf8ddbb85f6ee57355023d5260ed3"
+      "bytes": 13734,
+      "sha256": "9a444cf1d2682ae5edf4e84013324bf3f5163ef9f2e0f05661928db03baa74a8"
     },
     "ASR/whisper_ig_reconstruction/guide/index.html": {
-      "bytes": 10396,
-      "sha256": "817e3181dde096422787ebb1dbde4a3dbf8e594c79c4957260f866d46b33a1bc"
+      "bytes": 10610,
+      "sha256": "303ed026f580292bee39c302705b53b8dc69043074e321f44f0c5aa1309a798d"
     },
     "ASR/whisper_ig_reconstruction/guide/pipeline.html": {
-      "bytes": 23492,
-      "sha256": "3a465d71ea9d1c83b4872fa97356b5fdedab50b49c8447730d713a389eb4cc72"
+      "bytes": 23706,
+      "sha256": "c3eef04bdc84f134259a560578f25c7c999d51cbe7c63245d5ecdb33e13b1903"
     },
     "ASR/whisper_ig_reconstruction/guide/reconstruction.html": {
-      "bytes": 18337,
-      "sha256": "4ff7eb38f79b77526edd5c8bd2ba5e284c146dfea5f2fb9b04e4de00123a3871"
+      "bytes": 18551,
+      "sha256": "fd42c2451446454f404d8bbb8c079271f4656571863012d0004ccbde88fd5126"
     },
     "ASR/whisper_ig_reconstruction/guide/sources.html": {
-      "bytes": 9651,
-      "sha256": "9a7dacc944613db1584a177bca8c2049e3b34ce08d72d7ad2c514e1010409f30"
+      "bytes": 9865,
+      "sha256": "25fb90ae614b64757f584d8630bee7bb87704f02aee2d1ee5948520000444998"
     },
     "ASR/whisper_ig_reconstruction/guide/transformer.html": {
-      "bytes": 27755,
-      "sha256": "36c979810362b87f5c7670cff28a7724d613a3f83e128768fa77479174bad007"
+      "bytes": 27969,
+      "sha256": "143f56cea4ed1c52c34612078f19dd6248a9930d0180448b70d4f32eaa2efac9"
     },
     "ASR/whisper_ig_reconstruction/guide/whisper.html": {
-      "bytes": 26458,
-      "sha256": "ac93bcae43dc36b0441855030673c2e0cce578a497991aa28b14e943d54fd036"
+      "bytes": 26672,
+      "sha256": "965e9d2fbbf2a6d141513e496c2a85057ee0a90337c3c7aaa7a6ba2b2815ebe6"
     },
     "ASR/whisper_ig_reconstruction/guide/xai/grad-cam.html": {
-      "bytes": 17110,
-      "sha256": "a4420fea24820b1a18cc30d55dbf1415408ad4d466af8d6d04a8dfe35555b611"
+      "bytes": 17330,
+      "sha256": "aed72120a2c9a22839ed5953b91e498abadc9f17d069d9ac50f41388f4da0307"
     },
     "ASR/whisper_ig_reconstruction/guide/xai/ig.html": {
-      "bytes": 42390,
-      "sha256": "3b40ab83fe6a97f6bf239607aa777af11199ae39649a85d47d22f59b69aacece"
+      "bytes": 42610,
+      "sha256": "85907d26d2fc0bcd2f216bc49d86d8cb57d4c0c6b0d45ff6a067d25378e14828"
     },
     "ASR/whisper_ig_reconstruction/guide/xai/index.html": {
-      "bytes": 8325,
-      "sha256": "96a2f8194651517079749281fee768e3d5bea6d70ef98d12145e162a3dd80747"
+      "bytes": 8545,
+      "sha256": "d0df2134b8a02dd7faae10c39359c41f7da4757a69495925d4058b9a2eed0381"
     },
     "ASR/whisper_ig_reconstruction/guide/xai/lime.html": {
-      "bytes": 16830,
-      "sha256": "8363693947d20aba9fac4b5db233810d3f568ab990b255491de99eba567dc04e"
+      "bytes": 17050,
+      "sha256": "c69da4b0c53aa1dc0d1285cba98d0ab6be44ba0e8c5b14b31b51ea2faed21c5f"
     },
     "ASR/whisper_ig_reconstruction/guide/xai/occlusion.html": {
-      "bytes": 16879,
-      "sha256": "97296ce47f9452340379183064cc45f3c25b2ea676821e69ce4bb060b8bfa89e"
+      "bytes": 17099,
+      "sha256": "9a0a932414bd090b139a8708abb87c78dd28dbb6503ea34ceffbaf1357c1e7c4"
     },
     "ASR/whisper_ig_reconstruction/guide/xai/other.html": {
-      "bytes": 21544,
-      "sha256": "702b8f3bc19e4eb1f9430ae5429684a65f8e381c95a574a49e27f1085e249c76"
+      "bytes": 21764,
+      "sha256": "dcbf551c55b318e95623b05c9a02f6aeba563f753d808aedad8ead234e430b12"
     },
     "ASR/whisper_ig_reconstruction/guide/xai/saliency.html": {
-      "bytes": 17230,
-      "sha256": "2538154af16f523850787e1384804e7b761ea9662850f12a4e69aaa47be0dc68"
+      "bytes": 17450,
+      "sha256": "14362159a01605dc690580beb88eb2b4a1f7720b09a578403a5a54fa226e483e"
     },
     "ASR/whisper_ig_reconstruction/guide/xai/shap.html": {
-      "bytes": 18744,
-      "sha256": "6f2a7cbfe35e6a064f4a800c5706154832eb6c7b851c6517fca0dc9164d1640d"
+      "bytes": 18964,
+      "sha256": "153e6957df3689f09f11f0a56c7f699ca5e0838c4ea29ec0f3a10c0b73575cdd"
     },
     "ASR/whisper_ig_reconstruction/index.html": {
-      "bytes": 4624,
-      "sha256": "92799a4d3bb1aab2d990e4b1fb8df460ab179189976d20e9ce39df3020a47ea6"
+      "bytes": 4832,
+      "sha256": "cc30282e6ce39718da4a176ca25e104ed2eeb9d8fc14408cc5d952700ca4a249"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/advice-response.html": {
-      "bytes": 16662,
-      "sha256": "fae0f74364e08485286751e7434f2ba395d3492771abeab29c7a95ae197271c7"
+      "bytes": 16832,
+      "sha256": "4c5ffcfb896a2f2d0575b5855f4b7c96629a53cd30c50621e1f2fed20e645ca0"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/advice.html": {
-      "bytes": 49625,
-      "sha256": "96abd6fd9f54cd07e4bd18f83f3999184d15070e3f19010cfce19c770ecf2989"
+      "bytes": 49795,
+      "sha256": "69131418b64d781ebca221147f01beeb45696e7d4b3aab54dca624b540d9caad"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/advice/20261014.html": {
-      "bytes": 22137,
-      "sha256": "cadd4b187cf0deeffd9357d7d7092662170f513424fe4ec3a1d282f9d8428258"
+      "bytes": 22313,
+      "sha256": "460ea4be3e33c8e4d1972577e7648682cda7907ae9052c10ac0a2c3d2f6ee31a"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/advice/questions.html": {
-      "bytes": 10848,
-      "sha256": "04496737d20e08c7bb802b863a336e692ab2af47676f11b8e913401d22e27fba"
+      "bytes": 11024,
+      "sha256": "37aaa56323c7b2274eb1ce26ac02bea1ed50f9cf3ddffd4a1cd5e6c62a01a0ae"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/advice/undated.html": {
-      "bytes": 18572,
-      "sha256": "6ef745c5946e266493359f5a3de4af62dcc2f642dbe7294aa0a83129f70f4b34"
+      "bytes": 18748,
+      "sha256": "5e6bd7253288d0c3c665c073d1255c1452cb860e56b24fe81fa6275c6c5b85ec"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/denoising-history.html": {
-      "bytes": 23880,
-      "sha256": "d551a7e912d577966b1ebd914bef35fad576ea7f41118c2718ff2aed59a618d9"
+      "bytes": 24050,
+      "sha256": "b573cc63167446ed18368fefb6b9ae83a00427a3470195c14bce86a3f6016e5c"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/index.html": {
-      "bytes": 4737,
-      "sha256": "be1aa1ecbdad3c92559ff10043d768583d274e17301740b78932d95bab280b92"
+      "bytes": 4907,
+      "sha256": "866fd2216bf7db6f0cef33f09cf1f5d3ff5863b253c03b03d7e74b02458be535"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/main1000-results.html": {
-      "bytes": 10674,
-      "sha256": "aa3703314c3301a0a69b51003424898f0f334ad3163bed53e351fe49bfbf398e"
+      "bytes": 10844,
+      "sha256": "05b4c2be41063f39a1a310619aff5a7ad8c5d197e84e5c866b372855bb23b987"
+    },
+    "ASR/whisper_ig_reconstruction/notes/research_hub/old100-cleanup.html": {
+      "bytes": 11113,
+      "sha256": "ddb41189412bc0499eb0031bc50438228dabaac39ce06a867b96ae7217a2830d"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/plan.html": {
-      "bytes": 14951,
-      "sha256": "928627f05e03eb74798b8379a0330af7decd333244b73884570367727759eec8"
+      "bytes": 15579,
+      "sha256": "be3e9caecd16f96ef2ec33bb0f43ee5ef720d0d310021068140828337b5355ae"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/positive-fractions-pilot.html": {
-      "bytes": 28784,
-      "sha256": "07d425a6228ea74aedf719b999b78887a6ba12106cc09e7c0b3afc7e4d7e2f1e"
+      "bytes": 25434,
+      "sha256": "040109d65d09a670cbfb559e856d5e174e75f50fc4035b2409e3dcbeebf49ebe"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/positive-ig95.html": {
-      "bytes": 15875,
-      "sha256": "2cf467682e7c0e36b2887e08a489e45c9351d74a236395644bbebda78cbfc2eb"
+      "bytes": 16045,
+      "sha256": "1506d1e5f0fd363e6fa9f94e272d833a6499137f984f7a8044518de18a7985b7"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/results.html": {
-      "bytes": 10075,
-      "sha256": "44a890d43fa2a3b98a08e7af692ae5e82e1029cf30cecfbc805cfdaa0d319e02"
+      "bytes": 11096,
+      "sha256": "c4121c3316c72b3765d893cc27c2b9a71c1b6171f9a64febd458bfa340ce1147"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/score.html": {
-      "bytes": 11292,
-      "sha256": "0e430d7597883f12677a8d8eeb4fd4a851d3c1244be918e8ba506a65e0a83d4f"
+      "bytes": 11462,
+      "sha256": "d4713e7625a7740d4807539a8af57fe584e773400fc326e7a4ae98a57591d578"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/status.html": {
       "bytes": 428,
       "sha256": "433c40f5a5f796d8c524fff630eacd2e0638a81e6c18d6f001181798e7c9d9a8"
     },
+    "ASR/whisper_ig_reconstruction/notes/research_hub/token-extraction-hypothesis.html": {
+      "bytes": 37850,
+      "sha256": "ce2a070b2bd40085f9db968cf846e06f41e163a36e63241d7475ae24332a5bb9"
+    },
+    "ASR/whisper_ig_reconstruction/notes/research_hub/token-word-ig.html": {
+      "bytes": 11239,
+      "sha256": "f2b86a6fa596482a72a6dd1af3d289c76e989069f554ae2e074c4afe5e419549"
+    },
     "ASR/whisper_ig_reconstruction/notes/research_hub/utterances.html": {
-      "bytes": 6161,
-      "sha256": "e2e18c6534aaa33d175ebb43375897d14cd45741546c454685d3d0437ea44ac6"
+      "bytes": 6331,
+      "sha256": "ef80211b0eb29e5b3779b4a37859420057a0cd90a3a9903f139f4f9c4f4f3277"
     },
     "ASR/whisper_pause_attention/index.html": {
-      "bytes": 11215,
-      "sha256": "0acd16d2e7c6f9848620d39e07aebbcd6ce26e2d3bdce70bcfd80174bbf346b8"
+      "bytes": 11481,
+      "sha256": "687a9fcfd4110db33caeb4a3308d94d7e9eead0933769185065b4155249a18a3"
     },
     "ASR/whisper_pause_attention/reports/internal_pause_experiment_report.html": {
-      "bytes": 44253,
-      "sha256": "1360e31f9389d552f2f43c606f34c520788c1132b93d127c73f86bd68984e276"
+      "bytes": 44525,
+      "sha256": "e38f7f0bdff78275c9de7104d8d9620a9aa7ef2c717d5b0524cb8aaa8064a113"
     },
     "README.md": {
       "bytes": 2667,
       "sha256": "7f3c3997df87f4c63b5f96dbc1387f076c14b91e4be1aedf79303a2ce7c4b250"
     },
     "SR/index.html": {
-      "bytes": 6228,
-      "sha256": "5e36170b73e13f558efc7493d8edb6917d0b68489c6b316dbaaa66b1577c614c"
+      "bytes": 6502,
+      "sha256": "6368cf0bc89d76f012d89e2d4eb706fd7e820ea7c97d502592d7d2ab8f32a1ad"
     },
     "assets/guide.css": {
       "bytes": 6951,
@@ -344,12 +359,12 @@
       "sha256": "e8d885505949f3a5f4abdd5dd0d53696bd1371ad26ffbf4f310dcd77c8cdae89"
     },
     "index.html": {
-      "bytes": 7132,
-      "sha256": "2df61c03fa5ea730627417cededb9d230bd81a8b4c0b96bb9955ce676717d4b1"
+      "bytes": 7686,
+      "sha256": "e78efd07c31b2bc2857c89f52b067c52634a24e2b0e2fe8b5741a68aa08e529f"
     },
     "overview.html": {
-      "bytes": 5664,
-      "sha256": "859c667a0d79363a37d9393e948ce7d26cb74c5f178352e8363447954d86aed8"
+      "bytes": 5932,
+      "sha256": "db6f4f106d87e7af0c99d313b5ea46f63f32dedca5565adcc4c5b2e0a277408a"
     },
     "text-sources/ASR/README.md": {
       "bytes": 1793,
@@ -360,8 +375,8 @@
       "sha256": "6b65b01ed5669a2beb59569a1b882812d7a5e83391af9c0ba1c500d651ea256c"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/advice-response.md": {
-      "bytes": 12375,
-      "sha256": "bf076447e3f36b510eb684217193870b9748079d73b60974586983d89a0240eb"
+      "bytes": 12374,
+      "sha256": "3481581e6267d0356e3a314769120a082bc197210bdbbacc6122bf1b567a47ec"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/advice/20261014.md": {
       "bytes": 15945,
@@ -383,21 +398,25 @@
       "bytes": 5226,
       "sha256": "4f13671f33556ac4e3a593ab678babcf2be807936c00f9d550c34162fcaa724e"
     },
+    "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/old100-cleanup.md": {
+      "bytes": 4850,
+      "sha256": "11d07b2d16f7fef40d1fb268933519200c7f36d93a8af173cf6c5f86e8c21d32"
+    },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/plan.md": {
-      "bytes": 10486,
-      "sha256": "37976da0fb7913b72dc4b24793165219c8577b70fe9259199585b39314890dba"
+      "bytes": 10969,
+      "sha256": "2d71a5cc656bce08e94074d704c86025bf8bf0fb8376525015461b14868a2d35"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/positive-fractions-pilot.md": {
-      "bytes": 11277,
-      "sha256": "b2d070cfc0f9fb5145abf8f5830468ca661b07237d9d8a3b1183e143709d41bd"
+      "bytes": 7967,
+      "sha256": "94a2f664a47698176849a31c852d008b7bf4d99555182df11fa4699201eca27a"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/positive-ig95.md": {
       "bytes": 5963,
       "sha256": "0c9a0596e4af2d4ec3d217d0c47533d3f273be0a5f128f9300071466ffdf83e2"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/results.md": {
-      "bytes": 5741,
-      "sha256": "19835581fcbd74e29f99f8da273de5985be5e1bf5bc70d78cd95471863e9cb22"
+      "bytes": 6709,
+      "sha256": "6cb7a0dde8a0c1f903da0689aeac81f5daed19837eec3cf1daf021f0f562f1e9"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/score.md": {
       "bytes": 6483,
@@ -406,6 +425,14 @@
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/status.md": {
       "bytes": 236,
       "sha256": "33bc734d5f06b71a1eba886c398258c99db12dd4765d05ac10aa5c8642ded01e"
+    },
+    "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/token-extraction-hypothesis.md": {
+      "bytes": 31054,
+      "sha256": "5cd24b5e7da78046b96386ca9b4e3c118d976b93439f00bc6aafe994773ba149"
+    },
+    "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/token-word-ig.md": {
+      "bytes": 6584,
+      "sha256": "40097e795004436ad7425fc6a29a11f3fd42e92a2c7db266bc1b360cba9740ff"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/utterances.md": {
       "bytes": 1932,

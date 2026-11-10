@@ -4,13 +4,17 @@
 
 新しい結果から、実験・検証ごとに並べています。完了した比較、品質基準未達、事前確認、保管済み記録を、それぞれの状態を添えて掲載します。
 
+## トークン別・単語別IG：同じ10音声
+
+**[トークン毎のIG計算の結果：10音声](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/token-word-ig.html)**（2026-11-10、処理完了・失敗0件、数値品質未達あり）。本文226トークンと日本語148短単位を正IG95・90・80・60で比較、計1,496条件のWAV・実メルを検査。追加IG再計算0件。単語の厳密対応124・近似24、IG品質はトークン180件・単語130件未達。既存の10音声runからの派生結果で、元データと元の全文比較を保持しています。
+
 ## 正IGの保持率を変えた10音声の試行
 
 1. **[正IG90・85・80：同じ10音声の比較](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/positive-fractions-pilot.html)**（2026-11-10、30件完了・失敗0件）
    5雑音から各2件。同じ10音声×3条件の音声・実音声由来メルを保存し、各元音声の比較枠に正IG95・従来reconstructed・mixture・clear・DeepFilterNet3と並べています。処理結果と各音声へのリンクは詳細ページで確認できます。
 
 <!-- token-ig-pilot-summary -->
-追加：同じ10音声の全276トークンを表示し、本文226トークンの個別IGと正IG95・90の452音声・実メルを同じページに追記。処理完了、IG品質未達180トークンを明記。
+[トークン毎のIG計算の結果：10音声](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/token-word-ig.html)を独立掲載。本文226トークンと日本語単語の正IG95・90・80・60、対応近似・品質未達・全件検査を明記。
 
 <!-- covers: results/comparisons/positive_ig_fractions/main1000_20261110_pos908580_pilot10_v1 -->
 
@@ -29,6 +33,8 @@
 <!-- covers: results/analyses/whisper-large-v3/ig64_cum95_hard/main1000_20261010/abc_v1 -->
 
 ## 旧100件・事前の実験と検証
+
+[旧100件の整理状態・評価記録の保全（2026-11-10監査）](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/old100-cleanup.html)：過去の削除7対象の不在を確認。今回新規削除0件・0 byte。現行参照のある事前試行・共有データは保持。
 
 1. **旧100件・IG64累積95%の結果**（保管済み）  
    設定・集計・品質診断・失敗記録を保持。旧音声・配列・図は、新1000件の検査後に整理済みです。トークン確率・差分音声分析の保管記録も同じ旧100件の追加分析です。

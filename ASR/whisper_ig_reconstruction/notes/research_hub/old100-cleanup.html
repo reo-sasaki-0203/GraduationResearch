@@ -1,0 +1,101 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>旧100件の整理状態と評価記録の保全 | 研究資料</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'none'; media-src 'none'; connect-src 'none'; object-src 'none'; frame-src 'none'"><link rel="stylesheet" href="../../../../assets/guide.css"><link rel="stylesheet" href="../../../../assets/vendor/katex/katex.min.css"><link rel="stylesheet" href="../../../../assets/public.css"><script defer src="../../../../assets/vendor/katex/katex.min.js"></script><script defer src="../../../../assets/math.js"></script><script defer src="../../../../assets/navigation.js"></script></head><body><header class="public-header"><a href="../../../../index.html">研究資料</a><small>テキスト版</small></header><div class="public-layout"><aside class="public-side"><details class="mobile-nav" open><summary>目次・ページを選ぶ</summary><nav><details open><summary>結果を見る</summary><a href="results.html">実験結果一覧</a><a href="token-word-ig.html">トークン毎のIG計算の結果：10音声</a><a href="utterances.html">音声・メル比較（サーバ版）</a><a href="positive-fractions-pilot.html">正IG90・85・80：10音声</a><a href="positive-ig95.html">正のIG95・1000件比較</a><a href="main1000-results.html">1000件・IG＋DeepFilterNet3</a></details><details open><summary>研究を進める</summary><a href="token-extraction-hypothesis.html">トークンIG抽出の仮説と先行研究</a><a href="plan.html">研究計画</a><a href="advice.html">助言集</a><a href="advice-response.html">助言への対応</a></details><details open><summary>学ぶ</summary><a href="../../guide/index.html">手引き・全18章</a><a href="denoising-history.html">ノイズ除去の歴史</a><a href="score.html">Fとセル寄与</a></details><details open><summary>過去の研究</summary><a href="../../../asr_prosody_probe/index.html">初期の解析基盤</a><a href="../../../whisper_pause_attention/index.html">pause・attention</a><a href="../../../whisper_pause_attention/reports/internal_pause_experiment_report.html">pause実験レポート</a><a href="../../../../SR/index.html">旧音声認識実験</a></details><details><summary>手引きの章一覧</summary><a href="../../guide/index.html">音から、モデルの判断と研究結果まで</a><a href="../../guide/audio.html">波形からメル特徴へ：音声の基礎</a><a href="../../guide/transformer.html">Transformer：Q・K・Vから内部計算を読む</a><a href="../../guide/whisper.html">Whisper：音から文字までの道筋</a><a href="../../guide/pipeline.html">今回の処理：SNRからIG95マスクまで</a><a href="../../guide/xai/index.html">XAI：問いから手法を選ぶ</a><a href="../../guide/xai/ig.html">Integrated Gradients（IG）を理解する</a><a href="../../guide/reconstruction.html">メルの表から音声へ：近似逆変換と位相</a><a href="../../guide/evaluation.html">3つの評価：音の近さ、文字の誤り、固定文のスコア</a><a href="../../guide/xai/shap.html">SHAP：特徴の組合せを公平に比較する</a><a href="../../guide/xai/lime.html">LIME：入力の近くで簡単な説明モデルを作る</a><a href="../../guide/xai/grad-cam.html">Grad-CAM：内部の特徴から粗い場所の地図を作る</a><a href="../../guide/xai/occlusion.html">Occlusion：領域を置き換えて差を見る</a><a href="../../guide/xai/saliency.html">Saliency：入力への小さな変化に対する感度</a><a href="../../guide/xai/other.html">その他のXAIとattentionの読み方</a><a href="../../guide/analysis.html">XAI以外から研究を確かめる</a><a href="../../guide/glossary.html">用語集：式を読むための基礎</a><a href="../../guide/sources.html">出典・実装との対応</a></details></nav></details></aside><main class="public-main" id="main"><h1 id="100">旧100件の整理状態と評価記録の保全</h1>
+<p>2026-11-10に依存関係と保存状態を再監査しました。<strong>今回の新規削除は0件・削減容量0 byte</strong>です。旧主100件の大容量データは既に整理されており、今回削除したものとして数えません。</p>
+<p><a href="results.html">実験結果一覧</a> · 旧100件の保管ページ</p>
+<h2 id="_1">過去の削除と今回の確認</h2>
+<p>既存の <code>backups/old100_cleanup.json</code> の削除7対象がすべて存在しないことを確認しました。過去の論理サイズ合計は6,553,588,409 byte（約6.10 GiB）。同記録の空き容量差は6,754,271,232 byteであり、共有ファイルシステムの空き容量変動と論理サイズを同一視しません。元の削除JSONに実施日時はありません。<code>completion_20261012</code> の保管記録はありますが、正確な削除時刻を推定して補っていません。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>過去に削除済みの対象</th>
+<th style="text-align: right;">記録上の論理byte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>results/main64_ig95/samples</code></td>
+<td style="text-align: right;">6,295,685,547</td>
+</tr>
+<tr>
+<td>同runの<code>clean_pool</code></td>
+<td style="text-align: right;">33,794,284</td>
+</tr>
+<tr>
+<td>同runの<code>clean_review</code></td>
+<td style="text-align: right;">738,800</td>
+</tr>
+<tr>
+<td>同runの<code>noise_review</code></td>
+<td style="text-align: right;">11,520,240</td>
+</tr>
+<tr>
+<td>同runの<code>figures</code></td>
+<td style="text-align: right;">220,436</td>
+</tr>
+<tr>
+<td>同runの<code>supplement_all100</code></td>
+<td style="text-align: right;">228,987</td>
+</tr>
+<tr>
+<td>旧100件<code>token_scores_v1/samples</code></td>
+<td style="text-align: right;">211,400,115</td>
+</tr>
+</tbody>
+</table></div>
+<p>今回の監査日時・対象サイズ・保持判断はサーバ内 <code>backups/old100_audit_20261110/audit.json</code>。残す小容量の記録一覧とSHA256は同フォルダの <code>preserved_records.json</code> に保存しました。元の削除記録も変更していません。</p>
+<h2 id="_2">保持・保留の範囲と理由</h2>
+<p>旧主100件の設定・選定一覧は主1000件の由来にも必要です。<code>configs/main1000.yaml</code> の <code>include_selection</code> が旧 <code>selection.json</code> を参照しているため、run全体は削除しません。1000件の入力・出力、今回の10音声・保存トークンIG・再開チェックポイント、共有JSUT・雑音・モデルはすべて保持しました。</p>
+<p><code>results/pilot64_run</code>（486,151,233 byte）、<code>pilot64_ig95</code>（199,616,159 byte）、<code>pipeline64_diagnostic</code>（60,365,255 byte）、<code>largev3_diagnostic_v2</code>（38,278,431 byte）、<code>largev3_fp32_diagnostic</code>（41,358,948 byte）は独立した事前試行・診断であり、現行の結果ページと <code>comparison_tools/utterance_browser.py</code> が参照しています。<strong>今回の削除対象から除外・保持</strong>しました。これらを旧主100件の不要な重複とみなす根拠はなく、音声を削除すると現行の試聴に影響します。共有・由来が不明なファイルは推測で削除していません。</p>
+<p><code>backups/old100_record</code> は1,661ファイル・13,603,992 byteの設定・評価・失敗・個別トークンスコア等で、WAV/NPY/NPZは0件です。原記録を保持し、今回の容量削減のために消しません。監査で触れた <code>data/</code> も共有データのため保持。</p>
+<p>旧主100件と旧トークン分析のHTMLには、過去の削除7対象への音声・図・sampleリンクが残っていないことを文字列検査しました。今回新たな削除に伴う参照変更はありません。旧試行と現行1000件の対応をsample番号だけで同一視していません。</p>
+<h2 id="_3">残した既存評価値</h2>
+<p>以下は <code>results/main64_ig95/metrics/plain_summary.json</code> と <code>supplement_summary.json</code> の保存値の転記で、今回のCER再測定ではありません。100件・4雑音（white/washing/kitchen/traffic）×5 SNR（0/5/10/15/20 dB）各5件・Whisper large-v3・bfloat16・IG64・従来の絶対IG累積95%などの設定は同runの <code>config.yaml</code>、対象は <code>selection.json</code> / <code>selection_manifest.csv</code>、評価定義・条件は <code>report.md</code> と <code>metrics/aggregate_all100.csv</code> に保持。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>条件</th>
+<th style="text-align: right;">音響比較件数</th>
+<th style="text-align: right;">保存済み参照文CER（発話平均）</th>
+<th style="text-align: right;">メルMAE dB</th>
+<th style="text-align: right;">IG品質合格対象数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mixture</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">5.328616%</td>
+<td style="text-align: right;">10.822775</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr>
+<td>reconstruction_only</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">5.473031%</td>
+<td style="text-align: right;">10.741862</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr>
+<td>ig95_hard</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">6.399808%</td>
+<td style="text-align: right;">9.399999</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr>
+<td>random_matched</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">6.652142%</td>
+<td style="text-align: right;">10.515959</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr>
+<td>energy_matched</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">5.861650%</td>
+<td style="text-align: right;">9.280366</td>
+<td style="text-align: right;">19</td>
+</tr>
+</tbody>
+</table></div>
+<p>元runの評価段階は成功99件・失敗1件（sample_0079、EOSなし）のまま保存。後続の補足集計は100件の音響値と同設定ASR診断に由来し、元の失敗段階を成功に変更していません。品質は19合格・81未達。保存された補足表のASR成功数は各条件100であり、元runの「99成功・1失敗」とは処理段階が異なります。両者の記録を保持しています。</p>
+<p>残した保存先は <code>results/main64_ig95/metrics/</code>、<code>backups/old100_record/experiment/</code> と <code>backups/old100_record/token_scores_v1/</code>。公開版はこの説明・集計のみで、個別音声・配列・個人メモ・会話ログは収録しません。</p><footer class="public-footer"><a href="../../../../index.html">研究資料の入口</a> · 画像・音声を省いた公開用テキスト版</footer></main></div></body></html>
