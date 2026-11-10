@@ -4,6 +4,13 @@
 
 新しい結果から、実験・検証ごとに並べています。完了した比較、品質基準未達、事前確認、保管済み記録を、それぞれの状態を添えて掲載します。
 
+## 正IGの保持率を変えた10音声の試行
+
+1. **[正IG90・85・80：同じ10音声の比較](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/positive-fractions-pilot.html)**（2026-11-10、30件完了・失敗0件）
+   5雑音から各2件。同じ10音声×3条件の音声・実音声由来メルを保存し、各元音声の比較枠に正IG95・従来reconstructed・mixture・clear・DeepFilterNet3と並べています。処理結果と各音声へのリンクは詳細ページで確認できます。
+
+<!-- covers: results/comparisons/positive_ig_fractions/main1000_20261110_pos908580_pilot10_v1 -->
+
 ## 1000件の比較
 
 <span id="ig9510002026-11-09"></span>
