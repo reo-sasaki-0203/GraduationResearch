@@ -58,6 +58,8 @@ def build(source,out):
     def clean(body,original,target):
         nonlocal removed
         soup=BeautifulSoup(body,'html.parser')
+        for node in list(soup.select('.private-token-results')):
+            node.decompose();removed+=1
         for node in list(soup.select('img,picture,audio,video,source,track,iframe,object,embed,canvas,svg,script,style,link,form,input,select,button,footer,.search,.filters,.rp-breadcrumb,.source-link,.status-line')):
             if node.parent is not None:node.decompose();removed+=1
         # Provenance links into private chat history are not part of the public edition.
@@ -126,6 +128,7 @@ def build(source,out):
     md_inputs=[source/Path(n) for n in EXTRA_MD]+[source/HUB/(s+'.md') for s in HUB_PAGES if (source/HUB/(s+'.md')).exists()]
     for original in md_inputs:
         path=Path('text-sources')/original.relative_to(source);text=scrub(original.read_text(),source)
+        text=re.sub(r'<!-- private-token-results:start -->[\s\S]*?<!-- private-token-results:end -->','',text)
         text=re.sub(r'!\[[^\]]*\]\([^)]*\)','',text)
         def mdlink(m):
             dest=target_href(m.group(2),original,path)

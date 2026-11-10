@@ -9,6 +9,9 @@
 1. **[正IG90・85・80：同じ10音声の比較](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/positive-fractions-pilot.html)**（2026-11-10、30件完了・失敗0件）
    5雑音から各2件。同じ10音声×3条件の音声・実音声由来メルを保存し、各元音声の比較枠に正IG95・従来reconstructed・mixture・clear・DeepFilterNet3と並べています。処理結果と各音声へのリンクは詳細ページで確認できます。
 
+<!-- token-ig-pilot-summary -->
+追加：同じ10音声の全276トークンを表示し、本文226トークンの個別IGと正IG95・90の452音声・実メルを同じページに追記。処理完了、IG品質未達180トークンを明記。
+
 <!-- covers: results/comparisons/positive_ig_fractions/main1000_20261110_pos908580_pilot10_v1 -->
 
 ## 1000件の比較
