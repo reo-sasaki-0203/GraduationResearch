@@ -1,5 +1,7 @@
 # 1000件・IG再構成とDeepFilterNet3の統合比較
 
+[元音声ごとの音声・メル比較を開く](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/utterances.html)
+
 4条件の音声・全1000件の詳細を開く
 
 clear / mixture / IG再構成 / DeepFilterNet3を同じ1000件で比較した結果です。IGのみの分析は、この比較の原記録・追加分析として下の詳細にまとめています。
