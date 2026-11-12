@@ -58,7 +58,7 @@ def build(source,out):
     def clean(body,original,target):
         nonlocal removed
         soup=BeautifulSoup(body,'html.parser')
-        for node in list(soup.select('.private-token-results')):
+        for node in list(soup.select('.private-token-results,.advice-answer')):
             node.decompose();removed+=1
         for node in list(soup.select('img,picture,audio,video,source,track,iframe,object,embed,canvas,svg,script,style,link,form,input,select,button,footer,.search,.filters,.rp-breadcrumb,.source-link,.status-line')):
             if node.parent is not None:node.decompose();removed+=1

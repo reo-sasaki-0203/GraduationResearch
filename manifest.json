@@ -2,9 +2,9 @@
   "format": "research-text-publication-v1",
   "html_pages": 44,
   "file_count": 101,
-  "bytes": 1554581,
+  "bytes": 1580824,
   "max_file_bytes": 276701,
-  "removed_media_and_controls": 86,
+  "removed_media_and_controls": 114,
   "inputs": {
     "ASR/whisper_ig_reconstruction/guide/index.html": "02aff10f7196a1a0683b64511f48b1de58ec48c2dab984d58feef3f4fa6a230f",
     "ASR/whisper_ig_reconstruction/guide/audio.html": "9287ee054e4c5b7ee27c3cb0004f2f23794b53e9d7f4d00227d4448b22fbcb7a",
@@ -24,24 +24,24 @@
     "ASR/whisper_ig_reconstruction/guide/analysis.html": "82f4c7a2cee07170e079e370f5ffb9795ecf548b065f8d093f2f851319d813ac",
     "ASR/whisper_ig_reconstruction/guide/glossary.html": "98caad4ed1110f2d07550f217774bc95ff051620c36e80039919da6e0332bc5b",
     "ASR/whisper_ig_reconstruction/guide/sources.html": "5b7385849c2afe7a724fe95d40fed03f561009ae019338575c8d9995a9116a6f",
-    "ASR/whisper_ig_reconstruction/results/comparisons/positive_ig_fractions/main1000_20261110_pos908580_pilot10_v1/token_ig/index.html": "72d108b749a628be9def303d598f2cfe82146f6aca386a47d27c630a73bb05b3",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/token-extraction-hypothesis.html": "dc14600cf7f99c1eb718c85899a56f3f4095d46ed3683ab30d4b81afdc9ec933",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/old100-cleanup.html": "809adb6e4ac658368c75a23eb6830e948811428f2a499e213bcc79827a968034",
+    "ASR/whisper_ig_reconstruction/results/comparisons/positive_ig_fractions/main1000_20261110_pos908580_pilot10_v1/token_ig/index.html": "57ff0128c1f6b85c9d0969cad20d7a01139079b1641fff97552e13a1d404a4ff",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/token-extraction-hypothesis.html": "23d7ca5ab5aae17b7f94f877f94511dd7c381598c0a89eebeb3719bf90ce01b2",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/old100-cleanup.html": "4a31921b1b85c93732629419e8d96b34e4c4b09129a852adbd7b59cc820ef57d",
     "ASR/whisper_ig_reconstruction/notes/research_hub/positive-fractions-pilot.md": "4c1ebf6ffbeef1200fff6520e01ffaadd0dbd6b28669f117b31512b68368084c",
     "ASR/whisper_ig_reconstruction/notes/research_hub/utterances.md": "b360f055639fa65c7dbbe602e108ade0a601daac27481a9807db67a87e39d4f1",
-    "ASR/whisper_ig_reconstruction/results/experiments/index.html": "ba12a90b2f683bebb4d215c0630617259941898ec6cc6ca3e2af90e95430fc25",
-    "ASR/whisper_ig_reconstruction/results/comparisons/positive_ig95/main1000_20261109_pos95_v1/index.html": "3dc31f1fea4b8047e9be047a41c376a431ea046feb729d00fb40734716609a51",
-    "ASR/whisper_ig_reconstruction/results/experiments/main1000_20261010/index.html": "b28f26a30109cb1eac92292f183320b928c3038f7fa7b42bb21e284155855943",
+    "ASR/whisper_ig_reconstruction/results/experiments/index.html": "f4641e1b5b038c302a2bba62bb38b668b9e6928632428914dcee613c69d46b70",
+    "ASR/whisper_ig_reconstruction/results/comparisons/positive_ig95/main1000_20261109_pos95_v1/index.html": "8fa8ec9893d5d26492cdc6ee05e78c0666124bf8d57ad8ce7483cfbbd0484144",
+    "ASR/whisper_ig_reconstruction/results/experiments/main1000_20261010/index.html": "1310cd94b451359515acda71b45b12350e649a1b841a4963e8cbc55c1a8846aa",
     "ASR/whisper_ig_reconstruction/notes/research_hub/status.html": "7b601185f9a8542b9a86207baf41864586ddbd3bef0104b6ad0474b149dbc365",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/plan.html": "cb4de060c14b4e5d156060fef2e12991ded22520eed25db2e7da567926f06f12",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/advice-response.html": "7e1fab6adb851594cf5a64bb84de1bbc73b4d3428addbbb7379e765998f9cbc4",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/score.html": "a79329b8b28d20c313c9a823cfc3a295320393e9307ad30453d35ddbae936254",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/denoising-history.html": "8d89fdd31846e7609ca229da0db4dfacf0075ecc388ad3e4aebc2663f8b813cf",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/advice.html": "7527c9c735d42844b445ef51c3670446486e126935095f94b04be1efc955228d",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/20261014.html": "e8105b4101eb726a7fb13216c23edff26b36eaff504e0aa33c5bc727bef115ff",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/undated.html": "5dd0523d5bf0fd24363171356b5098c087db166c6f78ef41e5704fb91e28c985",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/questions.html": "86d26a49be1a0c611fecf5b91ed77534b9dd82330fba91a002895a773c7f3e5c",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/index.html": "c602508bff35cd62e574d9e017c486c41b8aa6c5b0f06a3e3518b86f9224d919",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/plan.html": "e80fd860613d6cb10576db87dffdc0c0ad82fda528c11991adf8dabe86ab450b",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice-response.html": "59b1a6a4caa4512ec12a5b2f178789e73be7f86d8011745ab67f7a4c12852d83",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/score.html": "833374b8a1aab04a5df6699843e100756eaa12b32c60823a5be08b72ac397265",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/denoising-history.html": "9f985c0a18c0b76404dd8b8df63aa127cc6abdcf70e38de98a1745ed923a2524",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice.html": "d3f9ab6d0aacb3634d6fb238b907335fba606309a4994c908515272541445ed9",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/20261014.html": "7dc2cb0160659bda524022b2161d3f56a2274d508fb0e21181454cdf2f1347b2",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/undated.html": "cc304ba419d58e8dec64bbb768d325f1efe7d9636f307578331e8af3d19a92cf",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advice/questions.html": "8c48bc94cc3452d9f25fd6a90e52e8f01729ef0c9d7c7b0e716ef7436b462636",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/index.html": "389a36e1b048496e8697939f8a06318fa4559feb8e9d8232eb292c10187112fb",
     "README.md": "f35d09be61c22ac5ffaf8429585951d55a14468fce28456a8d1ba076e29c34f4",
     "ASR/README.md": "f5027726f8fd80f9c70af2bbeefc2220701b0532c2399827662bc689768843e8",
     "ASR/asr_prosody_probe/README.md": "6b65b01ed5669a2beb59569a1b882812d7a5e83391af9c0ba1c500d651ea256c",
@@ -59,8 +59,8 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     ".publication/build.py": {
-      "bytes": 24458,
-      "sha256": "56c160f2cd7184b2b9081d766f66346698f42bb92f97d95bf2612aeb28df63c8"
+      "bytes": 24473,
+      "sha256": "69b5dfcae0513136efe3093ec5a1da0565bccdefaabe873973bd69dae8655862"
     },
     ".publication/check.py": {
       "bytes": 2541,
@@ -163,8 +163,8 @@
       "sha256": "4c5ffcfb896a2f2d0575b5855f4b7c96629a53cd30c50621e1f2fed20e645ca0"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/advice.html": {
-      "bytes": 49795,
-      "sha256": "69131418b64d781ebca221147f01beeb45696e7d4b3aab54dca624b540d9caad"
+      "bytes": 76023,
+      "sha256": "46dee7c9654edce31ded218ab5f3b6696b301ab663bf56cb967bc258e128e6f2"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/advice/20261014.html": {
       "bytes": 22313,
