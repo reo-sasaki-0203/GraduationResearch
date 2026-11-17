@@ -1,0 +1,315 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>別ASRによる保存済み1000発話・5条件のCER評価 | 研究資料</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'none'; media-src 'none'; connect-src 'none'; object-src 'none'; frame-src 'none'"><link rel="stylesheet" href="../../../../assets/guide.css"><link rel="stylesheet" href="../../../../assets/vendor/katex/katex.min.css"><link rel="stylesheet" href="../../../../assets/public.css"><script defer src="../../../../assets/vendor/katex/katex.min.js"></script><script defer src="../../../../assets/math.js"></script><script defer src="../../../../assets/navigation.js"></script></head><body><header class="public-header"><a href="../../../../index.html">研究資料</a><small>テキスト版</small></header><div class="public-layout"><aside class="public-side"><details class="mobile-nav" open><summary>目次・ページを選ぶ</summary><nav><details open><summary>結果を見る</summary><a href="results.html">実験結果一覧</a><a href="clean-word-ig.html">クリーン単語IG：10発話</a><a href="cross-asr.html" aria-current="page">別ASR：1000発話・5条件</a><a href="token-word-ig.html">トークン毎のIG計算の結果：10音声</a><a href="utterances.html">音声・メル比較（サーバ版）</a><a href="positive-fractions-pilot.html">正IG90・85・80：10音声</a><a href="positive-ig95.html">正のIG95・1000件比較</a><a href="main1000-results.html">1000件・IG＋DeepFilterNet3</a></details><details open><summary>研究を進める</summary><a href="token-extraction-hypothesis.html">トークンIG抽出の仮説と先行研究</a><a href="plan.html">研究計画</a><a href="advice.html">助言集</a><a href="advice-response.html">助言への対応</a></details><details open><summary>学ぶ</summary><a href="../../guide/index.html">手引き・全18章</a><a href="denoising-history.html">ノイズ除去の歴史</a><a href="score.html">Fとセル寄与</a></details><details open><summary>過去の研究</summary><a href="../../../asr_prosody_probe/index.html">初期の解析基盤</a><a href="../../../whisper_pause_attention/index.html">pause・attention</a><a href="../../../whisper_pause_attention/reports/internal_pause_experiment_report.html">pause実験レポート</a><a href="../../../../SR/index.html">旧音声認識実験</a></details><details><summary>手引きの章一覧</summary><a href="../../guide/index.html">音から、モデルの判断と研究結果まで</a><a href="../../guide/audio.html">波形からメル特徴へ：音声の基礎</a><a href="../../guide/transformer.html">Transformer：Q・K・Vから内部計算を読む</a><a href="../../guide/whisper.html">Whisper：音から文字までの道筋</a><a href="../../guide/pipeline.html">今回の処理：SNRからIG95マスクまで</a><a href="../../guide/xai/index.html">XAI：問いから手法を選ぶ</a><a href="../../guide/xai/ig.html">Integrated Gradients（IG）を理解する</a><a href="../../guide/reconstruction.html">メルの表から音声へ：近似逆変換と位相</a><a href="../../guide/evaluation.html">3つの評価：音の近さ、文字の誤り、固定文のスコア</a><a href="../../guide/xai/shap.html">SHAP：特徴の組合せを公平に比較する</a><a href="../../guide/xai/lime.html">LIME：入力の近くで簡単な説明モデルを作る</a><a href="../../guide/xai/grad-cam.html">Grad-CAM：内部の特徴から粗い場所の地図を作る</a><a href="../../guide/xai/occlusion.html">Occlusion：領域を置き換えて差を見る</a><a href="../../guide/xai/saliency.html">Saliency：入力への小さな変化に対する感度</a><a href="../../guide/xai/other.html">その他のXAIとattentionの読み方</a><a href="../../guide/analysis.html">XAI以外から研究を確かめる</a><a href="../../guide/glossary.html">用語集：式を読むための基礎</a><a href="../../guide/sources.html">出典・実装との対応</a></details></nav></details></aside><main class="public-main" id="main"><h1 id="asr10005cer">別ASRによる保存済み1000発話・5条件のCER評価</h1>
+<p>確認日：2026-11-17。run <code>main1000_20261117_reazon_v1</code>。処理済み1000/1000発話、5条件。保存済みWAVを読み込み、IG再計算・音声再生成は行っていません。</p>
+<h2 id="_1">評価器と事前検証</h2>
+<p><a href="https://huggingface.co/reazon-research/japanese-wav2vec2-base-rs35kh">Reazonの公式モデルカード</a>と同revisionの設定・語彙を確認。<code>reazon-research/japanese-wav2vec2-base-rs35kh</code> revision <code>46afc596052b612293c8db256b3a69447a2f57dc</code> を固定しました。<a href="https://huggingface.co/reazon-research/japanese-wav2vec2-base">baseモデルカード</a>では事前学習、CTCカードではfine-tuningにReazonSpeech v2.0を使用と記載。<a href="https://huggingface.co/datasets/reazon-research/reazonspeech">データカード</a>は地上波TV由来の35,000時間以上と説明しています。JSUT BASIC5000は公式の評価対象ですが、発話単位の学習重複がないことまでは今回監査していません。</p>
+<p>語彙3003は漢字かな交じり・複数文字単位を含みます。PyTorchのCTCモデルで勾配計算は可能な実装ですが、今回は推論のみ。16kHz、前後各0.5秒ゼロpadding、公式processorの波形正規化を全条件に固定し、greedy CTC（argmax、言語モデルなし）で復号。float32・eager attentionを用い、カードのbf16・flash attention例から計算精度・カーネルだけ変更しました。V100と既存環境で実行できる設定で、全条件を統一しました。公式例に合わせ、入力全体を1件ずつ処理します。</p>
+<p>元の1000件から、既存の選定順で各雑音群の先頭2件、計10件を選び、結果で選び直していません。採用の事前基準はクリーン平均CER&lt;50%、中央値&lt;50%、正常かつ非空80%以上。事前検証は平均9.146%、中央値9.109%、非空正常100.000%で、採用判定はTrueでした。「雑音に弱い」は採用の前提にせず、クリーン→雑音入りの悪化で判断します。事前10件も1000件の一部として再利用し、別標本扱いしません。</p>
+<h2 id="cer">CERの統一と主集計</h2>
+<p>既存の <code>whisper_ig.asr.normalize_text</code> を共通利用。NFKC・空白とUnicode句読点カテゴリPの除去、漢字の読み変換なし。同じ正解文とjiwer 3.1.0の文字編集距離を使用し、置換・削除・挿入・正解文字数・raw／正規化出力を全条件に保存。主指標は発話平均CER、pooled CERは全発話の編集数合計／正解文字数合計として別名で示します。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>モデル</th>
+<th>保存済み条件</th>
+<th style="text-align: right;">正常数</th>
+<th style="text-align: right;">失敗数</th>
+<th style="text-align: right;">正常な空認識数</th>
+<th style="text-align: right;">発話平均CER(%)</th>
+<th style="text-align: right;">pooled CER(%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reazon</td>
+<td>clean</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">10.095</td>
+<td style="text-align: right;">10.300</td>
+</tr>
+<tr>
+<td>Reazon</td>
+<td>mixture</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">13.639</td>
+<td style="text-align: right;">14.009</td>
+</tr>
+<tr>
+<td>Reazon</td>
+<td>absolute95</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">16.038</td>
+<td style="text-align: right;">16.553</td>
+</tr>
+<tr>
+<td>Reazon</td>
+<td>positive95</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">27.555</td>
+<td style="text-align: right;">27.772</td>
+</tr>
+<tr>
+<td>Reazon</td>
+<td>dfn3</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">15.393</td>
+<td style="text-align: right;">15.415</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>clean</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6.942</td>
+<td style="text-align: right;">6.971</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>mixture</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">7.716</td>
+<td style="text-align: right;">7.804</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>absolute95</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8.755</td>
+<td style="text-align: right;">8.797</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>positive95</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12.063</td>
+<td style="text-align: right;">12.123</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>dfn3</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">10.644</td>
+<td style="text-align: right;">10.512</td>
+</tr>
+</tbody>
+</table></div>
+<p>保存済み元IG64のcompletenessは合格287／未達713件です。今回は品質で発話を選び直さず、保存WAV全1000件の認識性能を評価しました。加工の性能比較であり、元IGの数値的正しさを新たに保証する結果ではありません。</p>
+<p>条件名：clean=クリーン、mixture=雑音入り、absolute95=従来の絶対IG累積95%、positive95=正IG累積95%、dfn3=DeepFilterNet3。各加工WAVは以前に保存されたものをそのまま使用。発話・入力SHA256・正解文・出力・失敗を追跡できます。</p>
+<p>正常に実行されて空文字になったCTC出力は、削除数=正解文字数、CER=1として保存。例外・実行失敗にはCERを付与せず、0に置き換えません。Whisperの既存実装は空の正規化出力を例外にしていたため、正常空の扱いが異なります。下の対応差は両条件が正常な共通発話だけで計算します。</p>
+<h2 id="_2">各モデル内の対応差</h2>
+<p>差は「右条件−左条件」、単位はパーセントポイント(pp)。負なら改善、正なら悪化。95%区間は発話を単位とする2000回対応bootstrap、seed42、百分位区間。モデル間CERの絶対値比較より、同じモデル内での加工前後を主に見ます。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>モデル</th>
+<th>対応比較</th>
+<th style="text-align: right;">共通数</th>
+<th>改善/同じ/悪化</th>
+<th style="text-align: right;">平均対応差(pp)</th>
+<th>95%区間(pp)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reazon</td>
+<td>clean-&gt;mixture</td>
+<td style="text-align: right;">1000</td>
+<td>129/389/482</td>
+<td style="text-align: right;">+3.545</td>
+<td>+3.081 ～ +4.035</td>
+</tr>
+<tr>
+<td>Reazon</td>
+<td>mixture-&gt;absolute95</td>
+<td style="text-align: right;">1000</td>
+<td>183/355/462</td>
+<td style="text-align: right;">+2.398</td>
+<td>+1.976 ～ +2.812</td>
+</tr>
+<tr>
+<td>Reazon</td>
+<td>mixture-&gt;positive95</td>
+<td style="text-align: right;">1000</td>
+<td>86/137/777</td>
+<td style="text-align: right;">+13.916</td>
+<td>+13.036 ～ +14.859</td>
+</tr>
+<tr>
+<td>Reazon</td>
+<td>mixture-&gt;dfn3</td>
+<td style="text-align: right;">1000</td>
+<td>242/340/418</td>
+<td style="text-align: right;">+1.753</td>
+<td>+1.265 ～ +2.236</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>clean-&gt;mixture</td>
+<td style="text-align: right;">1000</td>
+<td>81/738/181</td>
+<td style="text-align: right;">+0.774</td>
+<td>+0.479 ～ +1.067</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>mixture-&gt;absolute95</td>
+<td style="text-align: right;">1000</td>
+<td>68/742/190</td>
+<td style="text-align: right;">+1.039</td>
+<td>+0.741 ～ +1.346</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>mixture-&gt;positive95</td>
+<td style="text-align: right;">1000</td>
+<td>27/590/383</td>
+<td style="text-align: right;">+4.348</td>
+<td>+3.817 ～ +4.941</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>mixture-&gt;dfn3</td>
+<td style="text-align: right;">1000</td>
+<td>90/630/280</td>
+<td style="text-align: right;">+2.928</td>
+<td>+2.333 ～ +3.566</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="cer_1">雑音群別の発話平均CER</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>モデル</th>
+<th>群（件数）</th>
+<th style="text-align: right;">clean(%)</th>
+<th style="text-align: right;">mixture(%)</th>
+<th style="text-align: right;">absolute95(%)</th>
+<th style="text-align: right;">positive95(%)</th>
+<th style="text-align: right;">dfn3(%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reazon</td>
+<td>kitchen（200）</td>
+<td style="text-align: right;">10.290</td>
+<td style="text-align: right;">14.872</td>
+<td style="text-align: right;">15.416</td>
+<td style="text-align: right;">27.234</td>
+<td style="text-align: right;">15.831</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>kitchen（200）</td>
+<td style="text-align: right;">6.518</td>
+<td style="text-align: right;">7.013</td>
+<td style="text-align: right;">7.899</td>
+<td style="text-align: right;">10.327</td>
+<td style="text-align: right;">9.774</td>
+</tr>
+<tr>
+<td>Reazon</td>
+<td>pink（200）</td>
+<td style="text-align: right;">9.069</td>
+<td style="text-align: right;">12.075</td>
+<td style="text-align: right;">14.767</td>
+<td style="text-align: right;">27.411</td>
+<td style="text-align: right;">14.309</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>pink（200）</td>
+<td style="text-align: right;">6.613</td>
+<td style="text-align: right;">7.233</td>
+<td style="text-align: right;">8.402</td>
+<td style="text-align: right;">11.686</td>
+<td style="text-align: right;">10.511</td>
+</tr>
+<tr>
+<td>Reazon</td>
+<td>river（200）</td>
+<td style="text-align: right;">9.689</td>
+<td style="text-align: right;">10.603</td>
+<td style="text-align: right;">12.505</td>
+<td style="text-align: right;">19.957</td>
+<td style="text-align: right;">12.090</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>river（200）</td>
+<td style="text-align: right;">6.690</td>
+<td style="text-align: right;">7.147</td>
+<td style="text-align: right;">7.545</td>
+<td style="text-align: right;">9.751</td>
+<td style="text-align: right;">8.818</td>
+</tr>
+<tr>
+<td>Reazon</td>
+<td>traffic（200）</td>
+<td style="text-align: right;">10.718</td>
+<td style="text-align: right;">15.058</td>
+<td style="text-align: right;">18.526</td>
+<td style="text-align: right;">28.569</td>
+<td style="text-align: right;">17.459</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>traffic（200）</td>
+<td style="text-align: right;">7.646</td>
+<td style="text-align: right;">8.645</td>
+<td style="text-align: right;">10.304</td>
+<td style="text-align: right;">15.239</td>
+<td style="text-align: right;">12.454</td>
+</tr>
+<tr>
+<td>Reazon</td>
+<td>white（200）</td>
+<td style="text-align: right;">10.709</td>
+<td style="text-align: right;">15.589</td>
+<td style="text-align: right;">18.975</td>
+<td style="text-align: right;">34.606</td>
+<td style="text-align: right;">17.274</td>
+</tr>
+<tr>
+<td>Whisper保存値</td>
+<td>white（200）</td>
+<td style="text-align: right;">7.241</td>
+<td style="text-align: right;">8.541</td>
+<td style="text-align: right;">9.626</td>
+<td style="text-align: right;">13.315</td>
+<td style="text-align: right;">11.660</td>
+</tr>
+</tbody>
+</table></div>
+<p>群ごとに改善／同じ／悪化、対応差と95%区間も全結果JSONに保存。white/pink/riverは10dB、traffic/kitchenは0dBで、発話も群ごとに異なります。群間の差を雑音種類だけの因果効果とはしません。</p>
+<h2 id="_3">制約と次の判断</h2>
+<p>WhisperのCERは既存の保存値を参照し、この実験のための再認識は0件です。元の1000件と後続の正IG・DFN3評価には日時・環境の混在があります。同一環境F再採点はCER再認識の証拠ではありません。旧raw出力から編集数だけを再計算し、保存CERとの一致を検査しています。</p>
+<p>別ASRでの改善は、音質や本人の聞き取りやすさの改善と同義ではありません。1つの別ASR・単一話者のJSUT・固定SNRによる結果で、ASR全般への一般化や学習データ完全非重複は主張できません。モデルごとのclean→mixture悪化と、mixture→加工の対応差を分けて解釈します。</p>
+<ul>
+<li>absolute95：Reazon平均差+2.398pp、Whisper保存値+1.039pp。両モデルの平均変化の符号は一致。個別発話の一致とは別です。</li>
+<li>positive95：Reazon平均差+13.916pp、Whisper保存値+4.348pp。両モデルの平均変化の符号は一致。個別発話の一致とは別です。</li>
+<li>dfn3：Reazon平均差+1.753pp、Whisper保存値+2.928pp。両モデルの平均変化の符号は一致。個別発話の一致とは別です。</li>
+</ul>
+<!-- private-token-results:start -->
+
+<!-- private-token-results:end -->
+<p>個別認識文、WAV、モデル、実行ログは公開しません。条件・集計・限界だけを軽量公開版へ反映します。</p><footer class="public-footer"><a href="../../../../index.html">研究資料の入口</a> · 画像・音声を省いた公開用テキスト版</footer></main></div></body></html>
