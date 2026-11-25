@@ -598,4 +598,240 @@
 </table></div>
 <!-- private-token-results:start -->
 
+<!-- private-token-results:end -->
+<h2 id="_4">積分点数を増やした結果</h2>
+<p>IGのcompletenessが20条件中8条件以上で未達なら、全20条件を次の点数で計算し直した。判定は元実験と同じく、絶対残差0.01以下または相対残差0.1以下。各点数で同じ符号付きIGを絶対IG95と正IG95に使用した。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th style="text-align: right;">積分点数</th>
+<th style="text-align: right;">基準合格</th>
+<th style="text-align: right;">基準未達</th>
+<th style="text-align: right;">未達率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">8/20</td>
+<td style="text-align: right;">12/20</td>
+<td style="text-align: right;">60%</td>
+</tr>
+<tr>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">14/20</td>
+<td style="text-align: right;">6/20</td>
+<td style="text-align: right;">30%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>最終集計は128点。</strong> 未達率が40%未満になった。 処理済みの20条件を全て集計し、以下に品質未達を併記した。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th style="text-align: right;">SNR (dB)</th>
+<th style="text-align: right;">合格</th>
+<th style="text-align: right;">絶対 / 正IGと局所優勢の相関</th>
+<th style="text-align: right;">絶対 / 正 再構成ゲインとの相関</th>
+<th style="text-align: right;">保持面積 絶対 / 正 (%)</th>
+<th style="text-align: right;">ΔSI-SDR 絶対 / 正 (dB)</th>
+<th style="text-align: right;">ΔCER 絶対 / 正 (pp)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">-10</td>
+<td style="text-align: right;">5/5</td>
+<td style="text-align: right;">0.208 / 0.110</td>
+<td style="text-align: right;">0.232 / 0.223</td>
+<td style="text-align: right;">63.5 / 30.4</td>
+<td style="text-align: right;">+2.99 / +3.31</td>
+<td style="text-align: right;">+0.46 / +6.38</td>
+</tr>
+<tr>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5/5</td>
+<td style="text-align: right;">0.265 / 0.125</td>
+<td style="text-align: right;">0.285 / 0.259</td>
+<td style="text-align: right;">62.7 / 29.1</td>
+<td style="text-align: right;">+2.70 / +2.38</td>
+<td style="text-align: right;">+5.36 / +14.73</td>
+</tr>
+<tr>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">3/5</td>
+<td style="text-align: right;">0.278 / 0.119</td>
+<td style="text-align: right;">0.291 / 0.225</td>
+<td style="text-align: right;">62.6 / 29.9</td>
+<td style="text-align: right;">+1.11 / -2.85</td>
+<td style="text-align: right;">+0.80 / +2.96</td>
+</tr>
+<tr>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">1/5</td>
+<td style="text-align: right;">0.326 / 0.140</td>
+<td style="text-align: right;">0.301 / 0.209</td>
+<td style="text-align: right;">62.3 / 30.0</td>
+<td style="text-align: right;">-4.54 / -11.12</td>
+<td style="text-align: right;">-0.54 / -0.54</td>
+</tr>
+</tbody>
+</table></div>
+<p>同じ時刻・帯域のうち優勢が反転した領域では、優勢度とIGシェアの相関が絶対IGで+0.041、正IGで-0.035。実波形のゲインとの相関は絶対IGで+0.064、正IGで+0.128。</p>
+<h3 id="_5">条件ごとの品質と最終点数での認識誤り</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>雑音</th>
+<th style="text-align: right;">SNR (dB)</th>
+<th>品質 64/128点</th>
+<th style="text-align: right;">ΔCER 絶対 (pp)</th>
+<th style="text-align: right;">ΔCER 正 (pp)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kitchen</td>
+<td style="text-align: right;">-10</td>
+<td>合格 / 合格</td>
+<td style="text-align: right;">+0.00</td>
+<td style="text-align: right;">+0.00</td>
+</tr>
+<tr>
+<td>kitchen</td>
+<td style="text-align: right;">0</td>
+<td>合格 / 合格</td>
+<td style="text-align: right;">+0.00</td>
+<td style="text-align: right;">+0.00</td>
+</tr>
+<tr>
+<td>kitchen</td>
+<td style="text-align: right;">10</td>
+<td>合格 / 合格</td>
+<td style="text-align: right;">+0.00</td>
+<td style="text-align: right;">+0.00</td>
+</tr>
+<tr>
+<td>kitchen</td>
+<td style="text-align: right;">20</td>
+<td>未達 / 合格</td>
+<td style="text-align: right;">+0.00</td>
+<td style="text-align: right;">+0.00</td>
+</tr>
+<tr>
+<td>pink</td>
+<td style="text-align: right;">-10</td>
+<td>合格 / 合格</td>
+<td style="text-align: right;">+5.41</td>
+<td style="text-align: right;">+5.41</td>
+</tr>
+<tr>
+<td>pink</td>
+<td style="text-align: right;">0</td>
+<td>合格 / 合格</td>
+<td style="text-align: right;">+10.81</td>
+<td style="text-align: right;">+35.14</td>
+</tr>
+<tr>
+<td>pink</td>
+<td style="text-align: right;">10</td>
+<td>未達 / 未達</td>
+<td style="text-align: right;">+0.00</td>
+<td style="text-align: right;">+0.00</td>
+</tr>
+<tr>
+<td>pink</td>
+<td style="text-align: right;">20</td>
+<td>未達 / 未達</td>
+<td style="text-align: right;">-2.70</td>
+<td style="text-align: right;">-2.70</td>
+</tr>
+<tr>
+<td>river</td>
+<td style="text-align: right;">-10</td>
+<td>未達 / 合格</td>
+<td style="text-align: right;">+8.00</td>
+<td style="text-align: right;">+8.00</td>
+</tr>
+<tr>
+<td>river</td>
+<td style="text-align: right;">0</td>
+<td>未達 / 合格</td>
+<td style="text-align: right;">+16.00</td>
+<td style="text-align: right;">+20.00</td>
+</tr>
+<tr>
+<td>river</td>
+<td style="text-align: right;">10</td>
+<td>未達 / 合格</td>
+<td style="text-align: right;">+4.00</td>
+<td style="text-align: right;">+0.00</td>
+</tr>
+<tr>
+<td>river</td>
+<td style="text-align: right;">20</td>
+<td>未達 / 未達</td>
+<td style="text-align: right;">+0.00</td>
+<td style="text-align: right;">+0.00</td>
+</tr>
+<tr>
+<td>traffic</td>
+<td style="text-align: right;">-10</td>
+<td>合格 / 合格</td>
+<td style="text-align: right;">+25.93</td>
+<td style="text-align: right;">+0.00</td>
+</tr>
+<tr>
+<td>traffic</td>
+<td style="text-align: right;">0</td>
+<td>未達 / 合格</td>
+<td style="text-align: right;">+0.00</td>
+<td style="text-align: right;">+14.81</td>
+</tr>
+<tr>
+<td>traffic</td>
+<td style="text-align: right;">10</td>
+<td>未達 / 未達</td>
+<td style="text-align: right;">+0.00</td>
+<td style="text-align: right;">+11.11</td>
+</tr>
+<tr>
+<td>traffic</td>
+<td style="text-align: right;">20</td>
+<td>未達 / 未達</td>
+<td style="text-align: right;">+0.00</td>
+<td style="text-align: right;">+0.00</td>
+</tr>
+<tr>
+<td>white</td>
+<td style="text-align: right;">-10</td>
+<td>合格 / 合格</td>
+<td style="text-align: right;">-37.04</td>
+<td style="text-align: right;">+18.52</td>
+</tr>
+<tr>
+<td>white</td>
+<td style="text-align: right;">0</td>
+<td>合格 / 合格</td>
+<td style="text-align: right;">+0.00</td>
+<td style="text-align: right;">+3.70</td>
+</tr>
+<tr>
+<td>white</td>
+<td style="text-align: right;">10</td>
+<td>未達 / 合格</td>
+<td style="text-align: right;">+0.00</td>
+<td style="text-align: right;">+3.70</td>
+</tr>
+<tr>
+<td>white</td>
+<td style="text-align: right;">20</td>
+<td>未達 / 未達</td>
+<td style="text-align: right;">+0.00</td>
+<td style="text-align: right;">+0.00</td>
+</tr>
+</tbody>
+</table></div>
+<!-- private-token-results:start -->
+
 <!-- private-token-results:end --><footer class="public-footer"><a href="../../../../index.html">研究資料の入口</a> · 画像・音声を省いた公開用テキスト版</footer></main></div></body></html>

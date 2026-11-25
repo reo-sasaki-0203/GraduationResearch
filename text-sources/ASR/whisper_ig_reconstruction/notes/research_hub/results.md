@@ -10,6 +10,7 @@
 <!-- covers: results/analyses/source_dominance/controlled_20261125_v1 -->
 <!-- covers: results/analyses/source_dominance/controlled_largev3_20261125_v1 -->
 <!-- covers: results/analyses/source_dominance/controlled_largev3_20261125_v1_positive -->
+<!-- covers: results/analyses/source_dominance/controlled_largev3_20261125_v1_precision/128 -->
 
 ## 声と雑音の局所的な優勢度とIG（2026-11-25）
 
