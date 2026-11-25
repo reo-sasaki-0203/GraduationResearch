@@ -3,6 +3,12 @@
 [元音声ごとの音声・メル比較を開く](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/utterances.html)
 
 新しい結果から、実験・検証ごとに並べています。完了した比較、品質基準未達、事前確認、保管済み記録を、それぞれの状態を添えて掲載します。
+## 寄与度手法と複数ASRの追試（2026-11-25に実行開始）
+
+[案①・案②の進捗と実測結果](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/advisor-followups.html)。開発と確認の処理件数、各手法の成績、品質未達・欠測を掲載。
+
+<!-- covers: results/analyses/advisor_followups/20261125_v1 -->
+
 ## 同一発話・同一雑音で混合比を操作する追試（完了）
 
 [5組×4段階の結果](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/controlled-snr.html)。Whisper large-v3で20/20条件を新規に計算・検算。絶対IG95と正IG95の両方で再構成した。混合比ごとの相関、同じ領域の優勢が入れ替わったときの追従、再構成音の指標と試聴例を掲載した。
