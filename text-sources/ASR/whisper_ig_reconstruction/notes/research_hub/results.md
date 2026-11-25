@@ -3,6 +3,18 @@
 [元音声ごとの音声・メル比較を開く](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/utterances.html)
 
 新しい結果から、実験・検証ごとに並べています。完了した比較、品質基準未達、事前確認、保管済み記録を、それぞれの状態を添えて掲載します。
+## 同一発話・同一雑音で混合比を操作する追試（2026-11-25、引き継ぎ中）
+
+5組×4段階の新規混合を使う設計。元サーバでのCPU予備試行は接続先切り替えのため停止。完了0/20条件、IG・再構成の新しい測定結果は未取得。下の既存1000件の結果とは別集計。[目的と条件](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/plan.html)
+
+<!-- covers: results/analyses/source_dominance/controlled_20261125_v1 -->
+
+## 声と雑音の局所的な優勢度とIG（2026-11-25）
+
+[保存済み1000発話の対応解析](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/source-dominance.html)。1000/1000完了。声の優勢度と絶対IGの発話内順位相関は平均0.308。IGの成分保持差は同面積のenergy・randomを上回った。実際の再構成波形の減衰、SI-SDR、2モデルのCERとの関連、旧IG品質別・雑音別の限界を併記した。
+
+<!-- covers: results/analyses/source_dominance/main1000_20261125_v1 -->
+
 
 ## クリーン単語IGと別ASRによる追加評価（2026-11-17）
 

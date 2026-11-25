@@ -1,5 +1,17 @@
 # 研究計画の見直しと次のステップ
 
+## 2026-11-25　寄与の測り方・ASRごとの認識・声と雑音の対応を検証する3案
+
+**第1案はモデルの説明としてのIGを試す。** 同じWhisper、同じ混合音、同じ固定認識文で、無音基準IG、開発データの帯域中央値を基準にしたIG、入力勾配、ブロック遮蔽を比較する。手法ごとに高順位タイルから同じ面積を減衰させ、認識文の平均対数確率がどれほど動くかを測る。混合エネルギー・ランダム・全保持を対照にし、マスクを波形に戻したときのCERは別に評価する。開発12発話・確認60発話。設計済み、未実行。[IG原著](https://proceedings.mlr.press/v70/sundararajan17a.html)
+
+**第2案は、あるASRが作った音が別のASRにも通じるかを試す。** 2020年公開のCSJ Transformer、CSJ Conformer、LaboroTV Conformer、比較用Whisperを生成器とする。同一発話・同一雑音区間でwhite／trafficをそれぞれ−5、0、+10 dBにし、各生成器でIGを作る。生成4モデルと、生成に参加しないReazonの計5評価器で、再構成音−混合音のCER差を測る。開発12発話で候補を1つ選び、別の60〜240発話で確かめる。旧世代モデルの雑音感受性、同面積energy/randomとの差、自己評価と他モデルでの評価、挿入・脱落・置換を記録する。設計済み、未実行。[CSJ Transformer](https://zenodo.org/records/4037458)・[CSJ Conformer](https://zenodo.org/records/4065140)・[LaboroTV Conformer](https://zenodo.org/records/4304245)
+
+**第3案は、音源から直接検証できる仮説を扱う。** 保存済みの声と雑音の短時間フーリエ変換から時間・帯域別の声の優勢度を算出し、IG、マスクの成分保持、実際の再構成音を照合した。1000発話の実測と、解釈が変わる雑音群別の比較を掲載した。[成分優勢度とIGの結果](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/source-dominance.html)
+
+追加の操作実験では、同じ声と同じ雑音波形を固定し、声対雑音のパワー比を0.1、1、10、100倍に設定する。各組で認識対象文を固定し、5組×4段階で新しいIGと再構成音を得て、同じ時間・帯域の対応を調べる。別サーバでの実行待ち。
+
+
+
 ## 2026-11-17：今回の実行範囲と次の判断
 
 本人の明示的な依頼により、相談だけでなく[クリーン10発話の単語IG](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/clean-word-ig.html)と[別ASRの1000発話評価](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/cross-asr.html)を新規runで計算・評価しました。手動区間と本人の聴取判定は未完了です。以下の2026-10-17／11-09の計画・未実施表記は当時の範囲で保持し、今回の処理状態・数値品質・限界は上の2結果ページを正本とします。研究提案資料 `research_proposition_1117.md` のdeletion・複数SNRなどは今回の追加実験に含めません。

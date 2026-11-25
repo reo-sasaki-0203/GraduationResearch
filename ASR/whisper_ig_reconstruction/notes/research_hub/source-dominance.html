@@ -1,0 +1,149 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>声の優勢度とIG・再構成音の関係　1000発話 | 研究資料</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'none'; media-src 'none'; connect-src 'none'; object-src 'none'; frame-src 'none'"><link rel="stylesheet" href="../../../../assets/guide.css"><link rel="stylesheet" href="../../../../assets/vendor/katex/katex.min.css"><link rel="stylesheet" href="../../../../assets/public.css"><script defer src="../../../../assets/vendor/katex/katex.min.js"></script><script defer src="../../../../assets/math.js"></script><script defer src="../../../../assets/navigation.js"></script></head><body><header class="public-header"><a href="../../../../index.html">研究資料</a><small>テキスト版</small></header><div class="public-layout"><aside class="public-side"><details class="mobile-nav" open><summary>目次・ページを選ぶ</summary><nav><details open><summary>結果を見る</summary><a href="results.html">実験結果一覧</a><a href="clean-word-ig.html">クリーン単語IG：10発話</a><a href="cross-asr.html">別ASR：1000発話・5条件</a><a href="token-word-ig.html">トークン毎のIG計算の結果：10音声</a><a href="utterances.html">音声・メル比較（サーバ版）</a><a href="positive-fractions-pilot.html">正IG90・85・80：10音声</a><a href="positive-ig95.html">正のIG95・1000件比較</a><a href="main1000-results.html">1000件・IG＋DeepFilterNet3</a></details><details open><summary>研究を進める</summary><a href="token-extraction-hypothesis.html">トークンIG抽出の仮説と先行研究</a><a href="plan.html">研究計画</a><a href="advice.html">助言集</a><a href="advice-response.html">助言への対応</a></details><details open><summary>学ぶ</summary><a href="../../guide/index.html">手引き・全18章</a><a href="denoising-history.html">ノイズ除去の歴史</a><a href="score.html">Fとセル寄与</a></details><details open><summary>過去の研究</summary><a href="../../../asr_prosody_probe/index.html">初期の解析基盤</a><a href="../../../whisper_pause_attention/index.html">pause・attention</a><a href="../../../whisper_pause_attention/reports/internal_pause_experiment_report.html">pause実験レポート</a><a href="../../../../SR/index.html">旧音声認識実験</a></details><details><summary>手引きの章一覧</summary><a href="../../guide/index.html">音から、モデルの判断と研究結果まで</a><a href="../../guide/audio.html">波形からメル特徴へ：音声の基礎</a><a href="../../guide/transformer.html">Transformer：Q・K・Vから内部計算を読む</a><a href="../../guide/whisper.html">Whisper：音から文字までの道筋</a><a href="../../guide/pipeline.html">今回の処理：SNRからIG95マスクまで</a><a href="../../guide/xai/index.html">XAI：問いから手法を選ぶ</a><a href="../../guide/xai/ig.html">Integrated Gradients（IG）を理解する</a><a href="../../guide/reconstruction.html">メルの表から音声へ：近似逆変換と位相</a><a href="../../guide/evaluation.html">3つの評価：音の近さ、文字の誤り、固定文のスコア</a><a href="../../guide/xai/shap.html">SHAP：特徴の組合せを公平に比較する</a><a href="../../guide/xai/lime.html">LIME：入力の近くで簡単な説明モデルを作る</a><a href="../../guide/xai/grad-cam.html">Grad-CAM：内部の特徴から粗い場所の地図を作る</a><a href="../../guide/xai/occlusion.html">Occlusion：領域を置き換えて差を見る</a><a href="../../guide/xai/saliency.html">Saliency：入力への小さな変化に対する感度</a><a href="../../guide/xai/other.html">その他のXAIとattentionの読み方</a><a href="../../guide/analysis.html">XAI以外から研究を確かめる</a><a href="../../guide/glossary.html">用語集：式を読むための基礎</a><a href="../../guide/sources.html">出典・実装との対応</a></details></nav></details></aside><main class="public-main" id="main"><h1 id="ig-1000">声の優勢度とIG・再構成音の関係　1000発話</h1>
+<p>2026-11-25、保存済みの混合成分、Whisperの絶対IG95マスク、実際の再構成WAVを使った対応解析。<strong>声が雑音より強い時間・周波数領域ほど、絶対IGは大きくなる傾向があった。IGマスクは同面積の混合エネルギー上位・ランダムの両方より、声を優先して保持した。一方、声を優先して保持した発話ほどCERが改善するという予測は支持されなかった。</strong></p>
+<h2 id="_1">何を固定して調べたか</h2>
+<p>仮説、閾値、対照、解析単位、判定規則を計算前にファイルへ保存した。対象はJSUT単一話者の既存1000発話で、過去の認識成績は既知。新しいIGの計算・自由復号は0件。clean、混合時のゲインでスケールしたnoise_component、mixture、絶対IG95出力と全保持復元を対応づけて解析した。</p>
+<p>16 kHz、25 ms周期Hann窓、10 ms刻みで各波形を短時間フーリエ変換し、線形パワーを同じ128メル帯域に集約した。声のパワーをS、雑音をNとし、局所的な声の優勢度を q=S/(S+N) とした。0.5より大きければそのセルで声が強い。フレーム中心が発話内かつS+Nが発話ピークの100万分の1以上のセルで、qと絶対IGのSpearman順位相関を発話ごとに求めた。出力音との関係は、実際のWAVを再分析した「再構成パワー／混合パワー」のdB値で測った。混合パワーをS+Nで代用すると位相の効果を落とすため、混合波形から独立に計算した。</p>
+<p>主判定は発話内順位相関の平均に対する区間下限が0より大きいこと。対照の判定は、マスクの声保持率から雑音保持率を引いた値JについてIGが両対照を上回ること。全1000発話を等重みにし、雑音群内で発話を対応付き復元抽出した（2000回、seed 42、両側95%百分位区間）。セル数を標本数とする検定はしていない。</p>
+<h2 id="_2">どのセルが選ばれたか</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>発話内の指標を1000発話で平均</th>
+<th style="text-align: right;">推定値</th>
+<th style="text-align: right;">95%区間</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>声の優勢度と絶対IGの順位相関（主指標）</td>
+<td style="text-align: right;">0.308</td>
+<td style="text-align: right;">0.305〜0.311</td>
+</tr>
+<tr>
+<td>低パワー除外を強めた場合（ピークの1万分の1）</td>
+<td style="text-align: right;">0.311</td>
+<td style="text-align: right;">0.307〜0.316</td>
+</tr>
+<tr>
+<td>時間方向の相関（各フレームで帯域を合算）</td>
+<td style="text-align: right;">0.383</td>
+<td style="text-align: right;">0.375〜0.390</td>
+</tr>
+<tr>
+<td>周波数方向の相関（各メル帯域で時間を合算）</td>
+<td style="text-align: right;">0.478</td>
+<td style="text-align: right;">0.469〜0.486</td>
+</tr>
+<tr>
+<td>声の優勢度と実際の再構成パワーゲインの順位相関</td>
+<td style="text-align: right;">0.318</td>
+<td style="text-align: right;">0.315〜0.321</td>
+</tr>
+<tr>
+<td>同じ相関を全保持復元で測った場合</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">0.055〜0.058</td>
+</tr>
+</tbody>
+</table></div>
+<p>発話内の有効セルの平均62.52%を選んだIGマスクは、声のパワーの93.51%、雑音のパワーの79.22%を保持した。差の14.29ポイントは、計算上マスクが声をどれだけ優先したかを表す。実際の再構成WAVでも、パワーゲインの発話内中央値を平均すると、声優勢領域は−0.51 dB、雑音優勢領域は−2.85 dBだった。全保持復元ではそれぞれ約0.00 dB、−0.01 dBだった。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>同面積での比較</th>
+<th style="text-align: right;">成分保持差Jまたはその対応差（ポイント）</th>
+<th style="text-align: right;">95%区間</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>絶対IG95</td>
+<td style="text-align: right;">14.29</td>
+<td style="text-align: right;">14.08〜14.49</td>
+</tr>
+<tr>
+<td>混合エネルギー上位</td>
+<td style="text-align: right;">4.49</td>
+<td style="text-align: right;">4.45〜4.54</td>
+</tr>
+<tr>
+<td>ランダム</td>
+<td style="text-align: right;">−0.04</td>
+<td style="text-align: right;">−0.19〜0.11</td>
+</tr>
+<tr>
+<td>IG − エネルギー上位</td>
+<td style="text-align: right;">9.79</td>
+<td style="text-align: right;">9.59〜9.98</td>
+</tr>
+<tr>
+<td>IG − ランダム</td>
+<td style="text-align: right;">14.32</td>
+<td style="text-align: right;">14.07〜14.57</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="_3">再構成した音がよくなる条件か</h2>
+<p>平均のSI-SDRは混合音より1.63 dB改善した（95%区間1.60〜1.66）。一方、既存のWhisperでは再構成後の平均CERが1.039ポイント悪化（改善68・同値742・悪化190発話）、Reazonでは2.398ポイント悪化した（183・355・462）。認識値は同じ1000発話の保存値を結合した。<a href="cross-asr.html">元の別ASR比較とCERの定義</a></p>
+<p>発話間でJとΔCER（再構成−混合）の順位相関を取ると、Whisperは+0.074（95%区間+0.013〜+0.134）、Reazonは+0.133（+0.070〜+0.192）。予測した「Jが高いほどCERの変化が負になる」関係は観測されなかった。発話内でどこを選ぶかと、発話間で文字誤りがどれだけ変わるかは異なる問いである。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>雑音（各200発話）</th>
+<th style="text-align: right;">SNR（dB）</th>
+<th style="text-align: right;">声優勢度と絶対IGの発話内相関の平均</th>
+<th style="text-align: right;">J（ポイント）</th>
+<th style="text-align: right;">ΔSI-SDR（dB）</th>
+<th style="text-align: right;">JとΔSI-SDRの発話間相関</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>white</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.321</td>
+<td style="text-align: right;">28.7</td>
+<td style="text-align: right;">+0.43</td>
+<td style="text-align: right;">+0.547</td>
+</tr>
+<tr>
+<td>pink</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.314</td>
+<td style="text-align: right;">16.1</td>
+<td style="text-align: right;">−0.12</td>
+<td style="text-align: right;">+0.368</td>
+</tr>
+<tr>
+<td>river</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.313</td>
+<td style="text-align: right;">12.9</td>
+<td style="text-align: right;">+1.00</td>
+<td style="text-align: right;">−0.325</td>
+</tr>
+<tr>
+<td>traffic</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.273</td>
+<td style="text-align: right;">10.7</td>
+<td style="text-align: right;">+1.28</td>
+<td style="text-align: right;">+0.219</td>
+</tr>
+<tr>
+<td>kitchen</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.319</td>
+<td style="text-align: right;">3.1</td>
+<td style="text-align: right;">+5.55</td>
+<td style="text-align: right;">−0.213</td>
+</tr>
+</tbody>
+</table></div>
+<p>全体をまとめたJとΔSI-SDRの相関は−0.677（95%区間−0.700〜−0.653）。群内ではwhite・pink・trafficの3群で正に変わる。たとえばwhiteでは成分保持差が大きく、kitchenではSI-SDRの改善量が大きい。既存データは雑音群ごとに発話とSNRが異なるため、全体の相関から「声を残すと音が悪くなる」とは結論できない。実験②で同じ発話・同じ雑音区間のSNRを振る理由がここにある。</p>
+<h2 id="_4">確認範囲と残る制約</h2>
+<p>1000/1000発話、5群各200、処理失敗0、集計指標の対象欠測0。旧IGのcompleteness合格は287、未達は713で、その両群における主相関の平均は0.310／0.307だった。全体の符号は品質で群分けしても一致するが、個々のIGが数値的に正しかったとまでは言えない。Whisperは混合音の自己認識文に条件づけられ、誤った文も含みうる。結果の適用範囲はこの話者・この混合条件・この旧マスク。別手法に対するIGの優位と、未使用発話での再現は引き続き検証対象である。<a href="plan.html">3案の研究計画</a></p>
+<p>全件について元の品質ラベル、マスク面積、元SI-SDRとの差を検算した。各雑音の先頭1件で元のfrontendパワー配列と照合して最大相対ピーク誤差は4.34×10⁻⁷未満、別の各群末尾1件で保存配列から順位相関と成分保持差を独立に検算して最大差は9.1×10⁻⁸未満だった。全件の波形加算誤差は最大5.59×10⁻⁸未満。</p>
+<!-- private-token-results:start -->
+
+<!-- private-token-results:end --><footer class="public-footer"><a href="../../../../index.html">研究資料の入口</a> · 画像・音声を省いた公開用テキスト版</footer></main></div></body></html>
