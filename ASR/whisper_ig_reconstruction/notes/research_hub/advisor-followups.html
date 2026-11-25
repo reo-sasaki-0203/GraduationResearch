@@ -59,17 +59,18 @@ GPU計算の入力と重みはfloat32で、CUDA行列積でTF32を許可した�
 <td style="text-align: right;">+3.43</td>
 </tr>
 <tr>
-<td>1発話の計算時間の中央値は153秒。</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
+<td>全保持</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">-1.56 / -4.86</td>
+<td style="text-align: right;">+0.44</td>
+<td style="text-align: right;">0.00</td>
 </tr>
 </tbody>
 </table></div>
+<p>1発話の計算時間の中央値は153秒。</p>
 <p>基準を無音から帯域中央値へ変えたときの順位相関は平均0.605、上位30%のJaccardは0.482。</p>
 <h3 id="_2">確認の処理状況</h3>
-<p>14/60発話の結果を集計。処理失敗は0件。</p>
+<p>22/60発話の結果を集計。処理失敗は1件。</p>
 <div class="table-scroll"><table>
 <thead>
 <tr>
@@ -83,56 +84,57 @@ GPU計算の入力と重みはfloat32で、CUDA行列積でTF32を許可した�
 <tbody>
 <tr>
 <td>ig_silence</td>
-<td style="text-align: right;">0.749</td>
-<td style="text-align: right;">+20.41 / +23.83</td>
-<td style="text-align: right;">+1.51</td>
-<td style="text-align: right;">+23.54</td>
+<td style="text-align: right;">0.587</td>
+<td style="text-align: right;">+19.16 / +22.19</td>
+<td style="text-align: right;">+1.42</td>
+<td style="text-align: right;">+23.37</td>
 </tr>
 <tr>
 <td>ig_median</td>
-<td style="text-align: right;">0.830</td>
-<td style="text-align: right;">+23.17 / +20.70</td>
-<td style="text-align: right;">+0.87</td>
-<td style="text-align: right;">+33.84</td>
+<td style="text-align: right;">0.695</td>
+<td style="text-align: right;">+22.43 / +21.78</td>
+<td style="text-align: right;">+0.75</td>
+<td style="text-align: right;">+33.15</td>
 </tr>
 <tr>
 <td>gradient</td>
-<td style="text-align: right;">0.533</td>
-<td style="text-align: right;">+28.88 / +26.57</td>
-<td style="text-align: right;">+0.52</td>
-<td style="text-align: right;">+29.39</td>
+<td style="text-align: right;">0.414</td>
+<td style="text-align: right;">+28.14 / +24.38</td>
+<td style="text-align: right;">+0.43</td>
+<td style="text-align: right;">+29.76</td>
 </tr>
 <tr>
 <td>occlusion</td>
-<td style="text-align: right;">0.920</td>
-<td style="text-align: right;">+37.00 / +27.95</td>
-<td style="text-align: right;">-1.01</td>
-<td style="text-align: right;">+22.88</td>
+<td style="text-align: right;">0.722</td>
+<td style="text-align: right;">+36.43 / +28.17</td>
+<td style="text-align: right;">-0.97</td>
+<td style="text-align: right;">+23.59</td>
 </tr>
 <tr>
 <td>energy</td>
-<td style="text-align: right;">0.442</td>
-<td style="text-align: right;">+21.04 / +16.59</td>
-<td style="text-align: right;">+1.72</td>
-<td style="text-align: right;">+20.38</td>
+<td style="text-align: right;">0.355</td>
+<td style="text-align: right;">+17.14 / +17.82</td>
+<td style="text-align: right;">+1.60</td>
+<td style="text-align: right;">+19.58</td>
 </tr>
 <tr>
 <td>random</td>
-<td style="text-align: right;">0.394</td>
-<td style="text-align: right;">+50.51 / +43.35</td>
-<td style="text-align: right;">-4.50</td>
-<td style="text-align: right;">-1.96</td>
+<td style="text-align: right;">0.315</td>
+<td style="text-align: right;">+52.02 / +44.83</td>
+<td style="text-align: right;">-4.54</td>
+<td style="text-align: right;">+0.39</td>
 </tr>
 <tr>
-<td>1発話の計算時間の中央値は125秒。</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
+<td>全保持</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">-0.28 / -2.06</td>
+<td style="text-align: right;">+0.22</td>
+<td style="text-align: right;">0.00</td>
 </tr>
 </tbody>
 </table></div>
-<p>基準を無音から帯域中央値へ変えたときの順位相関は平均0.683、上位30%のJaccardは0.527。</p>
+<p>1発話の計算時間の中央値は128秒。</p>
+<p>基準を無音から帯域中央値へ変えたときの順位相関は平均0.671、上位30%のJaccardは0.515。</p>
 <p>開発で両基準の64/128点が揃って数値品質・安定性基準を満たしたのは9/12発話。確認では128点に固定した。</p>
 <h2 id="2">案②　モデルごとの雑音感受性と再構成</h2>
 <p>生成器はCSJ Transformer、CSJ Conformer、LaboroTV ConformerとWhisper。評価にはこの4種と、マスク生成に使わないReazonを使用。混合はwhite・trafficをそれぞれ−5・0・+10 dBにした。各モデルの混合音認識文を固定し、同じSTFT振幅座標にIGを計算して同面積のマスクを作った。
@@ -178,7 +180,149 @@ GPU計算の入力と重みはfloat32で、CUDA行列積でTF32を許可した�
 </tbody>
 </table></div>
 <h3 id="_3">開発の処理状況</h3>
-<p>集計済み混合条件 0/72。条件全体の処理失敗は0件。</p>
+<p>集計済み混合条件 1/72。条件全体の処理失敗は0件。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>評価ASR</th>
+<th style="text-align: right;">clean→mixture CER差 −5 / 0 / +10 dB（pp）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>csj_transformer</td>
+<td style="text-align: right;">+69.57 / 欠測 / 欠測</td>
+</tr>
+<tr>
+<td>csj_conformer</td>
+<td style="text-align: right;">+69.57 / 欠測 / 欠測</td>
+</tr>
+<tr>
+<td>laborotv</td>
+<td style="text-align: right;">+82.61 / 欠測 / 欠測</td>
+</tr>
+<tr>
+<td>whisper</td>
+<td style="text-align: right;">-17.39 / 欠測 / 欠測</td>
+</tr>
+<tr>
+<td>reazon</td>
+<td style="text-align: right;">+56.52 / 欠測 / 欠測</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>生成ASR</th>
+<th style="text-align: right;">再構成完了数</th>
+<th style="text-align: right;">Reazonの再構成−mixture CER差 −5 / 0 / +10 dB（pp）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>csj_transformer</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-17.39 / 欠測 / 欠測</td>
+</tr>
+<tr>
+<td>csj_conformer</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-26.09 / 欠測 / 欠測</td>
+</tr>
+<tr>
+<td>laborotv</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-21.74 / 欠測 / 欠測</td>
+</tr>
+<tr>
+<td>whisper</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">+13.04 / 欠測 / 欠測</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>生成器</th>
+<th style="text-align: right;">主計算のIG品質合格</th>
+<th style="text-align: right;">平均J（pp）</th>
+<th style="text-align: right;">平均ΔSI-SDR（dB）</th>
+<th style="text-align: right;">JとReazon CER差の順位相関</th>
+<th style="text-align: right;">Reazonの平均文字誤り数差 S / D / I</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>csj_transformer</td>
+<td style="text-align: right;">1/1</td>
+<td style="text-align: right;">+23.59</td>
+<td style="text-align: right;">+1.44</td>
+<td style="text-align: right;">欠測</td>
+<td style="text-align: right;">-2.00 / -1.00 / -1.00</td>
+</tr>
+<tr>
+<td>csj_conformer</td>
+<td style="text-align: right;">0/1</td>
+<td style="text-align: right;">+21.94</td>
+<td style="text-align: right;">+1.30</td>
+<td style="text-align: right;">欠測</td>
+<td style="text-align: right;">-4.00 / -1.00 / -1.00</td>
+</tr>
+<tr>
+<td>laborotv</td>
+<td style="text-align: right;">1/1</td>
+<td style="text-align: right;">+23.15</td>
+<td style="text-align: right;">+1.42</td>
+<td style="text-align: right;">欠測</td>
+<td style="text-align: right;">-5.00 / +1.00 / -1.00</td>
+</tr>
+<tr>
+<td>whisper</td>
+<td style="text-align: right;">0/1</td>
+<td style="text-align: right;">+19.27</td>
+<td style="text-align: right;">+1.21</td>
+<td style="text-align: right;">欠測</td>
+<td style="text-align: right;">+0.00 / +3.00 / +0.00</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>生成ASRの組</th>
+<th style="text-align: right;">同一混合でのマスクJaccard中央値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>csj_conformer/laborotv</td>
+<td style="text-align: right;">0.647</td>
+</tr>
+<tr>
+<td>csj_conformer/whisper</td>
+<td style="text-align: right;">0.549</td>
+</tr>
+<tr>
+<td>csj_transformer/csj_conformer</td>
+<td style="text-align: right;">0.660</td>
+</tr>
+<tr>
+<td>csj_transformer/laborotv</td>
+<td style="text-align: right;">0.650</td>
+</tr>
+<tr>
+<td>csj_transformer/whisper</td>
+<td style="text-align: right;">0.539</td>
+</tr>
+<tr>
+<td>laborotv/whisper</td>
+<td style="text-align: right;">0.541</td>
+</tr>
+</tbody>
+</table></div>
+<p>JとΔCERの相関は雑音強度や対象文も含む探索集計。再構成でCERが変わる原因は対応表や誤り種別から絞り込む。</p>
 <h3 id="_4">確認の処理状況</h3>
 <p>集計済み混合条件 0、予定数は開発結果で確定。条件全体の処理失敗は0件。</p>
 <!-- private-token-results:start -->
