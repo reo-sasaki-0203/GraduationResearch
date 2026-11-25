@@ -1,10 +1,24 @@
 # 研究計画の見直しと次のステップ
 
+## 2026-11-25　4モデルでIG以外の手法を試す追加計画
+
+Whisper large-v3、CSJ Transformer、CSJ Conformer、LaboroTV Conformerのすべてで、入力勾配（Saliency）、入力×勾配（Input × Gradient）、タイル遮蔽（Occlusion）を試す。比較基準は無音基準の絶対IGと正IG。以下は実行担当者向けに設計した追加実験である。
+
+|案|同じ条件で変えるもの|主に確かめること|
+|---|---|---|
+|① メルと再構成音|同じ混合・生成器・固定文で寄与度を変更。上位60%のタイルを残した線形メルから波形を再構成|どの帯域や音が変わり、独立したReazonによるCERがIGと何ポイント違うか。無音・帯域中央値の2基準でもIGを比較|
+|② 別モデルでの認識|同じ発話にwhiteとtrafficを各−5、0、+10 dBで混合。①と同じ3手法と両IGの出力を5評価器で自由認識|同じ混合音に勝る生成器・手法・SNRの組があるか。その利得は別の認識器にも移るか|
+|③ 声と雑音の優勢度|既存1000件の観察に加え、同じ声と雑音で混合比を−10、0、+10、+20 dBに操作。従来の5組と新規30組で各4段階|声優勢な場所に寄与が集まるか。同じ場所の声対雑音比を上げたとき、寄与の割合と実波形の利得も追従するか|
+
+①②は開発12発話で条件を固定し、新規60発話で確認する。①で作った波形と採点は②でも共用する。③の操作群では、各モデルのクリーン音の認識文を全4段階で固定する。全案ともIG品質未達率が4割以上なら、その対象群を64点から128点、必要に応じて256点へ進める。追加計画に先立つ実測は[寄与度・複数ASRの追試記録](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/advisor-followups.html)と[混合比操作の結果](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/controlled-snr.html)に掲載している。
+
+
+
 ## 2026-11-25　寄与の測り方・ASRごとの認識・声と雑音の対応を検証する3案
 
-**第1案はモデルの説明としてのIGを試す。** 同じWhisper、同じ混合音、同じ固定認識文で、無音基準IG、開発データの帯域中央値を基準にしたIG、入力勾配、ブロック遮蔽を比較する。手法ごとに高順位タイルから同じ面積を減衰させ、認識文の平均対数確率がどれほど動くかを測る。混合エネルギー・ランダム・全保持を対照にし、マスクを波形に戻したときのCERは別に評価する。開発12発話・確認60発話。設計済み、未実行。[IG原著](https://proceedings.mlr.press/v70/sundararajan17a.html)
+**第1案はモデルの説明としてのIGを試す。** 同じWhisper、同じ混合音、同じ固定認識文で、無音基準IG、開発データの帯域中央値を基準にしたIG、入力勾配、ブロック遮蔽を比較する。手法ごとに高順位タイルから同じ面積を減衰させ、認識文の平均対数確率がどれほど動くかを測る。混合エネルギー・ランダム・全保持を対照にし、マスクを波形に戻したときのCERは別に評価する。開発12発話・確認60発話の旧計画。[追試の実行記録](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/advisor-followups.html)・[IG原著](https://proceedings.mlr.press/v70/sundararajan17a.html)
 
-**第2案は、あるASRが作った音が別のASRにも通じるかを試す。** 2020年公開のCSJ Transformer、CSJ Conformer、LaboroTV Conformer、比較用Whisperを生成器とする。同一発話・同一雑音区間でwhite／trafficをそれぞれ−5、0、+10 dBにし、各生成器でIGを作る。生成4モデルと、生成に参加しないReazonの計5評価器で、再構成音−混合音のCER差を測る。開発12発話で候補を1つ選び、別の60〜240発話で確かめる。旧世代モデルの雑音感受性、同面積energy/randomとの差、自己評価と他モデルでの評価、挿入・脱落・置換を記録する。設計済み、未実行。[CSJ Transformer](https://zenodo.org/records/4037458)・[CSJ Conformer](https://zenodo.org/records/4065140)・[LaboroTV Conformer](https://zenodo.org/records/4304245)
+**第2案は、あるASRが作った音が別のASRにも通じるかを試す。** 2020年公開のCSJ Transformer、CSJ Conformer、LaboroTV Conformer、比較用Whisperを生成器とする。同一発話・同一雑音区間でwhite／trafficをそれぞれ−5、0、+10 dBにし、各生成器でIGを作る。生成4モデルと、生成に参加しないReazonの計5評価器で、再構成音−混合音のCER差を測る。開発12発話で候補を1つ選び、別の60〜240発話で確かめる。旧世代モデルの雑音感受性、同面積energy/randomとの差、自己評価と他モデルでの評価、挿入・脱落・置換を記録する。[追試の実行記録](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/advisor-followups.html)・[CSJ Transformer](https://zenodo.org/records/4037458)・[CSJ Conformer](https://zenodo.org/records/4065140)・[LaboroTV Conformer](https://zenodo.org/records/4304245)
 
 **第3案は、音源から直接検証できる仮説を扱う。** 保存済みの声と雑音の短時間フーリエ変換から時間・帯域別の声の優勢度を算出し、IG、マスクの成分保持、実際の再構成音を照合した。1000発話の実測と、解釈が変わる雑音群別の比較を掲載した。[成分優勢度とIGの結果](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/source-dominance.html)
 

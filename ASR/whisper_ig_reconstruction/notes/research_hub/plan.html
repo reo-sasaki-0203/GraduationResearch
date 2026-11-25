@@ -1,7 +1,39 @@
 <!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>研究計画の見直しと次のステップ | 研究資料</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'none'; media-src 'none'; connect-src 'none'; object-src 'none'; frame-src 'none'"><link rel="stylesheet" href="../../../../assets/guide.css"><link rel="stylesheet" href="../../../../assets/vendor/katex/katex.min.css"><link rel="stylesheet" href="../../../../assets/public.css"><script defer src="../../../../assets/vendor/katex/katex.min.js"></script><script defer src="../../../../assets/math.js"></script><script defer src="../../../../assets/navigation.js"></script></head><body><header class="public-header"><a href="../../../../index.html">研究資料</a><small>テキスト版</small></header><div class="public-layout"><aside class="public-side"><details class="mobile-nav" open><summary>目次・ページを選ぶ</summary><nav><details open><summary>結果を見る</summary><a href="results.html">実験結果一覧</a><a href="clean-word-ig.html">クリーン単語IG：10発話</a><a href="cross-asr.html">別ASR：1000発話・5条件</a><a href="token-word-ig.html">トークン毎のIG計算の結果：10音声</a><a href="utterances.html">音声・メル比較（サーバ版）</a><a href="positive-fractions-pilot.html">正IG90・85・80：10音声</a><a href="positive-ig95.html">正のIG95・1000件比較</a><a href="main1000-results.html">1000件・IG＋DeepFilterNet3</a></details><details open><summary>研究を進める</summary><a href="token-extraction-hypothesis.html">トークンIG抽出の仮説と先行研究</a><a href="plan.html" aria-current="page">研究計画</a><a href="advice.html">助言集</a><a href="advice-response.html">助言への対応</a></details><details open><summary>学ぶ</summary><a href="../../guide/index.html">手引き・全18章</a><a href="denoising-history.html">ノイズ除去の歴史</a><a href="score.html">Fとセル寄与</a></details><details open><summary>過去の研究</summary><a href="../../../asr_prosody_probe/index.html">初期の解析基盤</a><a href="../../../whisper_pause_attention/index.html">pause・attention</a><a href="../../../whisper_pause_attention/reports/internal_pause_experiment_report.html">pause実験レポート</a><a href="../../../../SR/index.html">旧音声認識実験</a></details><details><summary>手引きの章一覧</summary><a href="../../guide/index.html">音から、モデルの判断と研究結果まで</a><a href="../../guide/audio.html">波形からメル特徴へ：音声の基礎</a><a href="../../guide/transformer.html">Transformer：Q・K・Vから内部計算を読む</a><a href="../../guide/whisper.html">Whisper：音から文字までの道筋</a><a href="../../guide/pipeline.html">今回の処理：SNRからIG95マスクまで</a><a href="../../guide/xai/index.html">XAI：問いから手法を選ぶ</a><a href="../../guide/xai/ig.html">Integrated Gradients（IG）を理解する</a><a href="../../guide/reconstruction.html">メルの表から音声へ：近似逆変換と位相</a><a href="../../guide/evaluation.html">3つの評価：音の近さ、文字の誤り、固定文のスコア</a><a href="../../guide/xai/shap.html">SHAP：特徴の組合せを公平に比較する</a><a href="../../guide/xai/lime.html">LIME：入力の近くで簡単な説明モデルを作る</a><a href="../../guide/xai/grad-cam.html">Grad-CAM：内部の特徴から粗い場所の地図を作る</a><a href="../../guide/xai/occlusion.html">Occlusion：領域を置き換えて差を見る</a><a href="../../guide/xai/saliency.html">Saliency：入力への小さな変化に対する感度</a><a href="../../guide/xai/other.html">その他のXAIとattentionの読み方</a><a href="../../guide/analysis.html">XAI以外から研究を確かめる</a><a href="../../guide/glossary.html">用語集：式を読むための基礎</a><a href="../../guide/sources.html">出典・実装との対応</a></details></nav></details></aside><main class="public-main" id="main"><h1 id="_1">研究計画の見直しと次のステップ</h1>
+<h2 id="2026-11-25-4ig">2026-11-25　4モデルでIG以外の手法を試す追加計画</h2>
+<p>Whisper large-v3、CSJ Transformer、CSJ Conformer、LaboroTV Conformerのすべてで、入力勾配（Saliency）、入力×勾配（Input × Gradient）、タイル遮蔽（Occlusion）を試す。比較基準は無音基準の絶対IGと正IG。以下は実行担当者向けに設計した追加実験である。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>案</th>
+<th>同じ条件で変えるもの</th>
+<th>主に確かめること</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① メルと再構成音</td>
+<td>同じ混合・生成器・固定文で寄与度を変更。上位60%のタイルを残した線形メルから波形を再構成</td>
+<td>どの帯域や音が変わり、独立したReazonによるCERがIGと何ポイント違うか。無音・帯域中央値の2基準でもIGを比較</td>
+</tr>
+<tr>
+<td>② 別モデルでの認識</td>
+<td>同じ発話にwhiteとtrafficを各−5、0、+10 dBで混合。①と同じ3手法と両IGの出力を5評価器で自由認識</td>
+<td>同じ混合音に勝る生成器・手法・SNRの組があるか。その利得は別の認識器にも移るか</td>
+</tr>
+<tr>
+<td>③ 声と雑音の優勢度</td>
+<td>既存1000件の観察に加え、同じ声と雑音で混合比を−10、0、+10、+20 dBに操作。従来の5組と新規30組で各4段階</td>
+<td>声優勢な場所に寄与が集まるか。同じ場所の声対雑音比を上げたとき、寄与の割合と実波形の利得も追従するか</td>
+</tr>
+</tbody>
+</table></div>
+<p>①②は開発12発話で条件を固定し、新規60発話で確認する。①で作った波形と採点は②でも共用する。③の操作群では、各モデルのクリーン音の認識文を全4段階で固定する。全案ともIG品質未達率が4割以上なら、その対象群を64点から128点、必要に応じて256点へ進める。追加計画に先立つ実測は<a href="advisor-followups.html">寄与度・複数ASRの追試記録</a>と<a href="controlled-snr.html">混合比操作の結果</a>に掲載している。</p>
+<!-- private-token-results:start -->
+
+<!-- private-token-results:end -->
 <h2 id="2026-11-25-asr3">2026-11-25　寄与の測り方・ASRごとの認識・声と雑音の対応を検証する3案</h2>
-<p><strong>第1案はモデルの説明としてのIGを試す。</strong> 同じWhisper、同じ混合音、同じ固定認識文で、無音基準IG、開発データの帯域中央値を基準にしたIG、入力勾配、ブロック遮蔽を比較する。手法ごとに高順位タイルから同じ面積を減衰させ、認識文の平均対数確率がどれほど動くかを測る。混合エネルギー・ランダム・全保持を対照にし、マスクを波形に戻したときのCERは別に評価する。開発12発話・確認60発話。設計済み、未実行。<a href="https://proceedings.mlr.press/v70/sundararajan17a.html">IG原著</a></p>
-<p><strong>第2案は、あるASRが作った音が別のASRにも通じるかを試す。</strong> 2020年公開のCSJ Transformer、CSJ Conformer、LaboroTV Conformer、比較用Whisperを生成器とする。同一発話・同一雑音区間でwhite／trafficをそれぞれ−5、0、+10 dBにし、各生成器でIGを作る。生成4モデルと、生成に参加しないReazonの計5評価器で、再構成音−混合音のCER差を測る。開発12発話で候補を1つ選び、別の60〜240発話で確かめる。旧世代モデルの雑音感受性、同面積energy/randomとの差、自己評価と他モデルでの評価、挿入・脱落・置換を記録する。設計済み、未実行。<a href="https://zenodo.org/records/4037458">CSJ Transformer</a>・<a href="https://zenodo.org/records/4065140">CSJ Conformer</a>・<a href="https://zenodo.org/records/4304245">LaboroTV Conformer</a></p>
+<p><strong>第1案はモデルの説明としてのIGを試す。</strong> 同じWhisper、同じ混合音、同じ固定認識文で、無音基準IG、開発データの帯域中央値を基準にしたIG、入力勾配、ブロック遮蔽を比較する。手法ごとに高順位タイルから同じ面積を減衰させ、認識文の平均対数確率がどれほど動くかを測る。混合エネルギー・ランダム・全保持を対照にし、マスクを波形に戻したときのCERは別に評価する。開発12発話・確認60発話の旧計画。<a href="advisor-followups.html">追試の実行記録</a>・<a href="https://proceedings.mlr.press/v70/sundararajan17a.html">IG原著</a></p>
+<p><strong>第2案は、あるASRが作った音が別のASRにも通じるかを試す。</strong> 2020年公開のCSJ Transformer、CSJ Conformer、LaboroTV Conformer、比較用Whisperを生成器とする。同一発話・同一雑音区間でwhite／trafficをそれぞれ−5、0、+10 dBにし、各生成器でIGを作る。生成4モデルと、生成に参加しないReazonの計5評価器で、再構成音−混合音のCER差を測る。開発12発話で候補を1つ選び、別の60〜240発話で確かめる。旧世代モデルの雑音感受性、同面積energy/randomとの差、自己評価と他モデルでの評価、挿入・脱落・置換を記録する。<a href="advisor-followups.html">追試の実行記録</a>・<a href="https://zenodo.org/records/4037458">CSJ Transformer</a>・<a href="https://zenodo.org/records/4065140">CSJ Conformer</a>・<a href="https://zenodo.org/records/4304245">LaboroTV Conformer</a></p>
 <p><strong>第3案は、音源から直接検証できる仮説を扱う。</strong> 保存済みの声と雑音の短時間フーリエ変換から時間・帯域別の声の優勢度を算出し、IG、マスクの成分保持、実際の再構成音を照合した。1000発話の実測と、解釈が変わる雑音群別の比較を掲載した。<a href="source-dominance.html">成分優勢度とIGの結果</a></p>
 <p>追加の操作実験では、同じ声と同じ雑音波形を固定し、声対雑音のパワー比を0.1、1、10、100倍に設定する。各組で認識対象文を固定し、5組×4段階で新しいIGと再構成音を得て、同じ時間・帯域の対応を調べる。計20条件を計算・検算した。<a href="controlled-snr.html">混合比を操作した追試の結果</a></p>
 <!-- private-token-results:start -->

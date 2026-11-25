@@ -2,9 +2,9 @@
   "format": "research-text-publication-v1",
   "html_pages": 49,
   "file_count": 111,
-  "bytes": 1736167,
+  "bytes": 1740723,
   "max_file_bytes": 276701,
-  "removed_media_and_controls": 132,
+  "removed_media_and_controls": 133,
   "inputs": {
     "ASR/whisper_ig_reconstruction/guide/index.html": "02aff10f7196a1a0683b64511f48b1de58ec48c2dab984d58feef3f4fa6a230f",
     "ASR/whisper_ig_reconstruction/guide/audio.html": "9287ee054e4c5b7ee27c3cb0004f2f23794b53e9d7f4d00227d4448b22fbcb7a",
@@ -38,7 +38,7 @@
     "ASR/whisper_ig_reconstruction/results/comparisons/positive_ig95/main1000_20261109_pos95_v1/index.html": "c5d10b3bb08ffe70ac784662e3c6763f999f6a35d300f4e68818e9985a246010",
     "ASR/whisper_ig_reconstruction/results/experiments/main1000_20261010/index.html": "209a0e5ef6937b8afd8a7993586d709eea82770aab7f87aee4ce32fa4a22cbbc",
     "ASR/whisper_ig_reconstruction/notes/research_hub/status.html": "7b601185f9a8542b9a86207baf41864586ddbd3bef0104b6ad0474b149dbc365",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/plan.html": "0c1fadd8240711c2c1705d92a618c23bfe5c938252032635d2e1a5e32a501025",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/plan.html": "ee8533fea6e26655223e468ca4cc5961ebcd7e8fdbbc71dbb26d4de524a4c03e",
     "ASR/whisper_ig_reconstruction/notes/research_hub/advice-response.html": "7c9a95206ac7a0838100a0ff00a4ae5688896aff268b01890660d9e606fdd590",
     "ASR/whisper_ig_reconstruction/notes/research_hub/score.html": "d596412f764ce6960b24f56d16dfe1b3e7e5d38106fb5cd599fa4c02a9753e7a",
     "ASR/whisper_ig_reconstruction/notes/research_hub/denoising-history.html": "3ea12d0622839b024da096d0a91e92c9289319ed944c036df347676832bb03f5",
@@ -216,8 +216,8 @@
       "sha256": "5081e9a1e881e8f3aaba2012c88066a4b23d7fa6fe53c4325bd530f83a46e24a"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/plan.html": {
-      "bytes": 19771,
-      "sha256": "d53364e9b95574ff7efc92ff1473d1d331eadf77fd8949f3705767f845df1b34"
+      "bytes": 22103,
+      "sha256": "b3a6b3057b4e0bc0b0ba8c1b9f9b41415906adc7a860d90dab30fbabf364ffa8"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/positive-fractions-pilot.html": {
       "bytes": 25556,
@@ -444,8 +444,8 @@
       "sha256": "11d07b2d16f7fef40d1fb268933519200c7f36d93a8af173cf6c5f86e8c21d32"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/plan.md": {
-      "bytes": 14998,
-      "sha256": "b91387fdcb620433f35bf58ca78d8071fb979665658558a645a80f6fe6a4b211"
+      "bytes": 17222,
+      "sha256": "afd8a06e3ba726a61403d6b87e5f44e10bbeaefb418b99e944ce734e4ee37b80"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/positive-fractions-pilot.md": {
       "bytes": 7967,
