@@ -3,11 +3,13 @@
 [元音声ごとの音声・メル比較を開く](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/utterances.html)
 
 新しい結果から、実験・検証ごとに並べています。完了した比較、品質基準未達、事前確認、保管済み記録を、それぞれの状態を添えて掲載します。
-## 同一発話・同一雑音で混合比を操作する追試（2026-11-25、引き継ぎ中）
+## 同一発話・同一雑音で混合比を操作する追試（完了）
 
-5組×4段階の新規混合を使う設計。元サーバでのCPU予備試行は接続先切り替えのため停止。完了0/20条件、IG・再構成の新しい測定結果は未取得。下の既存1000件の結果とは別集計。[目的と条件](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/plan.html)
+[5組×4段階の結果](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/controlled-snr.html)。Whisper large-v3で20/20条件を新規に計算・検算。絶対IG95と正IG95の両方で再構成した。混合比ごとの相関、同じ領域の優勢が入れ替わったときの追従、再構成音の指標と試聴例を掲載した。
 
 <!-- covers: results/analyses/source_dominance/controlled_20261125_v1 -->
+<!-- covers: results/analyses/source_dominance/controlled_largev3_20261125_v1 -->
+<!-- covers: results/analyses/source_dominance/controlled_largev3_20261125_v1_positive -->
 
 ## 声と雑音の局所的な優勢度とIG（2026-11-25）
 
