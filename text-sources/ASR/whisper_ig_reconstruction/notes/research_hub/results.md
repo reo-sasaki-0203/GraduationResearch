@@ -3,6 +3,17 @@
 [元音声ごとの音声・メル比較を開く](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/utterances.html)
 
 新しい結果から、実験・検証ごとに並べています。完了した比較、品質基準未達、事前確認、保管済み記録を、それぞれの状態を添えて掲載します。
+## XAIの再構成設定選定と追加①〜③
+
+[設定選定のための10発話比較と、採用設定での本実験](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/advisor-xai-tuned.html)。ReazonのCERとクリーン波形に対するMAEで設定を比較し、別の発話で追加①〜③を評価します。各段階の完了・欠測は詳細ページに記載しています。
+
+<!-- covers: results/analyses/advisor_xai/20261128_tuned_v2 -->
+
+旧XAI追試は設定変更前の開発出力を保管しています。初回検査出力にはLIME検証分離と公式認識スコア照合の修正前の結果が含まれます。
+
+<!-- covers: results/analyses/advisor_xai/20261128_v1 -->
+<!-- covers: results/analyses/advisor_xai/20261128_v1-preflight-before-quality-fix -->
+
 ## 先行3案・追加3案の結果と試聴（完了）
 
 [寄与度手法・認識器・混合比の実験結果](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/advisor-results.html)。CER・MAE、雑音の種類と強度、声の優勢度と寄与の関係を比較。研究サーバ版にグラフ・試聴音声・メルスペクトログラムを収録。
