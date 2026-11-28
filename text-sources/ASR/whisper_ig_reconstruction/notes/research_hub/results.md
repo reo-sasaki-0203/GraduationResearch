@@ -3,7 +3,13 @@
 [元音声ごとの音声・メル比較を開く](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/utterances.html)
 
 新しい結果から、実験・検証ごとに並べています。完了した比較、品質基準未達、事前確認、保管済み記録を、それぞれの状態を添えて掲載します。
-## 寄与度手法と複数ASRの追試（2026-11-25に実行開始）
+## 先行3案・追加3案の結果と試聴（完了）
+
+[寄与度手法・認識器・混合比の実験結果](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/advisor-results.html)。CER・MAE、雑音の種類と強度、声の優勢度と寄与の関係を比較。研究サーバ版にグラフ・試聴音声・メルスペクトログラムを収録。
+
+<!-- covers: results/analyses/advisor_extensions/20261125_v1 -->
+
+## 寄与度手法と複数ASRの追試（完了）
 
 [案①・案②の進捗と実測結果](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/advisor-followups.html)。開発と確認の処理件数、各手法の成績、品質未達・欠測を掲載。
 
