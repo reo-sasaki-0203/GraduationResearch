@@ -2,7 +2,7 @@
   "format": "research-text-publication-v1",
   "html_pages": 51,
   "file_count": 115,
-  "bytes": 1897625,
+  "bytes": 2249415,
   "max_file_bytes": 276701,
   "removed_media_and_controls": 164,
   "inputs": {
@@ -24,7 +24,7 @@
     "ASR/whisper_ig_reconstruction/guide/analysis.html": "82f4c7a2cee07170e079e370f5ffb9795ecf548b065f8d093f2f851319d813ac",
     "ASR/whisper_ig_reconstruction/guide/glossary.html": "98caad4ed1110f2d07550f217774bc95ff051620c36e80039919da6e0332bc5b",
     "ASR/whisper_ig_reconstruction/guide/sources.html": "5b7385849c2afe7a724fe95d40fed03f561009ae019338575c8d9995a9116a6f",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/advisor-xai-tuned.html": "13dcdf3c88fb940dbdfa628068a657a1a7709e9bcaf365e9c62c69f4d5661587",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advisor-xai-tuned.html": "ad32804df033fbca2b2b47896603c3bde8d7aa9498695271ce4288c045f01e53",
     "ASR/whisper_ig_reconstruction/notes/research_hub/advisor-results.html": "e8b9c68b88586d37453865cb84bb02df6083f9b1b0102a6394e0b508c92ead6a",
     "ASR/whisper_ig_reconstruction/notes/research_hub/advisor-followups.html": "c9d0baee878a85e59ae959e7cb7cb11178cbef7d793f2b15ed34514dccd58a25",
     "ASR/whisper_ig_reconstruction/notes/research_hub/controlled-snr.html": "c84146cc86e0efe6737f098988dccf98053f05a2aa967c693daa08332004db1e",
@@ -194,8 +194,8 @@
       "sha256": "624a96dc65a8298baf473e6098e1535e59f09b6bfe975a3de529b481b45434e6"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/advisor-xai-tuned.html": {
-      "bytes": 5065,
-      "sha256": "98ce673f87f01ea26119c4253b5a3881b69c7cc7588c06f2c02d11c97d4c8c07"
+      "bytes": 186026,
+      "sha256": "a30bbe7cf5bf611e3be4bd79c3cc6cc8de6b97111f1453eb49759cdff36b5792"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/clean-word-ig.html": {
       "bytes": 16580,
@@ -434,8 +434,8 @@
       "sha256": "82ce3fa7c9d83ddb704b761e29ff168e63b34eefe26b393ab2f9c98a4700bc13"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/advisor-xai-tuned.md": {
-      "bytes": 604,
-      "sha256": "9349df1019445c02f98c851c17513694933245bc5d035fba2d0cc57fcd411109"
+      "bytes": 171433,
+      "sha256": "b0f113c5c3007195d97556e690ff8bc0cd0c9ce95bf65c69b0b8eefc28c697ec"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/clean-word-ig.md": {
       "bytes": 9011,
