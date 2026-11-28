@@ -1,5 +1,5 @@
 <!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>単語全体を対象にしたIG・同じ10音声 | 研究資料</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'none'; media-src 'none'; connect-src 'none'; object-src 'none'; frame-src 'none'"><link rel="stylesheet" href="../../../../assets/guide.css"><link rel="stylesheet" href="../../../../assets/vendor/katex/katex.min.css"><link rel="stylesheet" href="../../../../assets/public.css"><script defer src="../../../../assets/vendor/katex/katex.min.js"></script><script defer src="../../../../assets/math.js"></script><script defer src="../../../../assets/navigation.js"></script></head><body><header class="public-header"><a href="../../../../index.html">研究資料</a><small>テキスト版</small></header><div class="public-layout"><aside class="public-side"><details class="mobile-nav" open><summary>目次・ページを選ぶ</summary><nav><details open><summary>結果を見る</summary><a href="results.html">実験結果一覧</a><a href="clean-word-ig.html">クリーン単語IG：10発話</a><a href="cross-asr.html">別ASR：1000発話・5条件</a><a href="token-word-ig.html">トークン毎のIG計算の結果：10音声</a><a href="utterances.html">音声・メル比較（サーバ版）</a><a href="positive-fractions-pilot.html">正IG90・85・80：10音声</a><a href="positive-ig95.html">正のIG95・1000件比較</a><a href="main1000-results.html">1000件・IG＋DeepFilterNet3</a></details><details open><summary>研究を進める</summary><a href="token-extraction-hypothesis.html">トークンIG抽出の仮説と先行研究</a><a href="plan.html">研究計画</a><a href="advice.html">助言集</a><a href="advice-response.html">助言への対応</a></details><details open><summary>学ぶ</summary><a href="../../guide/index.html">手引き・全18章</a><a href="denoising-history.html">ノイズ除去の歴史</a><a href="score.html">Fとセル寄与</a></details><details open><summary>過去の研究</summary><a href="../../../asr_prosody_probe/index.html">初期の解析基盤</a><a href="../../../whisper_pause_attention/index.html">pause・attention</a><a href="../../../whisper_pause_attention/reports/internal_pause_experiment_report.html">pause実験レポート</a><a href="../../../../SR/index.html">旧音声認識実験</a></details><details><summary>手引きの章一覧</summary><a href="../../guide/index.html">音から、モデルの判断と研究結果まで</a><a href="../../guide/audio.html">波形からメル特徴へ：音声の基礎</a><a href="../../guide/transformer.html">Transformer：Q・K・Vから内部計算を読む</a><a href="../../guide/whisper.html">Whisper：音から文字までの道筋</a><a href="../../guide/pipeline.html">今回の処理：SNRからIG95マスクまで</a><a href="../../guide/xai/index.html">XAI：問いから手法を選ぶ</a><a href="../../guide/xai/ig.html">Integrated Gradients（IG）を理解する</a><a href="../../guide/reconstruction.html">メルの表から音声へ：近似逆変換と位相</a><a href="../../guide/evaluation.html">3つの評価：音の近さ、文字の誤り、固定文のスコア</a><a href="../../guide/xai/shap.html">SHAP：特徴の組合せを公平に比較する</a><a href="../../guide/xai/lime.html">LIME：入力の近くで簡単な説明モデルを作る</a><a href="../../guide/xai/grad-cam.html">Grad-CAM：内部の特徴から粗い場所の地図を作る</a><a href="../../guide/xai/occlusion.html">Occlusion：領域を置き換えて差を見る</a><a href="../../guide/xai/saliency.html">Saliency：入力への小さな変化に対する感度</a><a href="../../guide/xai/other.html">その他のXAIとattentionの読み方</a><a href="../../guide/analysis.html">XAI以外から研究を確かめる</a><a href="../../guide/glossary.html">用語集：式を読むための基礎</a><a href="../../guide/sources.html">出典・実装との対応</a></details></nav></details></aside><main class="public-main" id="main"><h1 id="ig10">単語全体を対象にしたIG・同じ10音声</h1>
-<p>実行中の暫定集計。保存済み 3/10音声・33/148単位。</p>
+<p>計算完了。保存済み 10/10音声・148/148単位。</p>
 <p>研究サーバー版の単語別表・グラフ・試聴</p>
 <h2 id="_1">採用設定</h2>
 <p>採用設定は絶対IGの累積寄与率97%。保存済み10発話の発話全文Reazon平均CERは絶対IG97%で33.39%、正IG97%で44.06%。全候補共通の37組を4生成ASR等重みで集計した値です。集計ファイルは <code>results/analyses/advisor_xai/20261128_tuned_v2/settings.json</code>。 <a href="advisor-xai-tuned.html">10発話の設定選定の結果</a></p>
@@ -18,51 +18,55 @@
 <tbody>
 <tr>
 <td>IG品質合格</td>
-<td>27 / 33</td>
+<td>87 / 148</td>
 </tr>
 <tr>
 <td>最終積分点数 64／128／256</td>
-<td>7 ／ 9 ／ 17</td>
+<td>16 ／ 23 ／ 109</td>
 </tr>
 <tr>
 <td>再構成成功</td>
-<td>33 / 33</td>
+<td>148 / 148</td>
 </tr>
 <tr>
 <td>NNLS収束基準未達</td>
-<td>0</td>
+<td>44</td>
 </tr>
 <tr>
 <td>区間の照合</td>
-<td>30 / 33（既存区間案 9）</td>
+<td>134 / 148（既存区間案 26）</td>
 </tr>
 <tr>
 <td>平均の区間内寄与率 ／ 区間長割合</td>
-<td>14.67% ／ 8.31%</td>
+<td>11.90% ／ 6.92%</td>
 </tr>
 <tr>
 <td>集中度平均・1倍超の件数</td>
-<td>1.75倍・25/30</td>
+<td>1.81倍・109/134</td>
 </tr>
 <tr>
 <td>品質合格に限定した平均集中度</td>
-<td>1.76倍（24件）</td>
+<td>1.81倍（77件）</td>
 </tr>
 <tr>
 <td>区間内／外の平均波形エネルギー残存率</td>
-<td>70.01% ／ 68.05%（30区間）</td>
+<td>83.40% ／ 79.44%（134区間）</td>
 </tr>
 <tr>
 <td>対象語に対する全体WAVの平均CER</td>
-<td>1215.62%（32件）</td>
+<td>1791.27%（147件）</td>
 </tr>
 <tr>
 <td>全体WAVのCER 0件数 ／ 対象語を含む件数</td>
-<td>0 ／ 31（32件中）</td>
+<td>0 ／ 132（147件中）</td>
 </tr>
 <tr>
 <td>参考　区間のみの平均CER 元音／再構成</td>
-<td>139.17% ／ 122.22%（同じ30件）</td>
+<td>147.57% ／ 140.17%（同じ134件）</td>
+</tr>
+<tr>
+<td>区間の欠測理由</td>
+<td>コーパスの正解転記にこの出現箇所を連続一致で対応付けられない 12件、正規化後に文字がない記号 1件、クリーン音の保存済みCTC転記にこの出現箇所を連続一致で対応付けられない 1件</td>
 </tr>
 </tbody>
 </table></div>

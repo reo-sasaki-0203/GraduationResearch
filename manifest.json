@@ -2,7 +2,7 @@
   "format": "research-text-publication-v1",
   "html_pages": 52,
   "file_count": 117,
-  "bytes": 2261374,
+  "bytes": 2261969,
   "max_file_bytes": 276701,
   "removed_media_and_controls": 166,
   "inputs": {
@@ -24,7 +24,7 @@
     "ASR/whisper_ig_reconstruction/guide/analysis.html": "82f4c7a2cee07170e079e370f5ffb9795ecf548b065f8d093f2f851319d813ac",
     "ASR/whisper_ig_reconstruction/guide/glossary.html": "98caad4ed1110f2d07550f217774bc95ff051620c36e80039919da6e0332bc5b",
     "ASR/whisper_ig_reconstruction/guide/sources.html": "5b7385849c2afe7a724fe95d40fed03f561009ae019338575c8d9995a9116a6f",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/whole-word-ig.html": "6aece89f56b93fb802f6a19c623c05c90872c7e353f24c64eff4c13f974196e7",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/whole-word-ig.html": "686a77a3023a1979e6cb249603c89e9e3c5a76841fdf712476010a6156527ca8",
     "ASR/whisper_ig_reconstruction/notes/research_hub/advisor-xai-tuned.html": "ad32804df033fbca2b2b47896603c3bde8d7aa9498695271ce4288c045f01e53",
     "ASR/whisper_ig_reconstruction/notes/research_hub/advisor-results.html": "e8b9c68b88586d37453865cb84bb02df6083f9b1b0102a6394e0b508c92ead6a",
     "ASR/whisper_ig_reconstruction/notes/research_hub/advisor-followups.html": "c9d0baee878a85e59ae959e7cb7cb11178cbef7d793f2b15ed34514dccd58a25",
@@ -267,8 +267,8 @@
       "sha256": "5d7f3a1a4d79cb29c1036814de04b50b7a5754855d8f57088a07914dacc173ed"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/whole-word-ig.html": {
-      "bytes": 7840,
-      "sha256": "496f7ec031459cc4a24eeac39c1612d0e9c248b30ca80e33a59a703fd7446b0f"
+      "bytes": 8149,
+      "sha256": "fc9edc41b6e02366ec63b6cc5409b0a03ecb945aeeba0966710ec4ab0c5b83b3"
     },
     "ASR/whisper_pause_attention/index.html": {
       "bytes": 11699,
@@ -507,8 +507,8 @@
       "sha256": "2aa15cc19394deb12fcab7f049f31a0e70ca2d6560aac264ca7e29d917338351"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/whole-word-ig.md": {
-      "bytes": 3008,
-      "sha256": "69c6a3789b66bd795ddfa4e8612e0495db0bf4b968db929b70733f546ba5c2fc"
+      "bytes": 3294,
+      "sha256": "c44bcb98f149267cd2b27bf1f23417ef7bf89a201e4265c7d72fb8adcc624f7f"
     },
     "text-sources/ASR/whisper_pause_attention/README.md": {
       "bytes": 5198,
