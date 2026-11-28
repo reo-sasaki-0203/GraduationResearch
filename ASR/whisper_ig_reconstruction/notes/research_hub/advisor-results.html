@@ -1,9 +1,11 @@
 <!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>寄与度手法・認識器・混合比の実験結果 | 研究資料</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'none'; media-src 'none'; connect-src 'none'; object-src 'none'; frame-src 'none'"><link rel="stylesheet" href="../../../../assets/guide.css"><link rel="stylesheet" href="../../../../assets/vendor/katex/katex.min.css"><link rel="stylesheet" href="../../../../assets/public.css"><script defer src="../../../../assets/vendor/katex/katex.min.js"></script><script defer src="../../../../assets/math.js"></script><script defer src="../../../../assets/navigation.js"></script></head><body><header class="public-header"><a href="../../../../index.html">研究資料</a><small>テキスト版</small></header><div class="public-layout"><aside class="public-side"><details class="mobile-nav" open><summary>目次・ページを選ぶ</summary><nav><details open><summary>結果を見る</summary><a href="results.html">実験結果一覧</a><a href="clean-word-ig.html">クリーン単語IG：10発話</a><a href="cross-asr.html">別ASR：1000発話・5条件</a><a href="token-word-ig.html">トークン毎のIG計算の結果：10音声</a><a href="utterances.html">音声・メル比較（サーバ版）</a><a href="positive-fractions-pilot.html">正IG90・85・80：10音声</a><a href="positive-ig95.html">正のIG95・1000件比較</a><a href="main1000-results.html">1000件・IG＋DeepFilterNet3</a></details><details open><summary>研究を進める</summary><a href="token-extraction-hypothesis.html">トークンIG抽出の仮説と先行研究</a><a href="plan.html">研究計画</a><a href="advice.html">助言集</a><a href="advice-response.html">助言への対応</a></details><details open><summary>学ぶ</summary><a href="../../guide/index.html">手引き・全18章</a><a href="denoising-history.html">ノイズ除去の歴史</a><a href="score.html">Fとセル寄与</a></details><details open><summary>過去の研究</summary><a href="../../../asr_prosody_probe/index.html">初期の解析基盤</a><a href="../../../whisper_pause_attention/index.html">pause・attention</a><a href="../../../whisper_pause_attention/reports/internal_pause_experiment_report.html">pause実験レポート</a><a href="../../../../SR/index.html">旧音声認識実験</a></details><details><summary>手引きの章一覧</summary><a href="../../guide/index.html">音から、モデルの判断と研究結果まで</a><a href="../../guide/audio.html">波形からメル特徴へ：音声の基礎</a><a href="../../guide/transformer.html">Transformer：Q・K・Vから内部計算を読む</a><a href="../../guide/whisper.html">Whisper：音から文字までの道筋</a><a href="../../guide/pipeline.html">今回の処理：SNRからIG95マスクまで</a><a href="../../guide/xai/index.html">XAI：問いから手法を選ぶ</a><a href="../../guide/xai/ig.html">Integrated Gradients（IG）を理解する</a><a href="../../guide/reconstruction.html">メルの表から音声へ：近似逆変換と位相</a><a href="../../guide/evaluation.html">3つの評価：音の近さ、文字の誤り、固定文のスコア</a><a href="../../guide/xai/shap.html">SHAP：特徴の組合せを公平に比較する</a><a href="../../guide/xai/lime.html">LIME：入力の近くで簡単な説明モデルを作る</a><a href="../../guide/xai/grad-cam.html">Grad-CAM：内部の特徴から粗い場所の地図を作る</a><a href="../../guide/xai/occlusion.html">Occlusion：領域を置き換えて差を見る</a><a href="../../guide/xai/saliency.html">Saliency：入力への小さな変化に対する感度</a><a href="../../guide/xai/other.html">その他のXAIとattentionの読み方</a><a href="../../guide/analysis.html">XAI以外から研究を確かめる</a><a href="../../guide/glossary.html">用語集：式を読むための基礎</a><a href="../../guide/sources.html">出典・実装との対応</a></details></nav></details></aside><main class="public-main" id="main"><h1 id="_1">寄与度手法・認識器・混合比の実験結果</h1>
-<p>2026年11月25〜27日の先行3案と追加3案。音声を再構成するために使ったモデルを生成ASRと呼び、再構成音を文字に起こして比べるモデルを評価器と呼びます。</p>
+<p>雑音の混じった音声から、音声認識モデルが判断に使う部分を残すと、文字起こしは良くなるでしょうか。2026年11月25〜27日に行った3案と、それぞれの追加実験の結果です。</p>
 <ul><li><a href="#attribution">案①・追加①　基準と寄与度手法</a></li><li><a href="#cross-asr">案②・追加②　生成ASRとSNR</a></li><li><a href="#dominance">案③・追加③　声の優勢度</a></li></ul>
-<p>CERは文字誤り率です。ΔCERは「再構成音のCER − 同じ評価器で測った混合音のCER」で、単位はポイント（pp）。負値は誤りの減少です。SNRが低いほど混合音に占める雑音が強くなります。</p>
+<p><strong>ASR</strong>は音声を文字に起こす仕組みです。このページでは、どの音を残すかを決める側を「生成ASR」、出来上がった音を文字に起こす側を「評価器」と呼びます。Reazonは再構成に使っていない評価器です。<strong>XAI</strong>は、AIが何を手がかりに判断したかを調べる方法の総称です。</p>
+<p><strong>CER</strong>は文字の置き換え・抜け・余分な文字の合計を、正解の文字数で割った値です。小さいほど正確です。<strong>ΔCER</strong>は再構成音と元の混合音のCERの差で、たとえば20%から16%に下がると−4ポイント（pp）です。<strong>SNR</strong>は声と雑音の強さの比です。0 dBでは両者のパワーが同じで、数値が低いほど雑音が強くなります。</p>
 <h2 id="attribution">案①　基準と寄与度手法</h2>
-<p>Whisper large-v3で入力の上位タイルを順に減衰させ、固定した認識文のスコア変化を測定。確認59/60発話で遮蔽の介入AUCが無音基準IGを0.137上回りました（対応98.75%区間 +0.087〜+0.185）。一方、遮蔽の再構成はReazonのCERが混合より30.87ポイント高くなりました。元の認識文への説明力と、再構成音の認識精度で順位が変わるため、案①を収録しました。<a href="advisor-followups.html">検定と数値品質の詳細</a></p>
+<p>音声を「いつ、どの高さの音が、どれくらい強いか」を表すメルスペクトログラムに変え、小さな区画に分けました。<strong>IG（Integrated Gradients）</strong>は、基準の値から混合音の値へ少しずつ近づけ、どの区画が認識に効いたかを見積もる方法です。基準には無音と、音の高さごとに求めた典型的な値（中央値）の2種類を使いました。<strong>入力勾配</strong>は入力を少し変えたときの認識の変わりやすさ、<strong>遮蔽</strong>は区画を別の値で覆ったときの変化を測ります。</p>
+<p>重要と判定した区画から順に弱め、Whisperが同じ文を出すスコアがどれほど変わるかを測りました。その変化をまとめた値が介入AUCです。確認できた59発話で、遮蔽のAUCは無音基準IGより0.137高くなりました（98.75%区間 +0.087〜+0.185）。一方、遮蔽が重要とした区画を残して音を作ると、ReazonのCERは元の混合音より30.87ポイント高くなりました。<strong>認識に効く箇所を見つけても、その箇所を残すだけで文字起こししやすい音になるとは限りません。</strong> <a href="advisor-followups.html">検定と数値品質の詳細</a></p>
 <div class="table-scroll"><table><thead><tr><th scope="col">手法</th><th scope="col">介入AUC</th><th scope="col">Reazon ΔCER (pp)</th></tr></thead><tbody><tr><td>無音基準IG</td><td>0.491</td><td>+23.69</td></tr><tr><td>中央値基準IG</td><td>0.566</td><td>+22.13</td></tr><tr><td>入力勾配</td><td>0.354</td><td>+26.88</td></tr><tr><td>遮蔽</td><td>0.628</td><td>+30.87</td></tr><tr><td>エネルギー</td><td>0.282</td><td>+16.74</td></tr><tr><td>ランダム</td><td>0.263</td><td>+45.90</td></tr><tr><td>全保持</td><td>—</td><td>-1.13</td></tr></tbody></table></div>
 <!-- private-token-results:start -->
 
@@ -12,8 +14,9 @@
 
 <!-- private-token-results:end -->
 <h3 id="1-4cermae">追加①　4モデルでCERとMAEを比べる</h3>
-<p>各生成ASRのメル入力で、無音・帯域中央値基準のIG（絶対値・正値）と、入力勾配・入力×勾配・遮蔽を比較しました。上位60%のタイルを選び、混合位相とNNLSで波形に戻しています。下表のCERはモデルごとに全手法が揃う確認発話の平均です。波形MAEはクリーンとの差の絶対値をサンプル上で平均した値です。保存音声と保存マスクから、元の振幅尺度で測定しました。再生成波形は元波形のハッシュまたは保存SI-SDRとの差10⁻⁴ dB以内で照合し、保存音がある例ではサンプル値も比較しました。</p>
-<p>Reazonでの対応比較では、無音基準の絶対IGに対し、3つの非IG手法すべてでCERが高くなりました。比較は4生成ASRの差を発話内で等重みにして集計しました。</p>
+<p>生成ASRを4種類に増やし、重要と判定された上位60%を目安に区画を残して、音声に戻しました。<strong>絶対IG</strong>は認識スコアを上げる区画と下げる区画をどちらも変化の大きさで選び、<strong>正IG</strong>はスコアを上げる方向に働く区画を優先します。入力×勾配は、入力勾配に元の入力値を掛ける方法です。</p>
+<p>CERは文字起こしの正確さ、波形MAEは雑音を混ぜる前のきれいな音と各時点の振幅がどれほど違うかを示します。どちらも小さいほど良く、表では同じモデルの各手法を同じ発話で比べています。MAEに使った波形は保存音声や元の音響評価値と照合しました。たとえばWhisperでは、入力勾配は混合音より波形MAEが小さくなりましたが、CERは31.30%から58.42%に上がりました。波形の誤差と文字起こしの誤りは別々に読みます。</p>
+<p>4モデルでの差を各発話で平均すると、3つの非IG手法はいずれも無音基準の絶対IGよりReazonのCERが高く、差は13.02〜23.03ポイントでした。下の区間は、発話によるばらつきを考慮した推定の幅です。</p>
 <div class="table-scroll"><table><thead><tr><th scope="col">手法</th><th scope="col">対応n</th><th scope="col">平均差・相関</th><th scope="col">98.33%区間</th></tr></thead><tbody><tr><td>入力勾配</td><td>58</td><td>+13.021</td><td>+10.327 ～ +15.827</td></tr><tr><td>入力×勾配</td><td>58</td><td>+23.029</td><td>+20.203 ～ +25.842</td></tr><tr><td>遮蔽</td><td>58</td><td>+16.836</td><td>+13.830 ～ +20.019</td></tr></tbody></table></div>
 <details open=""><summary>Whisper large-v3</summary>
 <div class="table-scroll"><table><thead><tr><th scope="col">手法</th><th scope="col">CER % (n=60)</th><th scope="col">MAE (n=60)</th></tr></thead><tbody><tr><td>混合音</td><td>31.30</td><td>0.04287</td></tr><tr><td>絶対IG</td><td>53.74</td><td>0.03378</td></tr><tr><td>正IG</td><td>45.07</td><td>0.03459</td></tr><tr><td>中央値基準・絶対IG</td><td>50.43</td><td>0.03446</td></tr><tr><td>中央値基準・正IG</td><td>49.32</td><td>0.03432</td></tr><tr><td>入力勾配</td><td>58.42</td><td>0.03162</td></tr><tr><td>入力×勾配</td><td>48.96</td><td>0.03513</td></tr><tr><td>遮蔽</td><td>69.61</td><td>0.03619</td></tr><tr><td>全保持</td><td>30.00</td><td>0.04041</td></tr><tr><td>エネルギー</td><td>48.11</td><td>0.03471</td></tr><tr><td>ランダム</td><td>78.94</td><td>0.03786</td></tr></tbody></table></div>
@@ -43,8 +46,8 @@
 
 <!-- private-token-results:end -->
 <h2 id="cross-asr">案②　生成ASRと雑音強度による違い</h2>
-<p>確認85発話を白色・交通の2種、−5・0・+10 dBの3段階に混合した計510条件です。各モデルから共通STFT振幅上でIGを得て、同面積のマスクから波形を再構成しました。</p>
-<p><strong>開発で選んだ主比較では、LaboroTV・−5 dBの再構成でReazon CERが3.99ポイント低下しました</strong>（対応85発話、95%区間 −5.49〜−2.46）。2雑音を発話内で等重み。下の表は雑音別のΔCERで、Reazon欄の括弧は有効発話数です。確認全体で混合認識文が空だった生成条件は9件でした。<a href="advisor-followups.html">主比較と処理の詳細</a></p>
+<p>声を残すのが得意なASRは、雑音の種類や強さで変わるでしょうか。85発話を白色雑音（サーッという音）・交通雑音の2種類、−5・0・+10 dBの3段階で混ぜた計510条件を比較しました。4つの生成ASRが、同じ時間・周波数の目盛り上でIGを計算し、同じ割合だけ音の区画を残しました。</p>
+<p>事前の開発データで選んだ条件を別の85発話で確かめると、<strong>LaboroTV・−5 dBではReazonのCERが混合音より3.99ポイント下がりました</strong>（95%区間 −5.49〜−2.46）。白色と交通は同じ重みで平均しました。表は生成ASRを行、雑音とSNRを列にしており、負の値ほど元の混合音より文字起こしが改善しています。括弧はReazonで比較できた発話数です。生成ASRが混合音から文字を出せず、再構成を行えなかった条件が9件ありました。<a href="advisor-followups.html">主比較と処理の詳細</a></p>
 <details><summary>評価器 Whisper large-v3</summary>
 <div class="table-scroll"><table><thead><tr><th scope="col">生成ASR</th><th scope="col">白色 −5</th><th scope="col">白色 0</th><th scope="col">白色 +10</th><th scope="col">交通 −5</th><th scope="col">交通 0</th><th scope="col">交通 +10</th></tr></thead><tbody><tr><td>Whisper large-v3</td><td>+2.62</td><td>+0.63</td><td>+0.62</td><td>+0.44</td><td>-0.03</td><td>+0.16</td></tr><tr><td>CSJ Transformer</td><td>+2.88</td><td>+2.36</td><td>+0.03</td><td>+2.97</td><td>+1.03</td><td>-0.02</td></tr><tr><td>CSJ Conformer</td><td>+4.07</td><td>+2.37</td><td>-0.30</td><td>+3.12</td><td>+0.32</td><td>-0.12</td></tr><tr><td>LaboroTV Conformer</td><td>+1.41</td><td>+0.81</td><td>-0.06</td><td>+0.04</td><td>+0.24</td><td>+0.15</td></tr></tbody></table></div>
 </details>
@@ -71,8 +74,8 @@
 
 <!-- private-token-results:end -->
 <h3 id="2-5ig">追加②　同じ5評価器で非IG手法も比較</h3>
-<p>確認60発話×6条件です。生成器固有のメルから再構成した音を、生成に使った4モデルと独立評価器Reazonで認識しました。下表はReazonのΔCERで、括弧は有効発話数です。手法の中で評価器別の表も開けます。</p>
-<p>開発段階で標準経路との照合基準を外れたモデル・混合の組み合わせが29件あり、共通に比較できた開発発話は各手法2件でした。その開発選定を固定した確認では、非IG3法のΔCERはいずれも正でした。先行②と追加②は、確認発話・帰属を求める座標・逆変換が異なります。</p>
+<p>追加①で試した手法から、無音基準の絶対IG・正IGと非IGの3手法を使いました。確認用の60発話を、2種類の雑音と3段階の強さで比べました。1つの再構成音を4モデルとReazonの計5つで文字に起こしたので、改善が他の評価器にも表れるかを確認できます。手法を開くとReazonの表があり、その中で他の評価器の表も開けます。</p>
+<p>開発用データで各手法の候補条件を選び、別の60発話で試すと、非IGの3手法とも元の混合音よりReazonのCERが高くなりました。候補の選定に共通して使えた開発発話は各手法2件です。開発時は、認識スコアや波形が元の計算と十分に一致するかを確かめ、29のモデル・混合音の組み合わせがその基準を外れました。先行②と追加②では、使った発話と音の作り方も変わっています。</p>
 <div class="table-scroll"><table><thead><tr><th scope="col">手法</th><th scope="col">対応n</th><th scope="col">平均差・相関</th><th scope="col">98.33%区間</th></tr></thead><tbody><tr><td>入力勾配</td><td>60</td><td>+34.183</td><td>+30.297 ～ +38.030</td></tr><tr><td>入力×勾配</td><td>60</td><td>+43.499</td><td>+39.077 ～ +47.913</td></tr><tr><td>遮蔽</td><td>60</td><td>+36.964</td><td>+32.874 ～ +41.050</td></tr></tbody></table></div>
 <details open=""><summary>絶対IG</summary>
 <div class="table-scroll"><table><thead><tr><th scope="col">生成ASR</th><th scope="col">白色 −5</th><th scope="col">白色 0</th><th scope="col">白色 +10</th><th scope="col">交通 −5</th><th scope="col">交通 0</th><th scope="col">交通 +10</th></tr></thead><tbody><tr><td>Whisper large-v3</td><td>+18.12（60）</td><td>+27.25（60）</td><td>+18.08（60）</td><td>+35.88（60）</td><td>+28.88（60）</td><td>+12.50（60）</td></tr><tr><td>CSJ Transformer</td><td>+24.16（60）</td><td>+35.24（60）</td><td>+45.61（60）</td><td>+35.70（60）</td><td>+39.95（60）</td><td>+27.70（60）</td></tr><tr><td>CSJ Conformer</td><td>+23.51（60）</td><td>+37.11（60）</td><td>+34.72（60）</td><td>+41.53（60）</td><td>+29.64（60）</td><td>+15.13（60）</td></tr><tr><td>LaboroTV Conformer</td><td>+21.97（60）</td><td>+31.50（55）</td><td>+22.07（60）</td><td>+33.94（60）</td><td>+23.57（60）</td><td>+7.78（60）</td></tr></tbody></table></div>
@@ -210,15 +213,15 @@
 
 <!-- private-token-results:end -->
 <h2 id="dominance">案③　声の優勢度と寄与・再構成</h2>
-<p>声の局所優勢度は「声のメルパワー÷（声＋雑音のメルパワー）」です。0.5を超える領域では声が優勢です。出力利得は再構成後の実波形のメルパワーと混合音のメルパワーの比です。Jは声の保持率から雑音の保持率を引いた値です。</p>
+<p>ASRが役立つと判定した箇所には、実際に声が多く含まれているでしょうか。混ぜる前の声と雑音が分かっているので、時間と音の高さごとに「声のパワー÷（声＋雑音のパワー）」を計算できます。この値が0.5を超えると声の方が強くなります。<strong>出力利得</strong>は再構成後にその箇所の音がどれだけ残ったか、<strong>保持差J</strong>は雑音より声をどれだけ多い割合で残したかを表します。</p>
 <h3 id="1000">既存1000件の観察</h3>
-<p>Whisperの絶対IG95で、1つの混合音の中で声の強い箇所ほどIGが高い傾向がありました。全体の平均順位相関は0.308。雑音種により設定SNRが異なります。<a href="source-dominance.html">音響指標と対照の詳細</a></p>
+<p>1つの混合音の中で、声の割合の順位とWhisperの絶対IGの順位を比べました。<strong>順位相関ρ</strong>は、順位の並びが似ると正、逆になると負になります。1000件の平均は<strong>+0.308</strong>で、声の割合が高い箇所ほどIGも高い傾向がありました。ここでは、雑音の種類によって設定SNRも異なります。<a href="source-dominance.html">音響指標と対照の詳細</a></p>
 <div class="table-scroll"><table><thead><tr><th scope="col">雑音</th><th scope="col">n</th><th scope="col">優勢度↔絶対IG ρ</th><th scope="col">優勢度↔出力利得 ρ</th><th scope="col">IGの声・雑音保持差 J (pp)</th></tr></thead><tbody><tr><td>全体</td><td>1000</td><td>0.308</td><td>0.318</td><td>14.29</td></tr><tr><td>白色</td><td>200</td><td>0.321</td><td>0.329</td><td>28.71</td></tr><tr><td>交通</td><td>200</td><td>0.273</td><td>0.271</td><td>10.73</td></tr><tr><td>ピンク</td><td>200</td><td>0.314</td><td>0.318</td><td>16.07</td></tr><tr><td>流水</td><td>200</td><td>0.313</td><td>0.302</td><td>12.87</td></tr><tr><td>台所</td><td>200</td><td>0.319</td><td>0.371</td><td>3.05</td></tr></tbody></table></div>
 <!-- private-token-results:start -->
 
 <!-- private-token-results:end -->
 <h3 id="54">同じ5組を4段階に混ぜ直した操作実験</h3>
-<p>同じ声と雑音を−10、0、+10、+20 dBに混ぜ直し、Whisperで絶対IG95と正IG95を比較した最終128点版です。下表はSNRごとに5組を等重み。相関は各混合音内の領域間の関係です。 <a href="controlled-snr.html">同じ位置を追った結果と検算</a></p>
+<p>同じ声と同じ雑音で、雑音の音量だけを変えて−10、0、+10、+20 dBに混ぜ直しました。Whisperで「全体の寄与の95%に達するまで上位から残す」絶対IG95・正IG95を比較しています。下表は各SNRで5組を平均した値です。プラスの相関は、そのSNRの音の中で声が優勢な箇所に高い寄与がつく傾向を示します。<a href="controlled-snr.html">同じ位置を追った結果と検算</a></p>
 <div class="table-scroll"><table><thead><tr><th scope="col">SNR (dB)</th><th scope="col">ρ 優勢度↔絶対IG</th><th scope="col">ρ 優勢度↔正IG</th><th scope="col">ΔCER 絶対IG (pp)</th><th scope="col">ΔCER 正IG (pp)</th></tr></thead><tbody><tr><td>-10</td><td>0.208</td><td>0.110</td><td>+0.46</td><td>+6.38</td></tr><tr><td>0</td><td>0.265</td><td>0.125</td><td>+5.36</td><td>+14.73</td></tr><tr><td>10</td><td>0.278</td><td>0.119</td><td>+0.80</td><td>+2.96</td></tr><tr><td>20</td><td>0.326</td><td>0.140</td><td>-0.54</td><td>-0.54</td></tr></tbody></table></div>
 <!-- private-token-results:start -->
 
@@ -227,8 +230,8 @@
 
 <!-- private-token-results:end -->
 <h3 id="3-45">追加③　4モデル・5手法で声の優勢度に追従するか</h3>
-<p>4生成ASRで既存1000件を解析し、旧5組と新規30組をそれぞれ4段階に混合しました。「混合音内の相関」は同じ音声の異なる場所を比べます。「追従」はSNR操作で声優勢と雑音優勢が反転した同じ場所を4条件で追います。この区別により、声の強い場所へ値が集中する傾向と、声を強めたときの同一箇所の応答を別々に確認できます。</p>
-<p>新規30組では、3つの非IG手法の寄与シェア追従はすべて負で、事前に比較した98.33%区間も負でした。実波形の利得の追従は別指標として下記に掲載しています。</p>
+<p>4モデル・5手法に広げ、既存1000件と、4段階に混ぜた旧5組・新規30組を調べました。表の「混合音内の相関」は、1つの音の中で異なる箇所を比べた値です。「追従」では、たとえば発話の0.5秒付近の同じ高さの音に注目します。雑音の音量を変えて、その箇所が雑音優勢から声優勢に変わるとき、全体の寄与のうちそこに割り当てられる割合（寄与シェア）も上がるかを見ます。</p>
+<p>新規30組では、3つの非IG手法とも、同じ箇所の声の割合が高くなるほど、そこに割り当てられる寄与シェアは下がる傾向でした（98.33%区間も負）。その箇所の<strong>実際の再構成音がどれだけ残ったか</strong>は「出力利得の追従」の列で確かめられます。</p>
 <div class="table-scroll"><table><thead><tr><th scope="col">手法</th><th scope="col">対応n</th><th scope="col">平均差・相関</th><th scope="col">98.33%区間</th></tr></thead><tbody><tr><td>入力勾配</td><td>30</td><td>-0.126</td><td>-0.154 ～ -0.100</td></tr><tr><td>入力×勾配</td><td>30</td><td>-0.176</td><td>-0.204 ～ -0.150</td></tr><tr><td>遮蔽</td><td>30</td><td>-0.134</td><td>-0.159 ～ -0.110</td></tr></tbody></table></div>
 <details open=""><summary>Whisper large-v3</summary>
 <div class="table-scroll"><table><thead><tr><th scope="col">手法</th><th scope="col">既存1000件 優勢度↔寄与</th><th scope="col">既存1000件 優勢度↔出力利得</th><th scope="col">旧5組 寄与の追従</th><th scope="col">新規30組 寄与の追従</th><th scope="col">新規30組 出力利得の追従</th></tr></thead><tbody><tr><td>絶対IG</td><td>0.550</td><td>0.566</td><td>0.008</td><td>0.048</td><td>0.204</td></tr><tr><td>正IG</td><td>0.502</td><td>0.534</td><td>0.065</td><td>0.063</td><td>0.207</td></tr><tr><td>入力勾配</td><td>0.186</td><td>0.273</td><td>-0.116</td><td>-0.048</td><td>0.030</td></tr><tr><td>入力×勾配</td><td>0.450</td><td>0.484</td><td>-0.167</td><td>-0.120</td><td>0.065</td></tr><tr><td>遮蔽</td><td>0.053</td><td>0.103</td><td>-0.090</td><td>-0.006</td><td>-0.033</td></tr><tr><td>エネルギー</td><td>0.607</td><td>0.489</td><td>-0.597</td><td>-0.588</td><td>0.388</td></tr><tr><td>ランダム</td><td>-0.001</td><td>0.049</td><td>0.003</td><td>0.003</td><td>0.016</td></tr><tr><td>全保持</td><td>—</td><td>0.252</td><td>—</td><td>—</td><td>0.113</td></tr></tbody></table></div>
@@ -268,7 +271,7 @@
 <!-- private-token-results:start -->
 
 <!-- private-token-results:end -->
-<p>既存1000件では64点IGでLaboroTVとWhisperの品質未達が4割以上だったため128点へ引き上げました。最終未達率はどのモデルも4割未満です。品質未達を含む集計で、対象はJSUTの同一話者です。</p>
+<p>IGは、基準から混合音へ近づく途中の複数の点で認識モデルを調べて近似します。既存1000件では、64点で計算したLaboroTVとWhisperの品質未達率が4割以上だったため、128点で再計算しました。最終未達率は全モデルで4割未満です。上の集計には基準未達の結果も含まれ、発話はJSUTの同一話者です。</p>
 <div class="table-scroll"><table><thead><tr><th scope="col">生成ASR</th><th scope="col">IG点数</th><th scope="col">未達／分母</th></tr></thead><tbody><tr><td>Whisper large-v3</td><td>128</td><td>394/1000</td></tr><tr><td>CSJ Transformer</td><td>64</td><td>90/1000</td></tr><tr><td>CSJ Conformer</td><td>64</td><td>78/1000</td></tr><tr><td>LaboroTV Conformer</td><td>128</td><td>105/1000</td></tr></tbody></table></div>
 <!-- private-token-results:start -->
 

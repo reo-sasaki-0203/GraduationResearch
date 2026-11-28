@@ -2,7 +2,7 @@
   "format": "research-text-publication-v1",
   "html_pages": 50,
   "file_count": 113,
-  "bytes": 1883847,
+  "bytes": 1890347,
   "max_file_bytes": 276701,
   "removed_media_and_controls": 162,
   "inputs": {
@@ -24,7 +24,7 @@
     "ASR/whisper_ig_reconstruction/guide/analysis.html": "82f4c7a2cee07170e079e370f5ffb9795ecf548b065f8d093f2f851319d813ac",
     "ASR/whisper_ig_reconstruction/guide/glossary.html": "98caad4ed1110f2d07550f217774bc95ff051620c36e80039919da6e0332bc5b",
     "ASR/whisper_ig_reconstruction/guide/sources.html": "5b7385849c2afe7a724fe95d40fed03f561009ae019338575c8d9995a9116a6f",
-    "ASR/whisper_ig_reconstruction/notes/research_hub/advisor-results.html": "593dca1e2b1ce415204edebcd2cf3b46ee2fd1fcaf33732bcb764bf2b28d6aec",
+    "ASR/whisper_ig_reconstruction/notes/research_hub/advisor-results.html": "e8b9c68b88586d37453865cb84bb02df6083f9b1b0102a6394e0b508c92ead6a",
     "ASR/whisper_ig_reconstruction/notes/research_hub/advisor-followups.html": "c9d0baee878a85e59ae959e7cb7cb11178cbef7d793f2b15ed34514dccd58a25",
     "ASR/whisper_ig_reconstruction/notes/research_hub/controlled-snr.html": "c84146cc86e0efe6737f098988dccf98053f05a2aa967c693daa08332004db1e",
     "ASR/whisper_ig_reconstruction/results/analyses/source_dominance/main1000_20261125_v1/index.html": "d020f2670d0c04ddc509eef34aeec695b0091349b7b26211aeec702eb37ef861",
@@ -189,8 +189,8 @@
       "sha256": "46982bb13456ec089cc2e4225a6c5608585d85e6a3bd30515de87ccad6f11cf6"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/advisor-results.html": {
-      "bytes": 72022,
-      "sha256": "8e42fc9e9989b2da064bbfdc87bd5cf3907736326ff3086406f183c134ab7756"
+      "bytes": 75385,
+      "sha256": "624a96dc65a8298baf473e6098e1535e59f09b6bfe975a3de529b481b45434e6"
     },
     "ASR/whisper_ig_reconstruction/notes/research_hub/clean-word-ig.html": {
       "bytes": 16580,
@@ -425,8 +425,8 @@
       "sha256": "37cc5a3d696cc086e701892afdd320642639a66c8d3131e7fa9f3373a292a6d7"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/advisor-results.md": {
-      "bytes": 63680,
-      "sha256": "ad27ef2ba1a15a9ab4b1c8961e57830be6bc4c5cf7da8b4901577183d6771631"
+      "bytes": 66817,
+      "sha256": "82ce3fa7c9d83ddb704b761e29ff168e63b34eefe26b393ab2f9c98a4700bc13"
     },
     "text-sources/ASR/whisper_ig_reconstruction/notes/research_hub/clean-word-ig.md": {
       "bytes": 9011,
