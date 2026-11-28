@@ -1,5 +1,11 @@
 # 実験結果一覧
 
+## 単語の発話区間への重要度集中（2026-11-28開始）
+
+[Whisper 10音声・148単位と、共通1音声の4モデル探索比較](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/word-xai.html)。**計算待機中。** マスク前の区間集中度を主に比較し、再構成と対象語認識も評価します。
+
+<!-- covers: results/comparisons/word_xai/mixed10_20261128_v1 -->
+
 [元音声ごとの音声・メル比較を開く](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/utterances.html)
 
 新しい結果から、実験・検証ごとに並べています。完了した比較、品質基準未達、事前確認、保管済み記録を、それぞれの状態を添えて掲載します。
