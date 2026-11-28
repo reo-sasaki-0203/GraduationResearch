@@ -3,6 +3,12 @@
 [元音声ごとの音声・メル比較を開く](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/utterances.html)
 
 新しい結果から、実験・検証ごとに並べています。完了した比較、品質基準未達、事前確認、保管済み記録を、それぞれの状態を添えて掲載します。
+## 単語の認識に寄与したメル領域は、その語の発話区間に集まるか
+
+[単語全体を対象にしたIG・同じ10音声](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/whole-word-ig.html)。元のトークン別実験と同じ短単位を対象に、固定文脈で対応トークンの平均対数確率を直接微分。マスク前の寄与の集中、再構成波形の区間内外の残存率、独立評価器の対象語CERを掲載します。
+
+<!-- covers: results/comparisons/whole_word_ig/mixed10_20261128_v1 -->
+
 ## XAIの再構成設定選定と追加①〜③
 
 [設定選定のための10発話比較と、採用設定での本実験](../../../../../ASR/whisper_ig_reconstruction/notes/research_hub/advisor-xai-tuned.html)。ReazonのCERとクリーン波形に対するMAEで設定を比較し、別の発話で追加①〜③を評価します。各段階の完了・欠測は詳細ページに記載しています。
